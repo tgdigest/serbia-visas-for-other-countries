@@ -8,6 +8,8 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: ru
+  icon:
+    edit: material/pencil
   palette:
     - scheme: default
       primary: indigo
@@ -22,9 +24,10 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.tabs
     - navigation.sections
+    - navigation.expand
     - navigation.top
+    - toc.follow
     - search.highlight
     - search.share
     - content.action.edit
