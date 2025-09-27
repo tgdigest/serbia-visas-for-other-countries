@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Cache directory
+cache/
+
 # Python
 __pycache__/
 *.py[cod]
