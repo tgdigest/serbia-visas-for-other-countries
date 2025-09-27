@@ -1,5 +1,5 @@
 telethon==1.36.0
-python-dotenv==1.0.1
+python-dotenv==1.1.1
 cryptg==0.4.0
 pyyaml==6.0.2
 pydantic==2.11.9
