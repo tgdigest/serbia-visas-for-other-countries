@@ -1,4 +1,6 @@
 import asyncio
+import argparse
+from pathlib import Path
 from tgdigest.client import TgDigestClient
 from tgdigest.parser import load_config
 from tgdigest.cache import MessagesCache
@@ -61,4 +63,15 @@ async def main():
     await client.disconnect()
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Telegram digest fetcher')
+    parser.add_argument('--force-login', action='store_true', help='Force re-login even if session exists')
+    args = parser.parse_args()
+    
+    # Remove session file if force login
+    if args.force_login:
+        session_file = Path('tgdigest_session.session')
+        if session_file.exists():
+            session_file.unlink()
+            print("Removed existing session, forcing re-login...")
+    
     asyncio.run(main())
