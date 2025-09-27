@@ -69,7 +69,7 @@ if __name__ == '__main__':
     
     # Remove session file if force login
     if args.force_login:
-        session_file = Path('tgdigest_session.session')
+        session_file = Path('tgdigest.session')
         if session_file.exists():
             session_file.unlink()
             print("Removed existing session, forcing re-login...")
