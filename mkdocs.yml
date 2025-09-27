@@ -34,8 +34,12 @@ theme:
   
 nav:
   - Главная: index.md
-  - Венгрия 🇭🇺: hungary.md
-  - Франция 🇫🇷: france.md
+  - Венгрия 🇭🇺:
+    - Требования и процесс: hungary/requirements.md
+    - Кейсы и опыт: hungary/cases.md
+  - Франция 🇫🇷:
+    - Требования и процесс: france/requirements.md
+    - Кейсы и опыт: france/cases.md
   
 markdown_extensions:
   - admonition
@@ -47,3 +51,11 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/+fIZUn78R5SUzYjhi
+      name: Serbia visas for other countries
+
+copyright: 'Источник: телеграм-чат <a href="https://t.me/+fIZUn78R5SUzYjhi">Serbia: visas for other countries</a>'
