@@ -1,7 +1,115 @@
+import json
 import logging
+from pathlib import Path
+
+from jinja2 import Environment, FileSystemLoader
+from openai import OpenAI
+from unidiff import PatchSet
+
+from .cache import MessagesCache
+from .models import Chat, DocumentationUpdate, GeneratorState, MonthMessages
 
 
 class Generator:
-    def __init__(self, openai_api_key: str, logger=None):
-        self.logger = logger or logging.getLogger(__name__)
+    MODEL = 'gpt-4.1-2025-04-14'
 
+    def __init__(self, openai_api_key: str, max_months_per_run: int, docs_dir: str = 'docs', logger=None):
+        self.logger = logger or logging.getLogger(__name__)
+        self.client = OpenAI(api_key=openai_api_key)
+        self.docs_dir = Path(docs_dir)
+        self.max_months_per_run = max_months_per_run
+        
+        templates_dir = Path(__file__).parent / 'prompts'
+        self.jinja_env = Environment(loader=FileSystemLoader(templates_dir), autoescape=False)
+
+    def _load_docs(self) -> dict[str, str]:
+        docs = {}
+        for md_file in self.docs_dir.rglob('*.md'):
+            rel_path = md_file.relative_to(self.docs_dir)
+            with md_file.open(encoding='utf-8') as f:
+                docs[str(rel_path)] = f.read()
+        return docs
+
+    def _request_updates(self, docs: dict[str, str], month_messages: MonthMessages) -> DocumentationUpdate:
+        self.logger.info('Requesting documentation updates for month %s with %d messages', 
+                        month_messages.month, len(month_messages.messages))
+
+        prompt = self.jinja_env.get_template('update_docs.j2').render(
+            docs_json=json.dumps(docs, ensure_ascii=False),
+            messages_json=json.dumps(month_messages.model_dump(), ensure_ascii=False),
+        )
+
+        response = self.client.chat.completions.parse(
+            model=self.MODEL,
+            messages=[
+                {'role': 'system', 'content': 'You are a documentation maintainer that generates unified diffs.'},
+                {'role': 'user', 'content': prompt},
+            ],
+            response_format=DocumentationUpdate,
+        )
+
+        return response.choices[0].message.parsed
+
+    def _apply_diff(self, file_path: Path, diff_content: str):
+        self.logger.info('Applying diff to %s', file_path)
+
+        patch = PatchSet(diff_content)
+
+        with file_path.open(encoding='utf-8') as f:
+            original_lines = f.readlines()
+
+        patched_lines = original_lines.copy()
+
+        for patched_file in patch:
+            for hunk in patched_file:
+                target_line = hunk.target_start - 1
+
+                lines_to_remove = [line for line in hunk if line.is_removed]
+                for _ in lines_to_remove:
+                    if target_line < len(patched_lines):
+                        patched_lines.pop(target_line)
+
+                lines_to_add = [line.value for line in hunk if line.is_added]
+                for i, line_content in enumerate(lines_to_add):
+                    patched_lines.insert(target_line + i, line_content)
+
+        with file_path.open('w', encoding='utf-8') as f:
+            f.writelines(patched_lines)
+
+        self.logger.info('Successfully applied diff to %s', file_path)
+
+    async def process_chat(self, chat: Chat):
+        self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
+
+        cache = MessagesCache(chat.url)
+        unprocessed_months = cache.get_unprocessed_months()
+
+        if not unprocessed_months:
+            self.logger.info('No new months to process')
+            return
+
+        self.logger.info('Found %d unprocessed months: %s', len(unprocessed_months), unprocessed_months)
+
+        months_to_process = unprocessed_months[:self.max_months_per_run]
+        self.logger.info('Will process %d months: %s', len(months_to_process), months_to_process)
+
+        docs = self._load_docs()
+
+        for month in months_to_process:
+            self.logger.info('Processing month: %s', month)
+            
+            messages = cache.get_messages_for_month(month)
+            if not messages:
+                self.logger.warning('No messages found for month %s, skipping', month)
+                continue
+
+            month_messages = MonthMessages(month=month, messages=messages)
+            updates = self._request_updates(docs, month_messages)
+
+            for file_diff in updates.diffs:
+                file_path = self.docs_dir / file_diff.path
+                self._apply_diff(file_path, file_diff.diff)
+
+            state = GeneratorState(last_processed_month=month)
+            cache.save_generator_state(state)
+            self.logger.info('Updated state to %s', month)

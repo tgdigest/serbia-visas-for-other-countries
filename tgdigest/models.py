@@ -35,3 +35,16 @@ class Chat(BaseModel):
 
 class Config(BaseModel):
     chats: list[Chat]
+
+
+class FileDiff(BaseModel):
+    path: str
+    diff: str
+
+
+class DocumentationUpdate(BaseModel):
+    diffs: list[FileDiff]
+
+
+class GeneratorState(BaseModel):
+    last_processed_month: str | None = None

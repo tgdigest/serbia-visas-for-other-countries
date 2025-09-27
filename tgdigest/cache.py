@@ -2,7 +2,7 @@ from pathlib import Path
 
 import yaml
 
-from .models import Message, MonthMessages
+from .models import GeneratorState, Message, MonthMessages
 
 
 class MessagesCache:
@@ -14,6 +14,10 @@ class MessagesCache:
     def _get_cache_dir(self) -> Path:
         url_parts = self.url.replace('https://', '').split('/')
         return self.base_path / Path(*url_parts)
+
+    @property
+    def generator_state_file(self) -> Path:
+        return self.cache_dir / 'generator-state.yaml'
 
     def exists(self) -> bool:
         return self.cache_dir.exists() and any(self.cache_dir.glob('*.yaml'))
@@ -66,3 +70,37 @@ class MessagesCache:
                 default_flow_style=False,
                 sort_keys=False
             )
+
+    def get_generator_state(self) -> GeneratorState:
+        if not self.generator_state_file.exists():
+            return GeneratorState()
+        with self.generator_state_file.open(encoding='utf-8') as f:
+            return GeneratorState(**(yaml.safe_load(f) or {}))
+
+    def save_generator_state(self, state: GeneratorState):
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        with self.generator_state_file.open('w', encoding='utf-8') as f:
+            yaml.dump(state.model_dump(), f, allow_unicode=True)
+
+    def get_unprocessed_months(self) -> list[str]:
+        if not self.cache_dir.exists():
+            return []
+
+        state = self.get_generator_state()
+        last_processed = state.last_processed_month
+
+        yaml_files = sorted(self.cache_dir.glob('*.yaml'))
+        yaml_files = [f for f in yaml_files if f.name != 'generator-state.yaml']
+
+        month_keys = [f.stem for f in yaml_files]
+
+        if last_processed:
+            month_keys = [m for m in month_keys if m > last_processed]
+
+        return month_keys
+
+    def get_messages_for_month(self, month: str) -> list[Message]:
+        month_file = self.cache_dir / f'{month}.yaml'
+        with month_file.open(encoding='utf-8') as f:
+            month_data = MonthMessages(**yaml.safe_load(f))
+            return month_data.messages
