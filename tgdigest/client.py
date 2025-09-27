@@ -1,17 +1,17 @@
-import os
-
-from dotenv import load_dotenv
 from telethon import TelegramClient
 
-load_dotenv()
 
-class TgDigestClient:
-    def __init__(self):
-        self.api_id = int(os.getenv("API_ID"))
-        self.api_hash = os.getenv("API_HASH")
-        self.session_name = "tgdigest"
-        self._client = TelegramClient(self.session_name, self.api_id, self.api_hash)
-        self._client.start(phone=os.getenv("PHONE_NUMBER"))
+class TgDigest:
+    def __init__(
+        self,
+        *,
+        api_id,
+        api_hash,
+        phone,
+        session_name='tgdigest',
+    ):
+        self._client = TelegramClient(session_name, api_id, api_hash)
+        self._client.start(phone=phone)
 
     async def get_me(self):
         return await self._client.get_me()

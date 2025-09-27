@@ -16,3 +16,6 @@ ignore = [
 quote-style = "single"
 indent-style = "space"
 line-ending = "auto"
+
+[lint.flake8-quotes]
+inline-quotes = "single"
