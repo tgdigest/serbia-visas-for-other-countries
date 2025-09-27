@@ -1,14 +1,14 @@
-.PHONY: install run login clean lint lint-fix
+.PHONY: install fetch generate clean lint lint-fix
 
 install:
 	python3 -m venv venv
 	./venv/bin/pip install -r requirements.txt
 
-run:
-	./venv/bin/python -m tgdigest
+fetch:
+	./venv/bin/python -m tgdigest fetch
 
-login:
-	./venv/bin/python -m tgdigest --force-login
+generate:
+	./venv/bin/python -m tgdigest generate
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
