@@ -1,4 +1,4 @@
-.PHONY: install run login clean lint
+.PHONY: install run login clean lint lint-fix
 
 install:
 	python3 -m venv venv
@@ -16,3 +16,6 @@ clean:
 
 lint:
 	./venv/bin/python -m ruff check tgdigest/
+
+lint-fix:
+	./venv/bin/python -m ruff check --fix tgdigest/

@@ -1,6 +1,8 @@
-import yaml
 from pathlib import Path
 from typing import List, Optional
+
+import yaml
+
 from .models import Message, MonthMessages
 
 
@@ -9,71 +11,71 @@ class MessagesCache:
         self.url = url
         self.base_path = Path(base_path)
         self.cache_dir = self._get_cache_dir()
-    
+
     def _get_cache_dir(self) -> Path:
         """Convert URL to cache directory path"""
         # https://t.me/c/1608823685/14535 -> cache/t.me/c/1608823685/14535/
         url_parts = self.url.replace("https://", "").split("/")
         return self.base_path / Path(*url_parts)
-    
+
     def exists(self) -> bool:
         """Check if cache exists for this chat"""
         return self.cache_dir.exists() and any(self.cache_dir.glob("*.yaml"))
-    
+
     def get_last_message_id(self) -> Optional[int]:
         """Get ID of the last cached message"""
         if not self.cache_dir.exists():
             return None
-        
+
         yaml_files = sorted(self.cache_dir.glob("*.yaml"), reverse=True)
         if not yaml_files:
             return None
-        
+
         # Read the most recent file
-        with open(yaml_files[0], 'r', encoding='utf-8') as f:
+        with open(yaml_files[0], encoding="utf-8") as f:
             data = yaml.safe_load(f)
             if not data:
                 return None
-            
+
             month_messages = MonthMessages(**data)
             if not month_messages.messages:
                 return None
-            
+
             # Messages are sorted by ID, so last one is max
             return month_messages.messages[-1].id
-    
+
     def save_month(self, month: str, messages: List[Message]):
         """Save messages for a single month"""
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        
+
         file_path = self.cache_dir / f"{month}.yaml"
-        
+
         # Load existing messages if file exists
         existing_messages = []
         if file_path.exists():
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, encoding="utf-8") as f:
                 data = yaml.safe_load(f)
                 if data:
                     month_data = MonthMessages(**data)
                     existing_messages = month_data.messages
-        
+
         # Merge and deduplicate by ID
         existing_ids = {msg.id for msg in existing_messages}
         for msg in messages:
             if msg.id not in existing_ids:
                 existing_messages.append(msg)
-        
+
         # Sort by ID
         existing_messages.sort(key=lambda x: x.id)
-        
+
         # Create MonthMessages object
         month_data = MonthMessages(
             month=month,
             messages=existing_messages
         )
-        
+
         # Save
-        with open(file_path, 'w', encoding='utf-8') as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             yaml.dump(
                 month_data.model_dump(),
                 f,
@@ -81,9 +83,9 @@ class MessagesCache:
                 default_flow_style=False,
                 sort_keys=False
             )
-        
+
         print(f"Saved {len(messages)} new messages to {file_path}")
-    
+
     def save_messages(self, messages: List):
         """Save messages grouped by month"""
         # Group messages by month
@@ -91,12 +93,12 @@ class MessagesCache:
         for msg in messages:
             if not msg.text:  # Skip messages without text
                 continue
-                
+
             month_key = msg.date.strftime("%Y-%m")
-            
+
             if month_key not in messages_by_month:
                 messages_by_month[month_key] = []
-            
+
             messages_by_month[month_key].append(
                 Message(
                     id=msg.id,
@@ -104,7 +106,7 @@ class MessagesCache:
                     text=msg.text
                 )
             )
-        
+
         # Save each month's messages
         for month_key, month_messages in messages_by_month.items():
             self.save_month(month_key, month_messages)
