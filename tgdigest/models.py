@@ -6,9 +6,9 @@ class Message(BaseModel):
     id: int
     sender: int
     text: str
-    
-class DayMessages(BaseModel):
-    date: str  # "2022-12-09"
+
+class MonthMessages(BaseModel):
+    month: str  # "2022-12"
     messages: List[Message]
     
 class Chat(BaseModel):

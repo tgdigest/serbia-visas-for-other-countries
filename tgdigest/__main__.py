@@ -31,8 +31,8 @@ async def main():
             min_id = 0
         
         # Get new messages
-        current_day = None
-        day_messages = []
+        current_month = None
+        month_messages = []
         total_fetched = 0
         
         async for message in client.client.iter_messages(
@@ -41,22 +41,22 @@ async def main():
             min_id=min_id,
             reverse=True
         ):
-            msg_day = message.date.strftime("%Y-%m-%d")
+            msg_month = message.date.strftime("%Y-%m")
             
-            # If day changed, save previous day's messages
-            if current_day and msg_day != current_day:
-                cache.save_messages(day_messages)
-                print(f"  Saved {len(day_messages)} messages for {current_day}")
-                day_messages = []
+            # If month changed, save previous month's messages
+            if current_month and msg_month != current_month:
+                cache.save_messages(month_messages)
+                print(f"  Saved {len(month_messages)} messages for {current_month}")
+                month_messages = []
             
-            current_day = msg_day
-            day_messages.append(message)
+            current_month = msg_month
+            month_messages.append(message)
             total_fetched += 1
         
-        # Save last day's messages
-        if day_messages:
-            cache.save_messages(day_messages)
-            print(f"  Saved {len(day_messages)} messages for {current_day}")
+        # Save last month's messages
+        if month_messages:
+            cache.save_messages(month_messages)
+            print(f"  Saved {len(month_messages)} messages for {current_month}")
         
         print(f"Total fetched: {total_fetched} new messages")
     
