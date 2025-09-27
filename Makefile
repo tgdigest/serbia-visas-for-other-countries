@@ -15,4 +15,4 @@ clean:
 	rm -f *.session *.session-journal
 
 lint:
-	./venv/bin/python -m ruff check tgdigest/ *.py
+	./venv/bin/python -m ruff check tgdigest/
