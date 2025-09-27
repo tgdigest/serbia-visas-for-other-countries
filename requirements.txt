@@ -4,3 +4,5 @@ cryptg==0.4.0
 pyyaml==6.0.2
 pydantic==2.9.2
 ruff==0.6.9
+mkdocs==1.6.1
+mkdocs-material==9.5.44

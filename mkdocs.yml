@@ -1,0 +1,32 @@
+site_name: Визы из Сербии
+site_description: Гайд по получению виз из Сербии в разные страны
+site_url: https://tgdigest.github.io/serbia-visas-for-other-countries/
+
+theme:
+  name: material
+  language: ru
+  palette:
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.share
+  
+nav:
+  - Главная: index.md
+  - Венгрия 🇭🇺: hungary.md
+  - Франция 🇫🇷: france.md
+  
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
