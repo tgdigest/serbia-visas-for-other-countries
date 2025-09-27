@@ -7,28 +7,39 @@ from pathlib import Path
 import yaml
 from dotenv import load_dotenv
 
-from tgdigest.client import TgDigest
+from tgdigest.client import MessagesFetcher
 from tgdigest.models import Config
 
 
-async def main(config: Config):
-    td = TgDigest(
+async def fetch_messages(cfg: Config, *, force_login: bool = False):
+    mf = MessagesFetcher(
         api_id=int(os.getenv('API_ID')),
         api_hash=os.getenv('API_HASH'),
         phone=os.getenv('PHONE_NUMBER'),
+        force_login=force_login,
     )
+    for chat in cfg.chats:
+        await mf.load_chat(chat)
+    mf.disconnect()
 
-    for chat in config.chats:
-        await td.load_chat(chat)
 
-    td.disconnect()
+def generate_markdown(cfg: Config):
+    raise NotImplementedError
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Telegram digest fetcher')
-    parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file (default: config.yaml)')
-    parser.add_argument('--force-login', action='store_true', help='Force re-login even if session exists')
+    parser = argparse.ArgumentParser(description='Telegram digest')
+    parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
     parser.add_argument('--verbose', '-v', action='store_true', help='Enable verbose logging')
+
+    subparsers = parser.add_subparsers(dest='command', required=True)
+
+    fetch_parser = subparsers.add_parser('fetch', help='Fetch messages from Telegram')
+    fetch_parser.add_argument('--force-login', action='store_true', help='Force re-login even if session exists')
+
+    gen_parser = subparsers.add_parser('generate', help='Generate markdown from cache')
+    gen_parser.add_argument('--output', '-o', default='docs', help='Output directory')
+
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -43,10 +54,7 @@ if __name__ == '__main__':
     with config_path.open(encoding='utf-8') as f:
         config = Config(**yaml.safe_load(f))
 
-    if args.force_login:
-        session_file = Path('tgdigest.session')
-        if session_file.exists():
-            session_file.unlink()
-            logging.info('Removed existing session, forcing re-login')
-
-    asyncio.run(main(config))
+    if args.command == 'fetch':
+        asyncio.run(fetch_messages(config, args.force_login))
+    elif args.command == 'generate':
+        generate_markdown(config)

@@ -4,10 +4,11 @@ line-length = 120
 [lint]
 select = ["ALL"]
 ignore = [
-    "D",      # pydocstring
-    "ANN",    # type annotations
-    "COM812", # trailing comma (conflicts with formatter)
-    "ISC001", # implicit string concat (conflicts with formatter)
+    "D",       # pydocstring
+    "ANN",     # type annotations
+    "COM812",  # trailing comma (conflicts with formatter)
+    "ISC001",  # implicit string concat (conflicts with formatter)
+    "PLR0913", # too many arguments
 ]
 
 [lint.per-file-ignores]

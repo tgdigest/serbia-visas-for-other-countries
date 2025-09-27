@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 
 from telethon import TelegramClient
 
@@ -6,7 +7,7 @@ from tgdigest.cache import MessagesCache
 from tgdigest.models import Chat
 
 
-class TgDigest:
+class Fetcher:
     def __init__(
         self,
         *,
@@ -14,10 +15,18 @@ class TgDigest:
         api_hash,
         phone,
         session_name='tgdigest',
+        force_login=False,
         logger=None,
     ):
         self.logger = logger or logging.getLogger(__name__)
         self.logger.debug('Initializing TgDigest client: api_id=%s, session_name=%s', api_id, session_name)
+
+        if force_login:
+            logging.info('Removed existing session, forcing re-login')
+            session_file = Path(f'{session_name}.session')
+            if session_file.exists():
+                session_file.unlink()
+
         self._client = TelegramClient(session_name, api_id, api_hash)
         self.logger.debug('Starting Telegram client: phone=%s', phone)
         self._client.start(phone=phone)
