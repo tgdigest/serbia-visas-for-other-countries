@@ -4,7 +4,7 @@ from pathlib import Path
 from telethon import TelegramClient
 
 from tgdigest.cache import MessagesCache
-from tgdigest.models import Chat
+from tgdigest.models import Chat, Message
 
 
 class Fetcher:
@@ -29,9 +29,13 @@ class Fetcher:
 
         self._client = TelegramClient(session_name, api_id, api_hash)
         self.logger.debug('Starting Telegram client: phone=%s', phone)
-        self._client.start(phone=phone)
+        self._started = False
 
     async def load_chat(self, chat: Chat):
+        if not self._started:
+            await self._client.start()
+            self._started = True
+
         self.logger.info('Loading chat: %s (%s)', chat.title, chat.url)
 
         cache = MessagesCache(chat.url)
@@ -56,11 +60,17 @@ class Fetcher:
                 month_messages = []
 
             current_month = month_key
-            month_messages.append(message)
+            month_messages.append(Message(
+                id=message.id,
+                sender=message.sender_id,
+                text=message.text,
+            ))
 
         if month_messages:
             self.logger.info('saving %d messages for month %s', len(month_messages), current_month)
             cache.save_month(current_month, month_messages)
 
     def disconnect(self):
+        if not self._started:
+            return
         self._client.disconnect()

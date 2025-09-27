@@ -6,3 +6,5 @@ pydantic==2.11.9
 ruff==0.13.2
 mkdocs==1.6.1
 mkdocs-material==9.6.20
+mkdocs-awesome-pages-plugin==2.10.1
+openai==1.59.5

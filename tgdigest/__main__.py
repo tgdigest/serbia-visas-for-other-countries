@@ -7,12 +7,12 @@ from pathlib import Path
 import yaml
 from dotenv import load_dotenv
 
-from tgdigest.client import MessagesFetcher
+from tgdigest.fetcher import Fetcher
 from tgdigest.models import Config
 
 
 async def fetch_messages(cfg: Config, *, force_login: bool = False):
-    mf = MessagesFetcher(
+    mf = Fetcher(
         api_id=int(os.getenv('API_ID')),
         api_hash=os.getenv('API_HASH'),
         phone=os.getenv('PHONE_NUMBER'),
@@ -55,6 +55,6 @@ if __name__ == '__main__':
         config = Config(**yaml.safe_load(f))
 
     if args.command == 'fetch':
-        asyncio.run(fetch_messages(config, args.force_login))
+        asyncio.run(fetch_messages(config, force_login=args.force_login))
     elif args.command == 'generate':
         generate_markdown(config)

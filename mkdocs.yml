@@ -31,15 +31,10 @@ theme:
     - search.highlight
     - search.share
     - content.action.edit
-  
-nav:
-  - Главная: index.md
-  - Венгрия 🇭🇺:
-    - Требования и процесс: hungary/requirements.md
-    - Кейсы и опыт: hungary/cases.md
-  - Франция 🇫🇷:
-    - Требования и процесс: france/requirements.md
-    - Кейсы и опыт: france/cases.md
+
+plugins:
+  - search
+  - awesome-pages
   
 markdown_extensions:
   - admonition
