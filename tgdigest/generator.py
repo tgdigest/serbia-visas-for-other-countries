@@ -11,7 +11,7 @@ from .models import Chat, DocumentationUpdate, GeneratorState, MonthMessages
 
 
 class Generator:
-    MODEL = 'gpt-4.1-2025-04-14'
+    model = 'gpt-4.1-2025-04-14'
 
     def __init__(self, openai_api_key: str, max_months_per_run: int, docs_dir: str = 'docs', logger=None):
         self.logger = logger or logging.getLogger(__name__)
@@ -48,23 +48,27 @@ class Generator:
         self.logger.info('Requesting documentation updates for month %s with %d messages',
                         month_messages.month, len(month_messages.messages))
 
-        prompt = self.jinja_env.get_template('update_docs.j2').render(
-            docs_json=json.dumps(docs, ensure_ascii=False),
-            messages_json=json.dumps(month_messages.model_dump(), ensure_ascii=False),
-        )
-
-        response = self.client.chat.completions.parse(
-            model=self.MODEL,
-            messages=[
-                {'role': 'system', 'content': 'You are a documentation maintainer that generates unified diffs.'},
-                {'role': 'user', 'content': prompt},
-            ],
+        response = self.client.beta.chat.completions.parse(
+            model=self.model,
+            messages=[{
+                'role': 'system',
+                'content': self.jinja_env.get_template('update_docs.j2').render()
+            }, {
+                'role': 'user',
+                'content': self._json('Текущая документация', docs),
+            }, {
+                'role': 'user',
+                'content': self._json('Новые сообщения', month_messages.model_dump())
+            }],
             response_format=DocumentationUpdate,
         )
 
         parsed = response.choices[0].message.parsed
         self.logger.info('Received %d diffs from OpenAI', len(parsed.diffs))
         return parsed
+
+    def _json(self, title, v):
+        return f'{title}:\n```json\n{json.dumps(v, ensure_ascii=False)}\n```\n'
 
     def _apply_diff(self, file_path: Path, diff_content: str):
         self.logger.info('Applying diff to %s:\n%s', file_path, diff_content)
