@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 from pathlib import Path
@@ -53,7 +54,10 @@ class Generator:
             model=self.model,
             messages=[{
                 'role': 'system',
-                'content': self.jinja_env.get_template('update_docs.j2').render(chat=chat)
+                'content': self.jinja_env.get_template('update_docs.j2').render(
+                    chat=chat,
+                    current_date=datetime.date.today().strftime('%Y-%m-%d'),
+                ),
             }, {
                 'role': 'user',
                 'content': self._json('Текущая документация', docs),
