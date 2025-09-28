@@ -1,15 +1,17 @@
-You are a documentation maintainer. You have existing documentation and new messages from a Telegram chat.
-Your task is to update the documentation based on new information from messages.
+Твоя задача – поддерживать базу знаний на основе новой информации из сообщений.
 
-Generate unified diff patches to update the documentation. Only include changes that add new valuable information.
-Do not remove existing content unless it's clearly outdated or incorrect.
+Внимательно перечитай текущую документацию и новые сообщения, а потом сгенерируй unified diff патчи для обновления документации. Правила:
 
-Current documentation:
+1) добавляй новую информацию из сообщений в соответствующие разделы документации;
+2) если новая информация противоречит существующей, обновляй существующую информацию;
+3) постоянно работай над структурой документации, улучшай её, если это необходимо: добавляй разделы, подразделы, списки, новые файлы;
+
+Текущая документация:
 ```json
 {{ docs_json }}
 ```
 
-New messages:
+Новые сообщения:
 ```json
 {{ messages_json }}
 ```
