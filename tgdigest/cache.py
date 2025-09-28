@@ -7,6 +7,8 @@ from .models import GeneratorState, Message, MonthMessages
 
 
 class MessagesCache:
+    date_format = '%Y-%m'
+
     def __init__(self, url: str, base_path: str = 'cache'):
         self.url = url
         self.base_path = Path(base_path)
@@ -84,7 +86,7 @@ class MessagesCache:
 
     def _parse_month_filename(self, filename: str) -> datetime | None:
         try:
-            return datetime.strptime(filename, '%Y-%m').replace(tzinfo=UTC)
+            return datetime.strptime(filename, self.date_format).replace(tzinfo=UTC)
         except ValueError:
             return None
 
@@ -95,17 +97,19 @@ class MessagesCache:
         yaml_files = sorted(self.cache_dir.glob('*.yaml'))
         return [f.stem for f in yaml_files if self._parse_month_filename(f.stem)]
 
+    def _get_current_month(self) -> str:
+        return datetime.now(tz=UTC).strftime(self.date_format)
+
     def get_unprocessed_months(self) -> list[str]:
         if not self.cache_dir.exists():
             return []
 
-        state = self.get_generator_state()
-        last_processed = state.last_processed_month
-
         month_keys = self.get_all_months()
-
-        if last_processed:
-            month_keys = [m for m in month_keys if m > last_processed]
+        if last_processed := self.get_generator_state().last_processed_month:
+            if last_processed == self._get_current_month():
+                month_keys = [m for m in month_keys if m >= last_processed]
+            else:
+                month_keys = [m for m in month_keys if m > last_processed]
 
         return month_keys
 

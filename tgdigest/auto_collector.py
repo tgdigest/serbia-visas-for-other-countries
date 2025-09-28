@@ -54,4 +54,3 @@ class AutoCollector:
                 chat_numeric_id=chat.get_chat_numeric_id(),
                 topic_id=chat.get_topic_id(),
             ))
-
