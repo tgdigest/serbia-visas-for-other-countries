@@ -24,14 +24,13 @@ class MessagesCache:
         return self.cache_dir.exists() and any(self.cache_dir.glob('*.yaml'))
 
     def get_last_message_id(self) -> int | None:
-        if not self.cache_dir.exists():
+        months = self.get_all_months()
+        if not months:
             return None
-
-        yaml_files = sorted(self.cache_dir.glob('*.yaml'), reverse=True)
-        if not yaml_files:
-            return None
-
-        with yaml_files[0].open(encoding='utf-8') as f:
+        
+        last_month_file = self.cache_dir / f'{months[-1]}.yaml'
+        
+        with last_month_file.open(encoding='utf-8') as f:
             data = yaml.safe_load(f)
             if not data:
                 return None
