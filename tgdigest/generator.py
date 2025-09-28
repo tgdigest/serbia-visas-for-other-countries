@@ -12,9 +12,9 @@ from .templates import get_jinja_env
 
 
 class Generator:
-    # model = 'gpt-4.1-2025-04-14'
+    model = 'gpt-4.1-2025-04-14'
     # model = 'gpt-4o'
-    model = 'gpt-5'
+    # model = 'gpt-5'  # timeout
 
     def __init__(self, config: Config, openai_api_key: str, logger=None):
         self.logger = logger or logging.getLogger(__name__)
