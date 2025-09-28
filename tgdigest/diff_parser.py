@@ -54,8 +54,10 @@ class DiffParser:
             return insert_pos
         if hunk_line.startswith('+'):
             addition = hunk_line[1:]
+            # Add newline if needed
             if not addition.endswith('\n'):
                 addition += '\n'
+            # Ensure previous line ends with newline before inserting
             if insert_pos > 0 and not lines[insert_pos - 1].endswith('\n'):
                 lines[insert_pos - 1] += '\n'
             lines.insert(insert_pos, addition)

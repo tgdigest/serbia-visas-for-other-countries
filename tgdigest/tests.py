@@ -126,6 +126,77 @@ def test_diff_parser_addition_after_context():
     assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
 
 
+def test_no_extra_newlines():
+    """Test that diff parser doesn't add extra newlines."""
+    parser = DiffParser()
+
+    # Original content already has proper newlines
+    original = """## Title
+
+Some content here.
+
+## Another section
+More content."""
+
+    # Simple addition that shouldn't create extra newlines
+    diff = """@@ ... @@
+ ## Title
+ 
+ Some content here.
++Added line here.
+ 
+ ## Another section"""
+
+    result = parser.apply(original, diff)
+    
+    # Count newlines - should not increase more than added lines
+    original_newlines = original.count('\n')
+    result_newlines = result.count('\n')
+    added_lines = 1
+    
+    assert result_newlines <= original_newlines + added_lines + 1, \
+        f'Too many newlines: original had {original_newlines}, result has {result_newlines}'
+    
+    # Should not have double newlines
+    expected = """## Title
+
+Some content here.
+Added line here.
+
+## Another section
+More content."""
+    
+    assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
+
+
+def test_no_double_newlines_when_already_present():
+    """Test that we don't add newline if line already has one."""
+    parser = DiffParser()
+    
+    original = """Line one
+Line two
+Line three"""
+    
+    diff = """@@ ... @@
+ Line one
+ Line two
++Added line
+ Line three"""
+    
+    result = parser.apply(original, diff)
+    
+    # Should not have double newlines between lines
+    assert '\n\n' not in result.replace('Line three', ''), \
+        f'Found double newlines in result: {result!r}'
+    
+    expected = """Line one
+Line two
+Added line
+Line three"""
+    
+    assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
+
+
 def test_apply_real_diff():
 
     original = """## Процесс подачи
