@@ -71,23 +71,17 @@ class Generator:
             cache.save_generator_state(state)
             self.logger.info('Updated state to %s', month)
 
-    async def reorganize_chat(self, chat: Chat):
-        self.logger.info('Reorganizing documentation for chat: %s (%s)', chat.title, chat.url)
-
-        docs = self._load_docs()
-        if not docs:
-            self.logger.info('No docs to reorganize')
-            return
+    async def reorganize_docs(self):
+        self.logger.info('Reorganizing documentation')
 
         updates = self._request(DocumentationUpdate, [{
             'role': 'system',
             'content': self.jinja_env.get_template('reorganize_docs.md.j2').render(
-                chat=chat,
                 extra_prompt=self.config.extra_prompt,
             ),
         }, {
             'role': 'user',
-            'content': self._json('База знаний', docs),
+            'content': self._json('База знаний', self._load_docs()),
         }])
 
         for file_diff in updates.diffs:
@@ -100,8 +94,7 @@ class Generator:
         with file_path.open(encoding='utf-8') as f:
             content = f.read()
 
-        parser = DiffParser()
-        patched_content = parser.apply(content, diff_content)
+        patched_content = DiffParser().apply(content, diff_content)
 
         with file_path.open('w', encoding='utf-8') as f:
             f.write(patched_content)
@@ -113,6 +106,7 @@ class Generator:
             model=self.model,
             messages=messages,
             response_format=response_format,
+            timeout=600,
         )
         return response.choices[0].message.parsed
 

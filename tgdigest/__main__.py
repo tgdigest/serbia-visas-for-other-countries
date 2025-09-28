@@ -33,18 +33,13 @@ async def generate_markdown(cfg: Config, *, max_months_per_run: int):
     for chat in cfg.chats:
         await generator.process_chat(chat, max_months_per_run)
     
-    # Reorganize after processing new messages
-    for chat in cfg.chats:
-        await generator.reorganize_chat(chat)
-
 
 async def reorganize_docs(cfg: Config):
     generator = Generator(
         config=cfg,
         openai_api_key=os.getenv('OPENAI_API_KEY'),
     )
-    for chat in cfg.chats:
-        await generator.reorganize_chat(chat)
+    await generator.reorganize_docs()
 
 
 def collect_auto(cfg: Config):
