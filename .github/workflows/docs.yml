@@ -30,8 +30,7 @@ jobs:
           python-version: 3.11
       
       - name: Install dependencies
-        run: |
-          pip install mkdocs==1.6.1 mkdocs-material==9.5.44
+        run: make install
       
       - name: Build docs
         run: mkdocs build
