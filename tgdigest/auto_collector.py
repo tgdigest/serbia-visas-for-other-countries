@@ -45,7 +45,7 @@ class AutoCollector:
             messages_by_year.setdefault(year, {})[month] = msgs
         
         with file_path.open('w', encoding='utf-8') as f:
-            f.write(self.jinja_env.get_template('auto.j2').render(
+            f.write(self.jinja_env.get_template('auto.md.j2').render(
                 title=auto_config.title,
                 description=auto_config.description,
                 keywords=auto_config.keywords,

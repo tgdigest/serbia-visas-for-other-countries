@@ -1,4 +1,4 @@
-.PHONY: install fetch generate collect serve clean lint lint-fix test
+.PHONY: install fetch generate collect reorganize serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -14,6 +14,9 @@ generate:
 
 collect:
 	./venv/bin/python -m tgdigest collect
+
+reorganize:
+	./venv/bin/python -m tgdigest reorganize
 
 serve:
 	./venv/bin/mkdocs serve

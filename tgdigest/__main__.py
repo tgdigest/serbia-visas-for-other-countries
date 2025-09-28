@@ -33,6 +33,20 @@ async def generate_markdown(cfg: Config, *, max_months_per_run: int):
     )
     for chat in cfg.chats:
         await generator.process_chat(chat)
+    
+    # Reorganize after processing new messages
+    for chat in cfg.chats:
+        await generator.reorganize_chat(chat)
+
+
+async def reorganize_docs(cfg: Config):
+    generator = Generator(
+        config=cfg,
+        openai_api_key=os.getenv('OPENAI_API_KEY'),
+        max_months_per_run=1,
+    )
+    for chat in cfg.chats:
+        await generator.reorganize_chat(chat)
 
 
 def collect_auto(cfg: Config):
@@ -57,6 +71,8 @@ if __name__ == '__main__':
 
     collect_parser = subparsers.add_parser('collect', help='Collect messages matching keywords')
 
+    reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
+
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -64,6 +80,10 @@ if __name__ == '__main__':
         format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
     )
+    
+    # Enable OpenAI logging
+    logging.getLogger('openai').setLevel(logging.DEBUG)
+    logging.getLogger('httpx').setLevel(logging.INFO)
 
     load_dotenv()
 
@@ -77,3 +97,5 @@ if __name__ == '__main__':
         asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
     elif args.command == 'collect':
         collect_auto(config)
+    elif args.command == 'reorganize':
+        asyncio.run(reorganize_docs(config))
