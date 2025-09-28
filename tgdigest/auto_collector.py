@@ -37,12 +37,19 @@ class AutoCollector:
 
         file_path = self.docs_dir / auto_config.file
         file_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Group messages by year for template
+        messages_by_year = {}
+        for month, msgs in messages_by_month.items():
+            year = month.split('-')[0]
+            messages_by_year.setdefault(year, {})[month] = msgs
+        
         with file_path.open('w', encoding='utf-8') as f:
             f.write(self.jinja_env.get_template('auto.j2').render(
                 title=auto_config.title,
                 description=auto_config.description,
                 keywords=auto_config.keywords,
-                messages_by_month=messages_by_month,
+                messages_by_year=messages_by_year,
                 new_first=auto_config.new_first,
                 chat_numeric_id=chat.get_chat_numeric_id(),
                 topic_id=chat.get_topic_id(),

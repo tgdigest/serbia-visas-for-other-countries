@@ -17,28 +17,20 @@
   '11': 'Ноябрь',
   '12': 'Декабрь'
 } %}
-{%- set months_sorted = messages_by_month.keys() | list | sort(reverse=new_first) %}
-{%- set years = {} %}
-{%- for month in months_sorted %}
-  {%- set year = month.split('-')[0] %}
-  {%- if year not in years %}
-    {%- set _ = years.update({year: []}) %}
-  {%- endif %}
-  {%- set _ = years[year].append(month) %}
-{%- endfor %}
 
-{% for year in years.keys() | sort(reverse=new_first) %}
+{% for year in messages_by_year.keys() | sort(reverse=new_first) %}
 
 ## {{ year }}
-{%- for month in years[year] %}
+{%- for month in messages_by_year[year].keys() | sort(reverse=new_first) %}
 
 ### {{ month_names[month.split('-')[1]] }}
-{%- for msg in messages_by_month[month] | sort(attribute='id', reverse=new_first) %}
-{%- set text = highlight_keywords(msg.text, keywords) %}
+{%- for msg in messages_by_year[year][month] | sort(attribute='id', reverse=new_first) %}
 
-> {{ format_blockquote(text) }}
+> {{ format_blockquote(msg.text) }}
 > 
 > [источник](https://t.me/c/{{ chat_numeric_id }}/{{ topic_id }}/{{ msg.id }})
+
+---
 {%- endfor %}
 {%- endfor %}
 {%- endfor %}
