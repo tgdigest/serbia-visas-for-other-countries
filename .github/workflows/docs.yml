@@ -33,7 +33,7 @@ jobs:
         run: make install
       
       - name: Build docs
-        run: mkdocs build
+        run: venv/bin/mkdocs build
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
