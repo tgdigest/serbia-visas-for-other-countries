@@ -44,7 +44,8 @@ class Generator:
                 docs[str(rel_path)] = f.read()
         return docs
 
-    def _request_updates(self, docs: dict[str, str], month_messages: MonthMessages) -> DocumentationUpdate:
+    def _request_updates(self, docs: dict[str, str], month_messages: MonthMessages, 
+                         chat: Chat) -> DocumentationUpdate:
         self.logger.info('Requesting documentation updates for month %s with %d messages',
                         month_messages.month, len(month_messages.messages))
 
@@ -52,7 +53,7 @@ class Generator:
             model=self.model,
             messages=[{
                 'role': 'system',
-                'content': self.jinja_env.get_template('update_docs.j2').render()
+                'content': self.jinja_env.get_template('update_docs.j2').render(chat=chat)
             }, {
                 'role': 'user',
                 'content': self._json('Текущая документация', docs),
@@ -110,7 +111,7 @@ class Generator:
                 continue
 
             month_messages = MonthMessages(month=month, messages=messages)
-            updates = self._request_updates(docs, month_messages)
+            updates = self._request_updates(docs, month_messages, chat)
 
             for file_diff in updates.diffs:
                 file_path = self.docs_dir / file_diff.path
