@@ -1,4 +1,4 @@
-.PHONY: install fetch generate serve clean lint lint-fix test
+.PHONY: install fetch generate collect serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -9,6 +9,9 @@ fetch:
 
 generate:
 	./venv/bin/python -m tgdigest generate --max-months=6
+
+collect:
+	./venv/bin/python -m tgdigest collect
 
 serve:
 	./venv/bin/mkdocs serve

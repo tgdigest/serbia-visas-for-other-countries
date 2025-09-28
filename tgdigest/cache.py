@@ -82,6 +82,23 @@ class MessagesCache:
         with self.generator_state_file.open('w', encoding='utf-8') as f:
             yaml.dump(state.model_dump(), f, allow_unicode=True)
 
+    def _is_month_file(self, filename: str) -> bool:
+        parts = filename.split('-')
+        if len(parts) != 2:
+            return False
+        try:
+            year, month = int(parts[0]), int(parts[1])
+            return 2000 <= year <= 2100 and 1 <= month <= 12
+        except ValueError:
+            return False
+    
+    def get_all_months(self) -> list[str]:
+        if not self.cache_dir.exists():
+            return []
+
+        yaml_files = sorted(self.cache_dir.glob('*.yaml'))
+        return [f.stem for f in yaml_files if self._is_month_file(f.stem)]
+
     def get_unprocessed_months(self) -> list[str]:
         if not self.cache_dir.exists():
             return []
@@ -89,10 +106,7 @@ class MessagesCache:
         state = self.get_generator_state()
         last_processed = state.last_processed_month
 
-        yaml_files = sorted(self.cache_dir.glob('*.yaml'))
-        yaml_files = [f for f in yaml_files if f.name != 'generator-state.yaml']
-
-        month_keys = [f.stem for f in yaml_files]
+        month_keys = self.get_all_months()
 
         if last_processed:
             month_keys = [m for m in month_keys if m > last_processed]

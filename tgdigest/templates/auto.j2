@@ -1,0 +1,44 @@
+# {{ title }}
+{%- if description %}
+
+{{ description }}
+{%- endif %}
+{%- set month_names = {
+  '01': 'Январь',
+  '02': 'Февраль', 
+  '03': 'Март',
+  '04': 'Апрель',
+  '05': 'Май',
+  '06': 'Июнь',
+  '07': 'Июль',
+  '08': 'Август',
+  '09': 'Сентябрь',
+  '10': 'Октябрь',
+  '11': 'Ноябрь',
+  '12': 'Декабрь'
+} %}
+{%- set months_sorted = messages_by_month.keys() | list | sort(reverse=new_first) %}
+{%- set years = {} %}
+{%- for month in months_sorted %}
+  {%- set year = month.split('-')[0] %}
+  {%- if year not in years %}
+    {%- set _ = years.update({year: []}) %}
+  {%- endif %}
+  {%- set _ = years[year].append(month) %}
+{%- endfor %}
+
+{% for year in years.keys() | sort(reverse=new_first) %}
+
+## {{ year }}
+{%- for month in years[year] %}
+
+### {{ month_names[month.split('-')[1]] }}
+{%- for msg in messages_by_month[month] | sort(attribute='id', reverse=new_first) %}
+{%- set text = highlight_keywords(msg.text, keywords) %}
+
+> {{ format_blockquote(text) }}
+> 
+> [источник](https://t.me/c/{{ chat_numeric_id }}/{{ topic_id }}/{{ msg.id }})
+{%- endfor %}
+{%- endfor %}
+{%- endfor %}

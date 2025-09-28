@@ -3,18 +3,18 @@ import json
 import logging
 from pathlib import Path
 
-from jinja2 import Environment, FileSystemLoader, select_autoescape
 from openai import OpenAI
 
 from .cache import MessagesCache
 from .diff_parser import DiffParser
-from .models import Chat, DocumentationUpdate, GeneratorState, MonthMessages
+from .models import Chat, Config, DocumentationUpdate, GeneratorState, MonthMessages
+from .templates import get_jinja_env
 
 
 class Generator:
     model = 'gpt-4.1-2025-04-14'
 
-    def __init__(self, openai_api_key: str, max_months_per_run: int, docs_dir: str = 'docs', logger=None):
+    def __init__(self, config: Config, openai_api_key: str, max_months_per_run: int, logger=None):
         self.logger = logger or logging.getLogger(__name__)
 
         # Enable OpenAI logging
@@ -22,23 +22,22 @@ class Generator:
         logging.getLogger('httpx').setLevel(logging.INFO)
 
         self.client = OpenAI(api_key=openai_api_key)
-        self.docs_dir = Path(docs_dir)
+        self.config = config
+        self.docs_dir = Path(config.docs_dir)
         self.max_months_per_run = max_months_per_run
-
-        templates_dir = Path(__file__).parent / 'prompts'
-        self.jinja_env = Environment(
-            loader=FileSystemLoader(templates_dir),
-            autoescape=select_autoescape(enabled_extensions=[], default_for_string=False)
-        )
+        self.jinja_env = get_jinja_env()
 
     def _load_docs(self) -> dict[str, str]:
+        auto_files = self.config.get_auto_files()
+        
         docs = {}
-        # Load markdown files
         for md_file in self.docs_dir.rglob('*.md'):
             rel_path = md_file.relative_to(self.docs_dir)
+            if str(rel_path) in auto_files:
+                continue
             with md_file.open(encoding='utf-8') as f:
                 docs[str(rel_path)] = f.read()
-        # Load .pages files for mkdocs-awesome-pages navigation
+        
         for pages_file in self.docs_dir.rglob('.pages'):
             rel_path = pages_file.relative_to(self.docs_dir)
             with pages_file.open(encoding='utf-8') as f:

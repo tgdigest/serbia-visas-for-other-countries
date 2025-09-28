@@ -1,0 +1,50 @@
+import logging
+from pathlib import Path
+
+from .cache import MessagesCache
+from .models import AutoConfig, Chat, Config
+from .templates import get_jinja_env
+
+
+class AutoCollector:
+    def __init__(self, config: Config, logger=None):
+        self.logger = logger or logging.getLogger(__name__)
+        self.config = config
+        self.docs_dir = Path(config.docs_dir)
+        self.jinja_env = get_jinja_env()
+
+    def process_chat(self, chat: Chat):
+        self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
+        cache = MessagesCache(chat.url)
+
+        for auto_config in chat.auto:
+            self._process_auto_config(cache, auto_config, chat)
+
+    def _process_auto_config(self, cache: MessagesCache, auto_config: AutoConfig, chat: Chat):
+        self.logger.info('Processing auto config: %s -> %s', auto_config.keywords, auto_config.file)
+        
+        messages_by_month = {}
+        for month in cache.get_all_months():
+            messages = cache.get_messages_for_month(month)
+            for msg in messages:
+                if any(keyword.lower() in msg.text.lower() for keyword in auto_config.keywords):
+                    if month not in messages_by_month:
+                        messages_by_month[month] = []
+                    messages_by_month[month].append(msg)
+        
+        total_messages = sum(len(msgs) for msgs in messages_by_month.values())
+        self.logger.info('Found %d messages matching keywords', total_messages)
+
+        file_path = self.docs_dir / auto_config.file
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        with file_path.open('w', encoding='utf-8') as f:
+            f.write(self.jinja_env.get_template('auto.j2').render(
+                title=auto_config.title,
+                description=auto_config.description,
+                keywords=auto_config.keywords,
+                messages_by_month=messages_by_month,
+                new_first=auto_config.new_first,
+                chat_numeric_id=chat.get_chat_numeric_id(),
+                topic_id=chat.get_topic_id(),
+            ))
+

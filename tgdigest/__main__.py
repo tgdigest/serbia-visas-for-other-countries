@@ -7,6 +7,7 @@ from pathlib import Path
 import yaml
 from dotenv import load_dotenv
 
+from tgdigest.auto_collector import AutoCollector
 from tgdigest.fetcher import Fetcher
 from tgdigest.generator import Generator
 from tgdigest.models import Config
@@ -26,11 +27,18 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
 
 async def generate_markdown(cfg: Config, *, max_months_per_run: int):
     generator = Generator(
+        config=cfg,
         openai_api_key=os.getenv('OPENAI_API_KEY'),
         max_months_per_run=max_months_per_run,
     )
     for chat in cfg.chats:
         await generator.process_chat(chat)
+
+
+def collect_auto(cfg: Config):
+    collector = AutoCollector(config=cfg)
+    for chat in cfg.chats:
+        collector.process_chat(chat)
 
 
 if __name__ == '__main__':
@@ -46,6 +54,8 @@ if __name__ == '__main__':
     gen_parser = subparsers.add_parser('generate', help='Generate markdown from cache')
     gen_parser.add_argument('--output', '-o', default='docs', help='Output directory')
     gen_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+
+    collect_parser = subparsers.add_parser('collect', help='Collect messages matching keywords')
 
     args = parser.parse_args()
 
@@ -65,3 +75,5 @@ if __name__ == '__main__':
         asyncio.run(fetch_messages(config, force_login=args.force_login))
     elif args.command == 'generate':
         asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
+    elif args.command == 'collect':
+        collect_auto(config)
