@@ -1,4 +1,4 @@
-.PHONY: install fetch generate serve clean lint lint-fix
+.PHONY: install fetch generate serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -22,4 +22,6 @@ lint:
 
 lint-fix:
 	./venv/bin/python -m ruff check --fix tgdigest/
-	
+
+test:
+	./venv/bin/pytest tgdigest/tests.py -v

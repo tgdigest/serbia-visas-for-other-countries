@@ -4,9 +4,9 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 from openai import OpenAI
-from unidiff import PatchSet
 
 from .cache import MessagesCache
+from .diff_parser import DiffParser
 from .models import Chat, DocumentationUpdate, GeneratorState, MonthMessages
 
 
@@ -15,6 +15,11 @@ class Generator:
 
     def __init__(self, openai_api_key: str, max_months_per_run: int, docs_dir: str = 'docs', logger=None):
         self.logger = logger or logging.getLogger(__name__)
+        
+        # Enable OpenAI logging
+        logging.getLogger('openai').setLevel(logging.DEBUG)
+        logging.getLogger('httpx').setLevel(logging.INFO)
+        
         self.client = OpenAI(api_key=openai_api_key)
         self.docs_dir = Path(docs_dir)
         self.max_months_per_run = max_months_per_run
@@ -48,34 +53,22 @@ class Generator:
             response_format=DocumentationUpdate,
         )
 
-        return response.choices[0].message.parsed
+        parsed = response.choices[0].message.parsed
+        self.logger.info('Received %d diffs from OpenAI', len(parsed.diffs))
+        return parsed
 
     def _apply_diff(self, file_path: Path, diff_content: str):
-        self.logger.info('Applying diff to %s', file_path)
-
-        patch = PatchSet(diff_content)
-
+        self.logger.info('Applying diff to %s:\n%s', file_path, diff_content)
+        
         with file_path.open(encoding='utf-8') as f:
-            original_lines = f.readlines()
-
-        patched_lines = original_lines.copy()
-
-        for patched_file in patch:
-            for hunk in patched_file:
-                target_line = hunk.target_start - 1
-
-                lines_to_remove = [line for line in hunk if line.is_removed]
-                for _ in lines_to_remove:
-                    if target_line < len(patched_lines):
-                        patched_lines.pop(target_line)
-
-                lines_to_add = [line.value for line in hunk if line.is_added]
-                for i, line_content in enumerate(lines_to_add):
-                    patched_lines.insert(target_line + i, line_content)
-
+            content = f.read()
+        
+        parser = DiffParser()
+        patched_content = parser.apply(content, diff_content)
+        
         with file_path.open('w', encoding='utf-8') as f:
-            f.writelines(patched_lines)
-
+            f.write(patched_content)
+        
         self.logger.info('Successfully applied diff to %s', file_path)
 
     async def process_chat(self, chat: Chat):
