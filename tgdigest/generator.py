@@ -56,6 +56,7 @@ class Generator:
                 'content': self.jinja_env.get_template('update_docs.j2').render(
                     chat=chat,
                     current_date=datetime.datetime.now(tz=datetime.UTC).date().strftime('%Y-%m-%d'),
+                    extra_prompt=self.config.extra_prompt,
                 ),
             }, {
                 'role': 'user',

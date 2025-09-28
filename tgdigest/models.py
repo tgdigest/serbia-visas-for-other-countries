@@ -47,6 +47,7 @@ class Chat(BaseModel):
 
 
 class Config(BaseModel):
+    extra_prompt: str = ''
     chats: list[Chat]
     docs_dir: str = 'docs'
 

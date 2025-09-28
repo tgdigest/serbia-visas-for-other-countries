@@ -10,7 +10,7 @@ fetch:
 	./venv/bin/python -m tgdigest fetch
 
 generate:
-	./venv/bin/python -m tgdigest generate --max-months=6
+	./venv/bin/python -m tgdigest generate --max-months=1
 
 collect:
 	./venv/bin/python -m tgdigest collect
