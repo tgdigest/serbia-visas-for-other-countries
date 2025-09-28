@@ -4,6 +4,8 @@ install:
 	python3 -m venv venv
 	./venv/bin/pip install -r requirements.txt
 
+all: fetch collect generate
+
 fetch:
 	./venv/bin/python -m tgdigest fetch
 

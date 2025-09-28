@@ -16,8 +16,8 @@ def get_jinja_env() -> Environment:
 
 
 def highlight_keywords(text: str, keywords: list[str]) -> str:
-    import re
-    for keyword in keywords:
+    # Sort keywords by length descending to handle longer matches first
+    for keyword in sorted(keywords, key=len, reverse=True):
         # Case-insensitive search and replace, preserving original case
         pattern = re.compile(re.escape(keyword), re.IGNORECASE)
         text = pattern.sub(lambda m: f'**{m.group()}**', text)
@@ -33,5 +33,4 @@ def format_blockquote(text: str) -> str:
     text = text.replace('\n+', '\n\\+')
     text = text.replace('\n-', '\n\\-')
     # Replace newlines with <br> for blockquote formatting
-    text = text.replace('\n', '<br>\n> ')
-    return text
+    return text.replace('\n', '<br>\n> ')

@@ -1,3 +1,4 @@
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -82,22 +83,18 @@ class MessagesCache:
         with self.generator_state_file.open('w', encoding='utf-8') as f:
             yaml.dump(state.model_dump(), f, allow_unicode=True)
 
-    def _is_month_file(self, filename: str) -> bool:
-        parts = filename.split('-')
-        if len(parts) != 2:
-            return False
+    def _parse_month_filename(self, filename: str) -> datetime | None:
         try:
-            year, month = int(parts[0]), int(parts[1])
-            return 2000 <= year <= 2100 and 1 <= month <= 12
+            return datetime.strptime(filename, '%Y-%m').replace(tzinfo=UTC)
         except ValueError:
-            return False
-    
+            return None
+
     def get_all_months(self) -> list[str]:
         if not self.cache_dir.exists():
             return []
 
         yaml_files = sorted(self.cache_dir.glob('*.yaml'))
-        return [f.stem for f in yaml_files if self._is_month_file(f.stem)]
+        return [f.stem for f in yaml_files if self._parse_month_filename(f.stem)]
 
     def get_unprocessed_months(self) -> list[str]:
         if not self.cache_dir.exists():

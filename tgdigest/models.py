@@ -49,7 +49,7 @@ class Chat(BaseModel):
 class Config(BaseModel):
     chats: list[Chat]
     docs_dir: str = 'docs'
-    
+
     def get_auto_files(self) -> set[str]:
         return {auto_config.file for chat in self.chats for auto_config in chat.auto}
 

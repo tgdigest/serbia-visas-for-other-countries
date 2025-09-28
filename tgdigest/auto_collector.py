@@ -22,7 +22,7 @@ class AutoCollector:
 
     def _process_auto_config(self, cache: MessagesCache, auto_config: AutoConfig, chat: Chat):
         self.logger.info('Processing auto config: %s -> %s', auto_config.keywords, auto_config.file)
-        
+
         messages_by_month = {}
         for month in cache.get_all_months():
             messages = cache.get_messages_for_month(month)
@@ -31,7 +31,7 @@ class AutoCollector:
                     if month not in messages_by_month:
                         messages_by_month[month] = []
                     messages_by_month[month].append(msg)
-        
+
         total_messages = sum(len(msgs) for msgs in messages_by_month.values())
         self.logger.info('Found %d messages matching keywords', total_messages)
 

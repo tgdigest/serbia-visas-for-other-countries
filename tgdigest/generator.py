@@ -29,7 +29,7 @@ class Generator:
 
     def _load_docs(self) -> dict[str, str]:
         auto_files = self.config.get_auto_files()
-        
+
         docs = {}
         for md_file in self.docs_dir.rglob('*.md'):
             rel_path = md_file.relative_to(self.docs_dir)
@@ -37,7 +37,7 @@ class Generator:
                 continue
             with md_file.open(encoding='utf-8') as f:
                 docs[str(rel_path)] = f.read()
-        
+
         for pages_file in self.docs_dir.rglob('.pages'):
             rel_path = pages_file.relative_to(self.docs_dir)
             with pages_file.open(encoding='utf-8') as f:
@@ -55,7 +55,7 @@ class Generator:
                 'role': 'system',
                 'content': self.jinja_env.get_template('update_docs.j2').render(
                     chat=chat,
-                    current_date=datetime.date.today().strftime('%Y-%m-%d'),
+                    current_date=datetime.datetime.now(tz=datetime.UTC).date().strftime('%Y-%m-%d'),
                 ),
             }, {
                 'role': 'user',
