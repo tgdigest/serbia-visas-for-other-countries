@@ -14,15 +14,14 @@ from .templates import get_jinja_env
 class Generator:
     model = 'gpt-4.1-2025-04-14'
 
-    def __init__(self, config: Config, openai_api_key: str, max_months_per_run: int, logger=None):
+    def __init__(self, config: Config, openai_api_key: str, logger=None):
         self.logger = logger or logging.getLogger(__name__)
         self.client = OpenAI(api_key=openai_api_key)
         self.config = config
         self.docs_dir = Path(config.docs_dir)
-        self.max_months_per_run = max_months_per_run
         self.jinja_env = get_jinja_env()
 
-    async def process_chat(self, chat: Chat):
+    async def process_chat(self, chat: Chat, max_months_per_run: int):
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
 
         cache = MessagesCache(chat.url)
@@ -34,7 +33,7 @@ class Generator:
 
         self.logger.info('Found %d unprocessed months: %s', len(unprocessed_months), unprocessed_months)
 
-        months_to_process = unprocessed_months[:self.max_months_per_run]
+        months_to_process = unprocessed_months[:max_months_per_run]
         self.logger.info('Will process %d months: %s', len(months_to_process), months_to_process)
 
         docs = self._load_docs()

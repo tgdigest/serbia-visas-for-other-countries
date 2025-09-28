@@ -29,10 +29,9 @@ async def generate_markdown(cfg: Config, *, max_months_per_run: int):
     generator = Generator(
         config=cfg,
         openai_api_key=os.getenv('OPENAI_API_KEY'),
-        max_months_per_run=max_months_per_run,
     )
     for chat in cfg.chats:
-        await generator.process_chat(chat)
+        await generator.process_chat(chat, max_months_per_run)
     
     # Reorganize after processing new messages
     for chat in cfg.chats:
@@ -43,7 +42,6 @@ async def reorganize_docs(cfg: Config):
     generator = Generator(
         config=cfg,
         openai_api_key=os.getenv('OPENAI_API_KEY'),
-        max_months_per_run=1,
     )
     for chat in cfg.chats:
         await generator.reorganize_chat(chat)
