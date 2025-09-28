@@ -107,6 +107,7 @@ class Generator:
             messages=messages,
             response_format=response_format,
             timeout=600,
+            temperature=0,
         )
         return response.choices[0].message.parsed
 
