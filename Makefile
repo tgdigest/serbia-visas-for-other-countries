@@ -8,7 +8,7 @@ fetch:
 	./venv/bin/python -m tgdigest fetch
 
 generate:
-	./venv/bin/python -m tgdigest generate --max-months=2
+	./venv/bin/python -m tgdigest generate --max-months=6
 
 serve:
 	./venv/bin/mkdocs serve
