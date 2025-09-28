@@ -44,7 +44,7 @@ class Generator:
                 docs[str(rel_path)] = f.read()
         return docs
 
-    def _request_updates(self, docs: dict[str, str], month_messages: MonthMessages, 
+    def _request_updates(self, docs: dict[str, str], month_messages: MonthMessages,
                          chat: Chat) -> DocumentationUpdate:
         self.logger.info('Requesting documentation updates for month %s with %d messages',
                         month_messages.month, len(month_messages.messages))
