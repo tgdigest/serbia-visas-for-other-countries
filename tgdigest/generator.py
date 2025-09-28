@@ -2,7 +2,7 @@ import json
 import logging
 from pathlib import Path
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from openai import OpenAI
 
 from .cache import MessagesCache
@@ -15,17 +15,20 @@ class Generator:
 
     def __init__(self, openai_api_key: str, max_months_per_run: int, docs_dir: str = 'docs', logger=None):
         self.logger = logger or logging.getLogger(__name__)
-        
+
         # Enable OpenAI logging
         logging.getLogger('openai').setLevel(logging.DEBUG)
         logging.getLogger('httpx').setLevel(logging.INFO)
-        
+
         self.client = OpenAI(api_key=openai_api_key)
         self.docs_dir = Path(docs_dir)
         self.max_months_per_run = max_months_per_run
-        
+
         templates_dir = Path(__file__).parent / 'prompts'
-        self.jinja_env = Environment(loader=FileSystemLoader(templates_dir), autoescape=False)
+        self.jinja_env = Environment(
+            loader=FileSystemLoader(templates_dir),
+            autoescape=select_autoescape(enabled_extensions=[], default_for_string=False)
+        )
 
     def _load_docs(self) -> dict[str, str]:
         docs = {}
@@ -36,7 +39,7 @@ class Generator:
         return docs
 
     def _request_updates(self, docs: dict[str, str], month_messages: MonthMessages) -> DocumentationUpdate:
-        self.logger.info('Requesting documentation updates for month %s with %d messages', 
+        self.logger.info('Requesting documentation updates for month %s with %d messages',
                         month_messages.month, len(month_messages.messages))
 
         prompt = self.jinja_env.get_template('update_docs.j2').render(
@@ -59,16 +62,16 @@ class Generator:
 
     def _apply_diff(self, file_path: Path, diff_content: str):
         self.logger.info('Applying diff to %s:\n%s', file_path, diff_content)
-        
+
         with file_path.open(encoding='utf-8') as f:
             content = f.read()
-        
+
         parser = DiffParser()
         patched_content = parser.apply(content, diff_content)
-        
+
         with file_path.open('w', encoding='utf-8') as f:
             f.write(patched_content)
-        
+
         self.logger.info('Successfully applied diff to %s', file_path)
 
     async def process_chat(self, chat: Chat):
@@ -90,7 +93,7 @@ class Generator:
 
         for month in months_to_process:
             self.logger.info('Processing month: %s', month)
-            
+
             messages = cache.get_messages_for_month(month)
             if not messages:
                 self.logger.warning('No messages found for month %s, skipping', month)

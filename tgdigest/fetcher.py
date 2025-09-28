@@ -22,7 +22,7 @@ class Fetcher:
         self.logger.debug('Initializing TgDigest client: api_id=%s, session_name=%s', api_id, session_name)
 
         if force_login:
-            logging.info('Removed existing session, forcing re-login')
+            self.logger.info('Removed existing session, forcing re-login')
             session_file = Path(f'{session_name}.session')
             if session_file.exists():
                 session_file.unlink()

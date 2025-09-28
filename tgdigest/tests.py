@@ -1,43 +1,81 @@
 import tempfile
 from pathlib import Path
 
-import pytest
-
 from tgdigest.diff_parser import DiffParser
 from tgdigest.generator import Generator
 
 
-def test_diff_parser_additions_only():
+def test_diff_parser_whitespace_handling():
+    """Test that diff parser correctly handles whitespace in additions."""
     parser = DiffParser()
-    
+
+    # Test case where additions have different indentation than context
+    original = '   - Item two'
+    diff = """@@ ... @@
+    - Item two
++   - Item three"""
+
+    result = parser.apply(original, diff)
+    # Should preserve indentation from the additions in diff
+    assert result == '   - Item two\n   - Item three\n'
+
+
+def test_diff_parser_mixed_indentation():
+    """Test additions with mixed indentation levels."""
+    parser = DiffParser()
+
     original = """1. List
    - Item one
    - Item two"""
-    
+
+    # The problem: context has 3 spaces indentation but shown as 4 in diff
+    diff = """@@ ... @@
+    - Item two
++   - Item three"""
+
+    result = parser.apply(original, diff)
+    # The addition should have 3 spaces to match the file's indentation
+    expected = """1. List
+   - Item one
+   - Item two
+   - Item three
+"""
+    assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
+
+
+def test_diff_parser_additions_only():
+    parser = DiffParser()
+
+    original = """1. List
+   - Item one
+   - Item two"""
+
     diff = """@@ ... @@
  1. List
     - Item one
     - Item two
 +   - Item three
 +   - Item four"""
-    
+
+    # Since original doesn't end with newline, result preserves this
     expected = """1. List
    - Item one
    - Item two
    - Item three
-   - Item four"""
-    
+   - Item four
+"""
+
     result = parser.apply(original, diff)
-    assert result == expected
+    assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
 
 
 def test_diff_parser_replacements():
     parser = DiffParser()
-    
+
     original = """ - **Standard**: 2 weeks
  - **Fast**: 12-15 days
  - **Delayed**: may extend"""
-    
+
     diff = """@@ ... @@
 - - **Standard**: 2 weeks
 - - **Fast**: 12-15 days
@@ -46,26 +84,27 @@ def test_diff_parser_replacements():
 +- **Standard**: 2 weeks
 +- **Fast**: next day sometimes
 +- **Delayed**: may extend"""
-    
+
     expected = """
 - **Standard**: 2 weeks
 - **Fast**: next day sometimes
-- **Delayed**: may extend"""
-    
+- **Delayed**: may extend
+"""
+
     result = parser.apply(original, diff)
-    assert result == expected
+    assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
 
 
 def test_diff_parser_addition_after_context():
     parser = DiffParser()
-    
+
     original = """5. **Waiting**
    - They take passport
    - Give receipt
    - Call when ready
 
 ## Processing times"""
-    
+
     diff = """@@ ... @@
  5. **Waiting**
     - They take passport
@@ -74,7 +113,7 @@ def test_diff_parser_addition_after_context():
 +   - Can't track online
  
  ## Processing times"""
-    
+
     expected = """5. **Waiting**
    - They take passport
    - Give receipt
@@ -82,13 +121,13 @@ def test_diff_parser_addition_after_context():
    - Can't track online
 
 ## Processing times"""
-    
+
     result = parser.apply(original, diff)
-    assert result == expected
+    assert result == expected, f'Result:\n{result!r}\n\nExpected:\n{expected!r}'
 
 
 def test_apply_real_diff():
-    
+
     original = """## Процесс подачи
 
 1. **Запись онлайн** через сайт консульства
@@ -228,8 +267,8 @@ def test_apply_real_diff():
     try:
         gen = Generator(openai_api_key='dummy', max_months_per_run=1)
         gen._apply_diff(temp_file, diff)
-        
+
         result = temp_file.read_text(encoding='utf-8')
-        assert result == expected, f'Expected:\n{repr(expected)}\n\nGot:\n{repr(result)}'
+        assert result == expected, f'Expected:\n{expected!r}\n\nGot:\n{result!r}'
     finally:
         temp_file.unlink()
