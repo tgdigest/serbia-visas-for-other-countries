@@ -119,14 +119,20 @@ class Generator:
 
         docs = {}
         for md_file in self.docs_dir.rglob('*.md'):
-            rel_path = md_file.relative_to(self.docs_dir)
-            if str(rel_path) in auto_files:
+            rel_path = str(md_file.relative_to(self.docs_dir))
+            if rel_path in auto_files:
                 continue
+
+            # if 'faq' in rel_path.lower():
+            #     logging.warning(f'Skipping faq file {md_file}: {rel_path}')
+            #     continue
+
             with md_file.open(encoding='utf-8') as f:
-                docs[str(rel_path)] = f.read()
+                docs[rel_path] = f.read()
 
         for pages_file in self.docs_dir.rglob('.pages'):
-            rel_path = pages_file.relative_to(self.docs_dir)
+            rel_path = str(pages_file.relative_to(self.docs_dir))
             with pages_file.open(encoding='utf-8') as f:
-                docs[str(rel_path)] = f.read()
+                docs[rel_path] = f.read()
+
         return docs

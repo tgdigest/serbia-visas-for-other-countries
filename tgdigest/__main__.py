@@ -26,19 +26,15 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
 
 
 async def generate_markdown(cfg: Config, *, max_months_per_run: int):
-    generator = Generator(
-        config=cfg,
-        openai_api_key=os.getenv('OPENAI_API_KEY'),
-    )
+    generator = Generator(config=cfg, openai_api_key=os.getenv('OPENAI_API_KEY'))
     for chat in cfg.chats:
+        if chat.title != 'Греция 🇬🇷':
+            continue
         await generator.process_chat(chat, max_months_per_run)
     
 
 async def reorganize_docs(cfg: Config):
-    generator = Generator(
-        config=cfg,
-        openai_api_key=os.getenv('OPENAI_API_KEY'),
-    )
+    generator = Generator(config=cfg, openai_api_key=os.getenv('OPENAI_API_KEY'))
     await generator.reorganize_docs()
 
 
