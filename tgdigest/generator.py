@@ -3,8 +3,7 @@ import json
 import logging
 from pathlib import Path
 
-from openai import OpenAI
-
+from .ai import AIProvider
 from .cache import MessagesCache
 from .diff_parser import DiffParser
 from .models import Chat, Config, DocumentationUpdate, GeneratorState, MonthMessages
@@ -12,13 +11,9 @@ from .templates import get_jinja_env
 
 
 class Generator:
-    model = 'gpt-4.1-2025-04-14'
-    # model = 'gpt-4o'
-    # model = 'gpt-5'  # timeout
-
-    def __init__(self, config: Config, openai_api_key: str, logger=None):
+    def __init__(self, config: Config, provider: AIProvider, logger=None):
         self.logger = logger or logging.getLogger(__name__)
-        self.client = OpenAI(api_key=openai_api_key)
+        self.provider = provider
         self.config = config
         self.docs_dir = Path(config.docs_dir)
         self.jinja_env = get_jinja_env()
@@ -48,7 +43,7 @@ class Generator:
                 continue
 
             month_messages = MonthMessages(month=month, messages=messages)
-            updates = self._request(DocumentationUpdate, [{
+            updates = self.provider.request(DocumentationUpdate, [{
                 'role': 'system',
                 'content': self.jinja_env.get_template('update_docs.md.j2').render(
                     chat=chat,
@@ -74,7 +69,7 @@ class Generator:
     async def reorganize_docs(self):
         self.logger.info('Reorganizing documentation')
 
-        updates = self._request(DocumentationUpdate, [{
+        updates = self.provider.request(DocumentationUpdate, [{
             'role': 'system',
             'content': self.jinja_env.get_template('reorganize_docs.md.j2').render(
                 extra_prompt=self.config.extra_prompt,
@@ -100,16 +95,6 @@ class Generator:
             f.write(patched_content)
 
         self.logger.info('Successfully applied diff to %s', file_path)
-
-    def _request(self, response_format, messages):
-        response = self.client.beta.chat.completions.parse(
-            model=self.model,
-            messages=messages,
-            response_format=response_format,
-            timeout=600,
-            temperature=0,
-        )
-        return response.choices[0].message.parsed
 
     def _json(self, title, v):
         return f'{title}:\n```json\n{json.dumps(v, ensure_ascii=False)}\n```\n'
