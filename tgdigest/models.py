@@ -26,6 +26,7 @@ class Chat(BaseModel):
     title: str
     url: str
     auto: list[AutoConfig] = []
+    files: list[str] = []
 
     def _parse_url(self):
         match = re.match(r'https://t\.me/c/(\d+)/(\d+)', self.url)

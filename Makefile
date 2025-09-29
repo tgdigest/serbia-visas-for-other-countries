@@ -9,11 +9,11 @@ all: fetch collect generate
 fetch:
 	./venv/bin/python -m tgdigest fetch
 
-generate:
-	./venv/bin/python -m tgdigest generate --max-months=1
-
 collect:
 	./venv/bin/python -m tgdigest collect
+
+generate:
+	./venv/bin/python -m tgdigest generate --max-months=2
 
 reorganize:
 	./venv/bin/python -m tgdigest reorganize

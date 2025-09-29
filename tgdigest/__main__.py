@@ -40,7 +40,8 @@ async def reorganize_docs(cfg: Config):
     # provider = OpenAIProvider(api_key=os.getenv('OPENAI_API_KEY'), model=cfg.openai_model)
     provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
     generator = Generator(config=cfg, provider=provider)
-    await generator.reorganize_docs()
+    for chat in cfg.chats:
+        await generator.reorganize_docs(chat)
 
 
 def collect_auto(cfg: Config):

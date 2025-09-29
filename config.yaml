@@ -13,6 +13,9 @@ extra_prompt: |
 chats:
   - title: "Венгрия 🇭🇺"
     url: "https://t.me/c/1608823685/14535"
+    files:
+      - "hungary/*.md"
+      - "general-faq.md"
     auto:
       - title: "Статистика по визам в Венгрию"
         file: "hungary/stats.md"
@@ -30,6 +33,9 @@ chats:
           - "#венгрия"
   - title: "Франция 🇫🇷"
     url: "https://t.me/c/1608823685/14530"
+    files:
+      - "france/*.md"
+      - "general-faq.md"
     auto:
       - title: "Статистика по визам во Францию"
         file: "france/stats.md"
@@ -48,8 +54,13 @@ chats:
           - "#мультивиза"
   - title: "Страховки"
     url: "https://t.me/c/1608823685/29756"
+    files:
+      - "insurance.md"
   - title: "Греция 🇬🇷"
     url: "https://t.me/c/1608823685/37109"
+    files:
+      - "greece/*.md"
+      - "general-faq.md"
     auto:
       - title: "Статистика по визам в Грецию"
         file: "greece/stats.md"

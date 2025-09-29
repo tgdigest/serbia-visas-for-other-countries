@@ -33,7 +33,7 @@ class Generator:
         months_to_process = unprocessed_months[:max_months_per_run]
         self.logger.info('Will process %d months: %s', len(months_to_process), months_to_process)
 
-        docs = self._load_docs()
+        docs = self._load_docs(chat)
         for month in months_to_process:
             self.logger.info('Processing month: %s', month)
 
@@ -66,8 +66,8 @@ class Generator:
             cache.save_generator_state(state)
             self.logger.info('Updated state to %s', month)
 
-    async def reorganize_docs(self):
-        self.logger.info('Reorganizing documentation')
+    async def reorganize_docs(self, chat: Chat):
+        self.logger.info('Reorganizing docs for chat: %s', chat.title)
 
         updates = self.provider.request(DocumentationUpdate, [{
             'role': 'system',
@@ -76,7 +76,7 @@ class Generator:
             ),
         }, {
             'role': 'user',
-            'content': self._json('База знаний', self._load_docs()),
+            'content': self._json('База знаний', self._load_docs(chat)),
         }])
 
         for file_diff in updates.diffs:
@@ -99,25 +99,28 @@ class Generator:
     def _json(self, title, v):
         return f'{title}:\n```json\n{json.dumps(v, ensure_ascii=False)}\n```\n'
 
-    def _load_docs(self) -> dict[str, str]:
+    def _load_docs(self, chat: Chat) -> dict[str, str]:
         auto_files = self.config.get_auto_files()
 
         docs = {}
-        for md_file in self.docs_dir.rglob('*.md'):
-            rel_path = str(md_file.relative_to(self.docs_dir))
-            if rel_path in auto_files:
-                continue
-
-            # if 'faq' in rel_path.lower():
-            #     logging.warning(f'Skipping faq file {md_file}: {rel_path}')
-            #     continue
-
-            with md_file.open(encoding='utf-8') as f:
-                docs[rel_path] = f.read()
-
-        for pages_file in self.docs_dir.rglob('.pages'):
-            rel_path = str(pages_file.relative_to(self.docs_dir))
-            with pages_file.open(encoding='utf-8') as f:
-                docs[rel_path] = f.read()
+        
+        if not chat.files:
+            raise ValueError(f"Chat '{chat.title}' has no files specified in config")
+            
+        for pattern in chat.files:
+            if '*' in pattern or '?' in pattern:
+                matched_files = list(self.docs_dir.glob(pattern))
+                if not matched_files:
+                    raise FileNotFoundError(f'No files found for pattern: {pattern}')
+                for file_path in matched_files:
+                    rel_path = str(file_path.relative_to(self.docs_dir))
+                    with file_path.open(encoding='utf-8') as f:
+                        docs[rel_path] = f.read()
+            else:
+                full_path = self.docs_dir / pattern
+                if not full_path.exists():
+                    raise FileNotFoundError(f'File not found: {pattern}')
+                with full_path.open(encoding='utf-8') as f:
+                    docs[pattern] = f.read()
 
         return docs
