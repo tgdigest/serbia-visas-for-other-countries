@@ -50,6 +50,7 @@ class Config(BaseModel):
     extra_prompt: str = ''
     chats: list[Chat]
     docs_dir: str = 'docs'
+    openai_model: str = 'gpt-4.1-2025-04-14'
 
     def get_auto_files(self) -> set[str]:
         return {auto_config.file for chat in self.chats for auto_config in chat.auto}

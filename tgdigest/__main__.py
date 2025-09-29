@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 
 from tgdigest.auto_collector import AutoCollector
 from tgdigest.fetcher import Fetcher
+from tgdigest.ai import OpenAIProvider
 from tgdigest.generator import Generator
 from tgdigest.models import Config
 
@@ -26,7 +27,8 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
 
 
 async def generate_markdown(cfg: Config, *, max_months_per_run: int):
-    generator = Generator(config=cfg, openai_api_key=os.getenv('OPENAI_API_KEY'))
+    provider = OpenAIProvider(api_key=os.getenv('OPENAI_API_KEY'), model=cfg.openai_model)
+    generator = Generator(config=cfg, provider=provider)
     for chat in cfg.chats:
         if chat.title != 'Греция 🇬🇷':
             continue
@@ -34,7 +36,8 @@ async def generate_markdown(cfg: Config, *, max_months_per_run: int):
     
 
 async def reorganize_docs(cfg: Config):
-    generator = Generator(config=cfg, openai_api_key=os.getenv('OPENAI_API_KEY'))
+    provider = OpenAIProvider(api_key=os.getenv('OPENAI_API_KEY'), model=cfg.openai_model)
+    generator = Generator(config=cfg, provider=provider)
     await generator.reorganize_docs()
 
 

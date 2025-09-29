@@ -1,8 +1,10 @@
 import tempfile
 from pathlib import Path
 
+from tgdigest.ai import OpenAIProvider
 from tgdigest.diff_parser import DiffParser
 from tgdigest.generator import Generator
+from tgdigest.models import Config
 
 
 def test_diff_parser_whitespace_handling():
@@ -336,7 +338,9 @@ def test_apply_real_diff():
         temp_file = Path(f.name)
 
     try:
-        gen = Generator(openai_api_key='dummy', max_months_per_run=1)
+        config = Config(chats=[])
+        provider = OpenAIProvider(api_key='dummy', model='gpt-4')
+        gen = Generator(config=config, provider=provider)
         gen._apply_diff(temp_file, diff)
 
         result = temp_file.read_text(encoding='utf-8')
