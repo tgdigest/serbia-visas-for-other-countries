@@ -43,20 +43,28 @@ class Generator:
                 continue
 
             month_messages = MonthMessages(month=month, messages=messages)
-            updates = self.provider.request(DocumentationUpdate, [{
-                'role': 'system',
-                'content': self.jinja_env.get_template('update_docs.md.j2').render(
-                    chat=chat,
-                    current_date=datetime.datetime.now(tz=datetime.UTC).date().strftime('%Y-%m-%d'),
-                    extra_prompt=self.config.extra_prompt,
-                ),
-            }, {
-                'role': 'user',
-                'content': self._json('База знаний', docs),
-            }, {
-                'role': 'user',
-                'content': self._json('Новые сообщения', month_messages.model_dump())
-            }])
+            updates = self.provider.request(DocumentationUpdate, [
+                {
+                    'role': 'system',
+                    'content': 'Твоя задача: поддерживать базу знаний, основываясь новых сообщениях из чата.',
+                },
+                {
+                    'role': 'user',
+                    'content': self._json('База знаний', docs),
+                },
+                {
+                    'role': 'user',
+                    'content': self._json('Новые сообщения', month_messages.model_dump())
+                },
+                {
+                    'role': 'user',
+                    'content': self.jinja_env.get_template('update_docs.md.j2').render(
+                        chat=chat,
+                        current_date=datetime.datetime.now(tz=datetime.UTC).date().strftime('%Y-%m-%d'),
+                        extra_prompt=self.config.extra_prompt,
+                    ),
+                },
+            ])
 
             for file_diff in updates.diffs:
                 file_path = self.docs_dir / file_diff.path
