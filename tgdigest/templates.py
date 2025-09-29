@@ -17,7 +17,7 @@ def get_jinja_env() -> Environment:
 def format_blockquote(text: str) -> str:
     # Make all hashtags bold
     text = re.sub(r'(#\w+)', r'**\1**', text)
-    
+
     # Escape markdown headers and list markers at line start
     if text.startswith('#'):
         text = '\\' + text

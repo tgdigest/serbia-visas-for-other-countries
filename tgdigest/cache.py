@@ -29,9 +29,9 @@ class MessagesCache:
         months = self.get_all_months()
         if not months:
             return None
-        
+
         last_month_file = self.cache_dir / f'{months[-1]}.yaml'
-        
+
         with last_month_file.open(encoding='utf-8') as f:
             data = yaml.safe_load(f)
             if not data:

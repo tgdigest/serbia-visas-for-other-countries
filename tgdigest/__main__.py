@@ -7,9 +7,9 @@ from pathlib import Path
 import yaml
 from dotenv import load_dotenv
 
+from tgdigest.ai import AnthropicProvider
 from tgdigest.auto_collector import AutoCollector
 from tgdigest.fetcher import Fetcher
-from tgdigest.ai import AnthropicProvider, OpenAIProvider
 from tgdigest.generator import Generator
 from tgdigest.models import Config
 
@@ -27,17 +27,15 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
 
 
 async def generate_markdown(cfg: Config, *, max_months_per_run: int):
-    # provider = OpenAIProvider(api_key=os.getenv('OPENAI_API_KEY'), model=cfg.openai_model)
     provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
     generator = Generator(config=cfg, provider=provider)
     for chat in cfg.chats:
         if chat.title != 'Греция 🇬🇷':
             continue
         await generator.process_chat(chat, max_months_per_run)
-    
+
 
 async def reorganize_docs(cfg: Config):
-    # provider = OpenAIProvider(api_key=os.getenv('OPENAI_API_KEY'), model=cfg.openai_model)
     provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
     generator = Generator(config=cfg, provider=provider)
     for chat in cfg.chats:
@@ -75,10 +73,13 @@ if __name__ == '__main__':
         format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
     )
-    
+
     # Enable OpenAI logging
     logging.getLogger('openai').setLevel(logging.DEBUG)
     logging.getLogger('httpx').setLevel(logging.INFO)
+
+    # Enable Anthropic logging
+    logging.getLogger('anthropic').setLevel(logging.DEBUG)
 
     load_dotenv()
 

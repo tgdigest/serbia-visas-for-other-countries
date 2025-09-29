@@ -37,13 +37,13 @@ class AutoCollector:
 
         file_path = self.docs_dir / auto_config.file
         file_path.parent.mkdir(parents=True, exist_ok=True)
-        
+
         # Group messages by year for template
         messages_by_year = {}
         for month, msgs in messages_by_month.items():
             year = month.split('-')[0]
             messages_by_year.setdefault(year, {})[month] = msgs
-        
+
         with file_path.open('w', encoding='utf-8') as f:
             f.write(self.jinja_env.get_template('auto.md.j2').render(
                 title=auto_config.title,

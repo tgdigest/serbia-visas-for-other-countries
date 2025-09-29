@@ -1,5 +1,6 @@
+import json
 from abc import ABC, abstractmethod
-from typing import Any, Type, TypeVar
+from typing import Any, TypeVar
 
 from anthropic import Anthropic
 from openai import OpenAI
@@ -14,7 +15,7 @@ class AIProvider(ABC):
         self.model = model
 
     @abstractmethod
-    def request(self, response_format: Type[T], messages: list[dict[str, Any]]) -> T:
+    def request(self, response_format: type[T], messages: list[dict[str, Any]]) -> T:
         pass
 
 
@@ -23,7 +24,7 @@ class OpenAIProvider(AIProvider):
         super().__init__(api_key, model)
         self.client = OpenAI(api_key=api_key)
 
-    def request(self, response_format: Type[T], messages: list[dict[str, Any]]) -> T:
+    def request(self, response_format: type[T], messages: list[dict[str, Any]]) -> T:
         response = self.client.beta.chat.completions.parse(
             model=self.model,
             messages=messages,
@@ -39,10 +40,10 @@ class AnthropicProvider(AIProvider):
         super().__init__(api_key, model)
         self.client = Anthropic(api_key=api_key)
 
-    def request(self, response_format: Type[T], messages: list[dict[str, Any]]) -> T:
+    def request(self, response_format: type[T], messages: list[dict[str, Any]]) -> T:
         system_message = None
         anthropic_messages = []
-        
+
         for msg in messages:
             if msg['role'] == 'system':
                 system_message = msg['content']
@@ -69,4 +70,9 @@ class AnthropicProvider(AIProvider):
         )
 
         tool_use = response.content[0]
-        return response_format(**tool_use.input)
+        input_data = tool_use.input
+
+        if isinstance(input_data, str):
+            input_data = json.loads(input_data)
+
+        return response_format(**input_data)

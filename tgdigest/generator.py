@@ -108,18 +108,19 @@ class Generator:
         return f'{title}:\n```json\n{json.dumps(v, ensure_ascii=False)}\n```\n'
 
     def _load_docs(self, chat: Chat) -> dict[str, str]:
-        auto_files = self.config.get_auto_files()
 
         docs = {}
-        
+
         if not chat.files:
-            raise ValueError(f"Chat '{chat.title}' has no files specified in config")
-            
+            msg = f"Chat '{chat.title}' has no files specified in config"
+            raise ValueError(msg)
+
         for pattern in chat.files:
             if '*' in pattern or '?' in pattern:
                 matched_files = list(self.docs_dir.glob(pattern))
                 if not matched_files:
-                    raise FileNotFoundError(f'No files found for pattern: {pattern}')
+                    msg = f'No files found for pattern: {pattern}'
+                    raise FileNotFoundError(msg)
                 for file_path in matched_files:
                     rel_path = str(file_path.relative_to(self.docs_dir))
                     with file_path.open(encoding='utf-8') as f:
@@ -127,7 +128,8 @@ class Generator:
             else:
                 full_path = self.docs_dir / pattern
                 if not full_path.exists():
-                    raise FileNotFoundError(f'File not found: {pattern}')
+                    msg = f'File not found: {pattern}'
+                    raise FileNotFoundError(msg)
                 with full_path.open(encoding='utf-8') as f:
                     docs[pattern] = f.read()
 
