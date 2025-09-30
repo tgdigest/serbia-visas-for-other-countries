@@ -80,6 +80,7 @@ if __name__ == '__main__':
 
     # Enable Anthropic logging
     logging.getLogger('anthropic').setLevel(logging.DEBUG)
+    logging.getLogger('anthropic._base_client').setLevel(logging.DEBUG)
 
     load_dotenv()
 

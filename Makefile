@@ -13,7 +13,7 @@ collect:
 	./venv/bin/python -m tgdigest collect
 
 generate:
-	./venv/bin/python -m tgdigest generate --max-months=2
+	./venv/bin/python -m tgdigest generate --max-months=1
 
 reorganize:
 	./venv/bin/python -m tgdigest reorganize

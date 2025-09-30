@@ -52,7 +52,8 @@ class Config(BaseModel):
     chats: list[Chat]
     docs_dir: str = 'docs'
     openai_model: str = 'gpt-4.1-2025-04-14'
-    anthropic_model: str = 'claude-3-5-haiku-20241022'
+    # anthropic_model: str = 'claude-3-5-haiku-20241022'
+    anthropic_model: str = 'claude-sonnet-4-5-20250929'
 
     def get_auto_files(self) -> set[str]:
         return {auto_config.file for chat in self.chats for auto_config in chat.auto}

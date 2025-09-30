@@ -237,8 +237,8 @@ def test_apply_real_diff():
 16. **Минимальный срок ВНЖ** — НЕТ требования по минимальному сроку владения ВНЖ. Можно подаваться даже с 1-2 месячным ВНЖ
 """
 
-    diff = """--- hungary/requirements.md
-+++ hungary/requirements.md
+    diff = """--- hungary/guide.md
++++ hungary/guide.md
 @@ ... @@
  ## Процесс подачи
  

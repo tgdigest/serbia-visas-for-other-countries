@@ -5,6 +5,7 @@ from typing import Any, TypeVar
 from anthropic import Anthropic
 from openai import OpenAI
 from pydantic import BaseModel
+from pydantic_core import ValidationError
 
 T = TypeVar('T', bound=BaseModel)
 
@@ -75,4 +76,8 @@ class AnthropicProvider(AIProvider):
         if isinstance(input_data, str):
             input_data = json.loads(input_data)
 
-        return response_format(**input_data)
+        try:
+            return response_format(**input_data)
+        except ValidationError as e:
+            msg = f'Failed to parse response: {input_data}'
+            raise ValueError(msg) from e
