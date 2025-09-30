@@ -77,15 +77,22 @@ class Generator:
     async def reorganize_docs(self, chat: Chat):
         self.logger.info('Reorganizing docs for chat: %s', chat.title)
 
-        updates = self.provider.request(DocumentationUpdate, [{
-            'role': 'system',
-            'content': self.jinja_env.get_template('reorganize_docs.md.j2').render(
-                extra_prompt=self.config.extra_prompt,
-            ),
-        }, {
-            'role': 'user',
-            'content': self._json('База знаний', self._load_docs(chat)),
-        }])
+        updates = self.provider.request(DocumentationUpdate, [
+            {
+                'role': 'system',
+                'content': 'Твоя задача: упорядочивать базу знаний',
+            },
+            {
+                'role': 'user',
+                'content': self._json('База знаний', self._load_docs(chat)),
+            },
+            {
+                'role': 'user',
+                'content': self.jinja_env.get_template('reorganize_docs.md.j2').render(
+                    extra_prompt=self.config.extra_prompt,
+                ),
+            },
+        ])
 
         for file_diff in updates.diffs:
             file_path = self.docs_dir / file_diff.path
