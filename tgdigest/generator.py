@@ -1,6 +1,7 @@
 import datetime
 import json
 import logging
+import re
 from pathlib import Path
 
 from .ai import AIProvider
@@ -105,11 +106,21 @@ class Generator:
             content = f.read()
 
         patched_content = DiffParser().apply(content, diff_content)
+        patched_content = self._post_process_markdown(patched_content)
 
         with file_path.open('w', encoding='utf-8') as f:
             f.write(patched_content)
 
         self.logger.info('Successfully applied diff to %s', file_path)
+
+    def _post_process_markdown(self, content: str) -> str:
+        # Replace **text** on separate lines with ### text
+        content = re.sub(r'^\*\*([^*]+)\*\*$', r'### \1', content, flags=re.MULTILINE)
+        
+        # Replace 3+ consecutive newlines with exactly 2
+        content = re.sub(r'\n{3,}', '\n\n', content)
+        
+        return content
 
     def _json(self, title, v):
         return f'{title}:\n```json\n{json.dumps(v, ensure_ascii=False)}\n```\n'
