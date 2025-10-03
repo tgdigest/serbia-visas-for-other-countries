@@ -24,9 +24,7 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
         phone=os.getenv('PHONE_NUMBER'),
         force_login=force_login,
     )
-    for i, chat in enumerate(cfg.chats):
-        if i > 0:
-            await asyncio.sleep(1)
+    for chat in cfg.chats:
         await mf.load_chat(chat)
     mf.disconnect()
 

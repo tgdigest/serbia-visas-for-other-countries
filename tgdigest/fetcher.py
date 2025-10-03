@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from pathlib import Path
 
@@ -66,6 +67,7 @@ class Fetcher:
                 self.logger.info('saving %d messages for month %s', len(month_messages), current_month)
                 store.cache.append_messages(current_month, month_messages)
                 month_messages = []
+                await asyncio.sleep(1)
 
             current_month = month
             month_messages.append(Message(
