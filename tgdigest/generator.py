@@ -1,13 +1,13 @@
 import datetime
-import json
 import logging
 import re
 from pathlib import Path
 
 from .ai import AIProvider
-from .cache import MessagesCache
 from .diff_parser import DiffParser
-from .models import Chat, Config, DocumentationUpdate, GeneratorState, MonthMessages
+from .helpers import format_json
+from .models import Chat, Config, DocumentationUpdate
+from .stores import ChatStore
 from .templates import get_jinja_env
 
 
@@ -22,8 +22,20 @@ class Generator:
     async def process_chat(self, chat: Chat, max_months_per_run: int):
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
 
-        cache = MessagesCache(chat.url)
-        unprocessed_months = cache.get_unprocessed_months()
+        store = ChatStore(chat.url)
+
+        # Get unprocessed months based on state
+        state = store.get_state()
+        all_months = store.cache.get_all_months()
+
+        if not all_months:
+            self.logger.info('No months to process')
+            return
+
+        if state.last_processed_month:
+            unprocessed_months = [m for m in all_months if m.to_string() > state.last_processed_month]
+        else:
+            unprocessed_months = all_months
 
         if not unprocessed_months:
             self.logger.info('No new months to process')
@@ -38,12 +50,11 @@ class Generator:
         for month in months_to_process:
             self.logger.info('Processing month: %s', month)
 
-            messages = cache.get_messages_for_month(month)
-            if not messages:
+            month_data = store.cache.get_month(month)
+            if not month_data.messages:
                 self.logger.warning('No messages found for month %s, skipping', month)
                 continue
 
-            month_messages = MonthMessages(month=month, messages=messages)
             updates = self.provider.request(DocumentationUpdate, [
                 {
                     'role': 'system',
@@ -51,11 +62,14 @@ class Generator:
                 },
                 {
                     'role': 'user',
-                    'content': self._json('База знаний', docs),
+                    'content': format_json('База знаний', docs),
                 },
                 {
                     'role': 'user',
-                    'content': self._json('Новые сообщения', month_messages.model_dump())
+                    'content': format_json('Новые сообщения', {
+                        'month': month_data.month,
+                        'messages': [m.model_dump() for m in month_data.messages],
+                    })
                 },
                 {
                     'role': 'user',
@@ -71,8 +85,8 @@ class Generator:
                 file_path = self.docs_dir / file_diff.path
                 self._apply_diff(file_path, file_diff.diff)
 
-            state = GeneratorState(last_processed_month=month)
-            cache.save_generator_state(state)
+            state.last_processed_month = month.to_string()
+            store.save_state(state)
             self.logger.info('Updated state to %s', month)
 
     async def reorganize_docs(self, chat: Chat):
@@ -85,7 +99,7 @@ class Generator:
             },
             {
                 'role': 'user',
-                'content': self._json('База знаний', self._load_docs(chat)),
+                'content': format_json('База знаний', self._load_docs(chat)),
             },
             {
                 'role': 'user',
@@ -116,14 +130,8 @@ class Generator:
     def _post_process_markdown(self, content: str) -> str:
         # Replace **text** on separate lines with ### text
         content = re.sub(r'^\*\*([^*]+)\*\*$', r'### \1', content, flags=re.MULTILINE)
-        
         # Replace 3+ consecutive newlines with exactly 2
-        content = re.sub(r'\n{3,}', '\n\n', content)
-        
-        return content
-
-    def _json(self, title, v):
-        return f'{title}:\n```json\n{json.dumps(v, ensure_ascii=False)}\n```\n'
+        return re.sub(r'\n{3,}', '\n\n', content)
 
     def _load_docs(self, chat: Chat) -> dict[str, str]:
         auto_files = self.config.get_auto_files()

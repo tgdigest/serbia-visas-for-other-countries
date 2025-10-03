@@ -9,8 +9,10 @@ from dotenv import load_dotenv
 
 from tgdigest.ai import AnthropicProvider
 from tgdigest.auto_collector import AutoCollector
+from tgdigest.facts_extractor import FactsExtractor
 from tgdigest.fetcher import Fetcher
 from tgdigest.generator import Generator
+from tgdigest.helpers import WorkLimiter
 from tgdigest.models import Config
 
 
@@ -48,6 +50,17 @@ def collect_auto(cfg: Config):
         collector.process_chat(chat)
 
 
+def extract_facts(cfg: Config, *, max_months: int):
+    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
+    extractor = FactsExtractor(config=cfg, provider=provider)
+    limiter = WorkLimiter(max_months)
+
+    for chat in cfg.chats:
+        if not limiter.can_process():
+            break
+        extractor.process_chat(chat, limiter)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Telegram digest')
     parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
@@ -63,6 +76,9 @@ if __name__ == '__main__':
     gen_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
     collect_parser = subparsers.add_parser('collect', help='Collect messages matching keywords')
+
+    extract_parser = subparsers.add_parser('extract-facts', help='Extract facts from messages')
+    extract_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
     reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
@@ -94,5 +110,7 @@ if __name__ == '__main__':
         asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
     elif args.command == 'collect':
         collect_auto(config)
+    elif args.command == 'extract-facts':
+        extract_facts(config, max_months=args.max_months)
     elif args.command == 'reorganize':
         asyncio.run(reorganize_docs(config))

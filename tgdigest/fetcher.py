@@ -3,8 +3,8 @@ from pathlib import Path
 
 from telethon import TelegramClient
 
-from tgdigest.cache import MessagesCache
 from tgdigest.models import Chat, Message
+from tgdigest.stores import ChatStore, Month
 
 
 class Fetcher:
@@ -38,14 +38,22 @@ class Fetcher:
 
         self.logger.info('Loading chat: %s (%s)', chat.title, chat.url)
 
-        cache = MessagesCache(chat.url)
+        store = ChatStore(chat.url)
+
+        # Get last message ID
+        last_id = 0
+        all_months = store.cache.get_all_months()
+        if all_months:
+            last_month_data = store.cache.get_month(all_months[-1])
+            if last_month_data.messages:
+                last_id = last_month_data.messages[-1].id
 
         current_month = None
         month_messages = []
         async for message in self._client.iter_messages(
             chat.get_chat_id(),
             reply_to=chat.get_topic_id(),
-            min_id=cache.get_last_message_id() or 0,
+            min_id=last_id,
             reverse=True,
         ):
             if not message.text:
@@ -53,13 +61,13 @@ class Fetcher:
 
             self.logger.debug('loaded message id=%s date=%s', message.id, message.date)
 
-            month_key = message.date.strftime('%Y-%m')
-            if current_month and month_key != current_month:
+            month = Month.from_date(message.date)
+            if current_month and month != current_month:
                 self.logger.info('saving %d messages for month %s', len(month_messages), current_month)
-                cache.save_month(current_month, month_messages)
+                store.cache.append_messages(current_month, month_messages)
                 month_messages = []
 
-            current_month = month_key
+            current_month = month
             month_messages.append(Message(
                 id=message.id,
                 sender=message.sender_id,
@@ -68,7 +76,7 @@ class Fetcher:
 
         if month_messages:
             self.logger.info('saving %d messages for month %s', len(month_messages), current_month)
-            cache.save_month(current_month, month_messages)
+            store.cache.append_messages(current_month, month_messages)
 
     def disconnect(self):
         if not self._started:

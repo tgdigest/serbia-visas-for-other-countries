@@ -3,27 +3,13 @@
 
 {{ description }}
 {%- endif %}
-{%- set month_names = {
-  '01': 'Январь',
-  '02': 'Февраль', 
-  '03': 'Март',
-  '04': 'Апрель',
-  '05': 'Май',
-  '06': 'Июнь',
-  '07': 'Июль',
-  '08': 'Август',
-  '09': 'Сентябрь',
-  '10': 'Октябрь',
-  '11': 'Ноябрь',
-  '12': 'Декабрь'
-} %}
 
 {% for year in messages_by_year.keys() | sort(reverse=new_first) %}
 
 ## {{ year }}
 {%- for month in messages_by_year[year].keys() | sort(reverse=new_first) %}
 
-### {{ month_names[month.split('-')[1]] }}
+### {{ month.to_month_name() }}
 {%- for msg in messages_by_year[year][month] | sort(attribute='id', reverse=new_first) %}
 
 > {{ format_blockquote(msg.text) }}

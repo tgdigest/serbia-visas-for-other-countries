@@ -11,6 +11,7 @@ class Message(BaseModel):
 
 class MonthMessages(BaseModel):
     month: str  # "2022-12"
+    md5: str
     messages: list[Message]
 
 
@@ -52,7 +53,6 @@ class Config(BaseModel):
     chats: list[Chat]
     docs_dir: str = 'docs'
     openai_model: str = 'gpt-4.1-2025-04-14'
-    # anthropic_model: str = 'claude-3-5-haiku-20241022'
     anthropic_model: str = 'claude-opus-4-1-20250805'
 
     def get_auto_files(self) -> set[str]:
@@ -68,5 +68,23 @@ class DocumentationUpdate(BaseModel):
     diffs: list[FileDiff]
 
 
+class MonthFacts(BaseModel):
+    month: str  # "2022-12"
+    md5: str
+    facts: list[str]
+
+
+class Question(BaseModel):
+    question: str
+    answers: list[str]
+
+
+class MonthQuestions(BaseModel):
+    month: str  # "2022-12"
+    md5: str
+    questions: list[Question]
+
+
 class GeneratorState(BaseModel):
     last_processed_month: str | None = None
+    last_extracted_facts_month: str | None = None

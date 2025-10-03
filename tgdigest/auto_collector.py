@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
 
-from .cache import MessagesCache
 from .models import AutoConfig, Chat, Config
+from .stores import ChatStore
 from .templates import get_jinja_env
 
 
@@ -15,18 +15,18 @@ class AutoCollector:
 
     def process_chat(self, chat: Chat):
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
-        cache = MessagesCache(chat.url)
+        store = ChatStore(chat.url)
 
         for auto_config in chat.auto:
-            self._process_auto_config(cache, auto_config, chat)
+            self._process_auto_config(store, auto_config, chat)
 
-    def _process_auto_config(self, cache: MessagesCache, auto_config: AutoConfig, chat: Chat):
+    def _process_auto_config(self, store: ChatStore, auto_config: AutoConfig, chat: Chat):
         self.logger.info('Processing auto config: %s -> %s', auto_config.keywords, auto_config.file)
 
         messages_by_month = {}
-        for month in cache.get_all_months():
-            messages = cache.get_messages_for_month(month)
-            for msg in messages:
+        for month in store.cache.get_all_months():
+            month_data = store.cache.get_month(month)
+            for msg in month_data.messages:
                 if any(keyword.lower() in msg.text.lower() for keyword in auto_config.keywords):
                     if month not in messages_by_month:
                         messages_by_month[month] = []
@@ -41,8 +41,7 @@ class AutoCollector:
         # Group messages by year for template
         messages_by_year = {}
         for month, msgs in messages_by_month.items():
-            year = month.split('-')[0]
-            messages_by_year.setdefault(year, {})[month] = msgs
+            messages_by_year.setdefault(month.year, {})[month] = msgs
 
         with file_path.open('w', encoding='utf-8') as f:
             f.write(self.jinja_env.get_template('auto.md.j2').render(

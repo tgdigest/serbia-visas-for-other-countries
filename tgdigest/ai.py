@@ -60,15 +60,18 @@ class AnthropicProvider(AIProvider):
             'input_schema': response_format.model_json_schema()
         }
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=8192,
-            system=system_message,
-            messages=anthropic_messages,
-            tools=[tool_definition],
-            tool_choice={'type': 'tool', 'name': 'structured_output'},
-            temperature=0,
-        )
+        kwargs = {
+            'model': self.model,
+            'max_tokens': 8192,
+            'messages': anthropic_messages,
+            'tools': [tool_definition],
+            'tool_choice': {'type': 'tool', 'name': 'structured_output'},
+            'temperature': 0,
+        }
+        if system_message:
+            kwargs['system'] = system_message
+
+        response = self.client.messages.create(**kwargs)
 
         tool_use = response.content[0]
         input_data = tool_use.input
