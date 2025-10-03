@@ -1,4 +1,4 @@
-.PHONY: install fetch generate collect extract-facts reorganize serve clean lint lint-fix test
+.PHONY: install fetch generate collect extract-facts extract-questions reorganize serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -14,6 +14,9 @@ collect:
 
 extract-facts:
 	./venv/bin/python -m tgdigest extract-facts --max-months=10
+
+extract-questions:
+	./venv/bin/python -m tgdigest extract-questions --max-months=1
 
 generate:
 	./venv/bin/python -m tgdigest generate --max-months=1

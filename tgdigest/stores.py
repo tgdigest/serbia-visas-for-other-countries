@@ -171,6 +171,11 @@ class QuestionsMonthStore(BaseMonthStore):
     subdir = 'questions'
     model_class = MonthQuestions
 
+    def save_with_source(self, month: Month, questions: list, source_md5: str):
+        """Save questions with source hash."""
+        data = MonthQuestions(month=month.to_string(), md5=source_md5, questions=questions)
+        self.save_month(month, data)
+
 
 class ChatStore:
     """Manages all data for a chat (cache, facts, questions)."""

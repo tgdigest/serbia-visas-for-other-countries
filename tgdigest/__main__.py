@@ -15,6 +15,7 @@ from tgdigest.fetcher import Fetcher
 from tgdigest.generator import Generator
 from tgdigest.helpers import WorkLimiter
 from tgdigest.models import Config
+from tgdigest.questions_extractor import QuestionsExtractor
 
 
 async def fetch_messages(cfg: Config, *, force_login: bool = False):
@@ -62,6 +63,17 @@ def extract_facts(cfg: Config, *, max_months: int):
         extractor.process_chat(chat, limiter)
 
 
+def extract_questions(cfg: Config, *, max_months: int):
+    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
+    extractor = QuestionsExtractor(config=cfg, provider=provider)
+    limiter = WorkLimiter(max_months)
+
+    for chat in cfg.chats:
+        if not limiter.can_process():
+            break
+        extractor.process_chat(chat, limiter)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Telegram digest')
     parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
@@ -78,8 +90,11 @@ if __name__ == '__main__':
 
     collect_parser = subparsers.add_parser('collect', help='Collect messages matching keywords')
 
-    extract_parser = subparsers.add_parser('extract-facts', help='Extract facts from messages')
-    extract_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+    extract_facts_parser = subparsers.add_parser('extract-facts', help='Extract facts from messages')
+    extract_facts_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+
+    extract_questions_parser = subparsers.add_parser('extract-questions', help='Extract questions from messages')
+    extract_questions_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
     reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
@@ -114,5 +129,7 @@ if __name__ == '__main__':
         collect_auto(config)
     elif args.command == 'extract-facts':
         extract_facts(config, max_months=args.max_months)
+    elif args.command == 'extract-questions':
+        extract_questions(config, max_months=args.max_months)
     elif args.command == 'reorganize':
         asyncio.run(reorganize_docs(config))
