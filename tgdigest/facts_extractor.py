@@ -2,7 +2,7 @@ import logging
 
 from .ai import AIProvider
 from .helpers import WorkLimiter, format_json
-from .models import Chat, Config, MonthFacts
+from .models import Chat, Config, FactsResponse, MessagesRequest
 from .stores import ChatStore
 from .templates import get_jinja_env
 
@@ -35,17 +35,15 @@ class FactsExtractor:
                 self.logger.info('No messages found for month %s, skipping', month)
                 continue
 
-            month_facts = self.provider.request(MonthFacts, [
+            request = MessagesRequest(month=month_data.month, messages=month_data.messages)
+            response = self.provider.request(FactsResponse, [
                 {
                     'role': 'system',
                     'content': 'Ты делаешь КОНСПЕКТ переписки для СЕБЯ, чтобы потом составить базу знаний.',
                 },
                 {
                     'role': 'user',
-                    'content': format_json('Сообщения', {
-                        'month': month_data.month,
-                        'messages': [m.model_dump() for m in month_data.messages],
-                    }),
+                    'content': format_json('Сообщения', request.model_dump()),
                 },
                 {
                     'role': 'user',
@@ -53,6 +51,6 @@ class FactsExtractor:
                 },
             ])
 
-            store.facts.save_with_source(month, month_facts.facts, month_data.md5)
+            store.facts.save_with_source(month, response.facts, month_data.md5)
             limiter.increment()
-            self.logger.info('Saved %d facts for %s (%s)', len(month_facts.facts), month, limiter)
+            self.logger.info('Saved %d facts for %s (%s)', len(response.facts), month, limiter)

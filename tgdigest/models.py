@@ -9,6 +9,27 @@ class Message(BaseModel):
     text: str
 
 
+class MessagesRequest(BaseModel):
+    """Request model for AI - messages without storage metadata."""
+    month: str
+    messages: list[Message]
+
+
+class FactsResponse(BaseModel):
+    """Response model from AI for facts extraction."""
+    facts: list[str]
+
+
+class Question(BaseModel):
+    question: str
+    answers: list[str]
+
+
+class QuestionsResponse(BaseModel):
+    """Response model from AI for questions extraction."""
+    questions: list[Question]
+
+
 class MonthMessages(BaseModel):
     month: str  # "2022-12"
     md5: str
@@ -72,11 +93,6 @@ class MonthFacts(BaseModel):
     month: str  # "2022-12"
     md5: str
     facts: list[str]
-
-
-class Question(BaseModel):
-    question: str
-    answers: list[str]
 
 
 class MonthQuestions(BaseModel):
