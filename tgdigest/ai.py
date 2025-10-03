@@ -64,7 +64,7 @@ class AnthropicProvider(AIProvider):
 
         kwargs = {
             'model': self.model,
-            'max_tokens': 8192,
+            'max_tokens': 16384,
             'messages': anthropic_messages,
             'tools': [tool_definition],
             'tool_choice': {'type': 'tool', 'name': 'structured_output'},
@@ -74,14 +74,17 @@ class AnthropicProvider(AIProvider):
             kwargs['system'] = system_message
 
         response = self.client.messages.create(**kwargs)
+        self.logger.info('Raw API response: %s', response)
+
+        if response.stop_reason == 'max_tokens':
+            raise ValueError(f'Response truncated at max_tokens limit ({kwargs["max_tokens"]}). '
+                           f'The model needs more tokens to complete the response.')
 
         tool_use = response.content[0]
         input_data = tool_use.input
 
         if isinstance(input_data, str):
             input_data = json.loads(input_data)
-
-        self.logger.info('AI response: %s', json.dumps(input_data, ensure_ascii=False, indent=2))
 
         try:
             return response_format(**input_data)
