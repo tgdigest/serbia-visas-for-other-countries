@@ -1,4 +1,5 @@
 import json
+import logging
 from abc import ABC, abstractmethod
 from typing import Any, TypeVar
 
@@ -40,6 +41,7 @@ class AnthropicProvider(AIProvider):
     def __init__(self, api_key: str, model: str):
         super().__init__(api_key, model)
         self.client = Anthropic(api_key=api_key)
+        self.logger = logging.getLogger(__name__)
 
     def request(self, response_format: type[T], messages: list[dict[str, Any]]) -> T:
         system_message = None
@@ -78,6 +80,8 @@ class AnthropicProvider(AIProvider):
 
         if isinstance(input_data, str):
             input_data = json.loads(input_data)
+
+        self.logger.info('AI response: %s', json.dumps(input_data, ensure_ascii=False, indent=2))
 
         try:
             return response_format(**input_data)

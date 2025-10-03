@@ -6,6 +6,7 @@ from pathlib import Path
 
 import yaml
 from dotenv import load_dotenv
+from rich.logging import RichHandler
 
 from tgdigest.ai import AnthropicProvider
 from tgdigest.auto_collector import AutoCollector
@@ -23,7 +24,9 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
         phone=os.getenv('PHONE_NUMBER'),
         force_login=force_login,
     )
-    for chat in cfg.chats:
+    for i, chat in enumerate(cfg.chats):
+        if i > 0:
+            await asyncio.sleep(1)
         await mf.load_chat(chat)
     mf.disconnect()
 
@@ -86,8 +89,9 @@ if __name__ == '__main__':
 
     logging.basicConfig(
         level=logging.DEBUG if args.verbose else logging.INFO,
-        format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S',
+        format='%(message)s',
+        datefmt='[%X]',
+        handlers=[RichHandler(markup=False, rich_tracebacks=True)],
     )
 
     # Enable OpenAI logging
