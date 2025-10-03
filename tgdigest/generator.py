@@ -23,27 +23,13 @@ class Generator:
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
 
         store = ChatStore(chat.url)
-
-        # Get unprocessed months based on state
-        state = store.get_state()
         all_months = store.cache.get_all_months()
 
         if not all_months:
             self.logger.info('No months to process')
             return
 
-        if state.last_processed_month:
-            unprocessed_months = [m for m in all_months if m.to_string() > state.last_processed_month]
-        else:
-            unprocessed_months = all_months
-
-        if not unprocessed_months:
-            self.logger.info('No new months to process')
-            return
-
-        self.logger.info('Found %d unprocessed months: %s', len(unprocessed_months), unprocessed_months)
-
-        months_to_process = unprocessed_months[:max_months_per_run]
+        months_to_process = all_months[:max_months_per_run]
         self.logger.info('Will process %d months: %s', len(months_to_process), months_to_process)
 
         docs = self._load_docs(chat)
@@ -85,9 +71,7 @@ class Generator:
                 file_path = self.docs_dir / file_diff.path
                 self._apply_diff(file_path, file_diff.diff)
 
-            state.last_processed_month = month.to_string()
-            store.save_state(state)
-            self.logger.info('Updated state to %s', month)
+            self.logger.info('Processed month %s', month)
 
     async def reorganize_docs(self, chat: Chat):
         self.logger.info('Reorganizing docs for chat: %s', chat.title)

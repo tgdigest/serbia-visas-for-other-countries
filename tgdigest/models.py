@@ -83,8 +83,3 @@ class MonthQuestions(BaseModel):
     month: str  # "2022-12"
     md5: str
     questions: list[Question]
-
-
-class GeneratorState(BaseModel):
-    last_processed_month: str | None = None
-    last_extracted_facts_month: str | None = None

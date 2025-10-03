@@ -7,7 +7,7 @@ import yaml
 from pydantic import BaseModel
 
 from .helpers import compute_messages_hash
-from .models import GeneratorState, MonthFacts, MonthMessages, MonthQuestions
+from .models import MonthFacts, MonthMessages, MonthQuestions
 
 T = TypeVar('T', bound=BaseModel)
 
@@ -50,7 +50,6 @@ class BaseMonthStore:
 
     subdir: str = None
     model_class: type[T] = None
-    state_field: str | None = None
 
     def __init__(self, chat_store: 'ChatStore'):
         if self.subdir is None:
@@ -109,9 +108,6 @@ class BaseMonthStore:
 
     def get_unprocessed_months(self) -> list[Month]:
         """Get months that need processing based on md5 hash comparison."""
-        if not self.state_field:
-            return self.get_all_months()
-
         all_months = self.chat_store.cache.get_all_months()
         if not all_months:
             return []
@@ -163,7 +159,6 @@ class FactsMonthStore(BaseMonthStore):
     """Storage for extracted facts."""
     subdir = 'facts'
     model_class = MonthFacts
-    state_field = 'last_extracted_facts_month'
 
     def save_with_source(self, month: Month, facts: list[str], source_md5: str):
         """Save facts with source hash."""
@@ -175,11 +170,10 @@ class QuestionsMonthStore(BaseMonthStore):
     """Storage for extracted questions."""
     subdir = 'questions'
     model_class = MonthQuestions
-    state_field = 'last_extracted_questions_month'
 
 
 class ChatStore:
-    """Manages all data for a chat (cache, facts, questions, state)."""
+    """Manages all data for a chat (cache, facts, questions)."""
 
     def __init__(self, url: str, base_path: str = '.'):
         self.url = url
@@ -193,20 +187,3 @@ class ChatStore:
     def _get_chat_dir(self) -> Path:
         url_parts = self.url.replace('https://', '').split('/')
         return self.base_path / Path(*url_parts)
-
-    @property
-    def state_file(self) -> Path:
-        return self.chat_dir / 'state.yaml'
-
-    def get_state(self) -> GeneratorState:
-        """Load state from state.yaml."""
-        if not self.state_file.exists():
-            return GeneratorState()
-        with self.state_file.open(encoding='utf-8') as f:
-            return GeneratorState(**(yaml.safe_load(f) or {}))
-
-    def save_state(self, state: GeneratorState):
-        """Save state to state.yaml."""
-        self.chat_dir.mkdir(parents=True, exist_ok=True)
-        with self.state_file.open('w', encoding='utf-8') as f:
-            yaml.dump(state.model_dump(), f, allow_unicode=True)
