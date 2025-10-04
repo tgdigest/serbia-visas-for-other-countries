@@ -15,14 +15,20 @@ class MessagesRequest(BaseModel):
     messages: list[Message]
 
 
+class Summary(BaseModel):
+    text: str
+    message_ids: list[int]
+
+
 class FactsResponse(BaseModel):
     """Response model from AI for facts extraction."""
-    facts: list[str]
+    facts: list[Summary]
 
 
 class Question(BaseModel):
     question: str
-    answers: list[str]
+    question_message_ids: list[int]
+    answers: list[Summary]
 
 
 class QuestionsResponse(BaseModel):
@@ -92,7 +98,7 @@ class DocumentationUpdate(BaseModel):
 class MonthFacts(BaseModel):
     month: str  # "2022-12"
     md5: str
-    facts: list[str]
+    facts: list[Summary]
 
 
 class MonthQuestions(BaseModel):

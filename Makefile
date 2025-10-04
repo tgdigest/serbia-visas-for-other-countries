@@ -13,7 +13,7 @@ collect:
 	./venv/bin/python -m tgdigest collect
 
 extract-facts:
-	./venv/bin/python -m tgdigest extract-facts --max-months=10
+	./venv/bin/python -m tgdigest extract-facts --max-months=1
 
 extract-questions:
 	./venv/bin/python -m tgdigest extract-questions --max-months=1
