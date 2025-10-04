@@ -1,0 +1,4 @@
+baseURL = 'https://example.org/'
+languageCode = 'ru'
+title = 'Визы из Сербии'
+theme = 'hextra'
