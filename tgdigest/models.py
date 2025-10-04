@@ -18,6 +18,7 @@ class MessagesRequest(BaseModel):
 class Summary(BaseModel):
     text: str
     message_ids: list[int]
+    sender: int
 
 
 class FactsResponse(BaseModel):

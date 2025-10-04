@@ -9,14 +9,14 @@ all: fetch collect extract-facts extract-questions
 fetch:
 	./venv/bin/python -m tgdigest fetch
 
-collect:
-	./venv/bin/python -m tgdigest collect
-
 extract-facts:
 	./venv/bin/python -m tgdigest extract-facts --max-months=1
 
 extract-questions:
 	./venv/bin/python -m tgdigest extract-questions --max-months=1
+
+collect:
+	./venv/bin/python -m tgdigest collect
 
 generate:
 	./venv/bin/python -m tgdigest generate --max-months=1

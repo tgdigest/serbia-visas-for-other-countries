@@ -104,7 +104,7 @@ if __name__ == '__main__':
         level=logging.DEBUG if args.verbose else logging.INFO,
         format='%(message)s',
         datefmt='[%X]',
-        handlers=[RichHandler(markup=False, rich_tracebacks=True)],
+        handlers=[RichHandler(markup=False, rich_tracebacks=True, enable_link_path=False)],
     )
 
     # Enable OpenAI logging
