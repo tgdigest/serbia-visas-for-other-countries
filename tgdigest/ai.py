@@ -86,9 +86,14 @@ class AnthropicProvider(AIProvider):
         if isinstance(input_data, str):
             input_data = json.loads(input_data)
 
-        if '$PARAMETER_NAME' in input_data:
-            input_data = input_data['$PARAMETER_NAME']
-            logging.warning('Claude API returned response wrapped in $PARAMETER_NAME, unwrapped: %s', input_data)
+        for k in (
+            '$parameter',
+            '$PARAMETER_NAME',
+        ):
+            if k in input_data:
+                input_data = input_data[k]
+                logging.warning('Claude API returned response wrapped in %s, unwrapped: %s', k, input_data)
+                break
 
         try:
             return response_format(**input_data)

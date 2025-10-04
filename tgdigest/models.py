@@ -109,6 +109,7 @@ class MonthQuestions(BaseModel):
 
 class Case(BaseModel):
     is_approved: bool
+    consulate_city: str | None = None
     summary: Summary
 
 

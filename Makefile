@@ -4,7 +4,11 @@ install:
 	python3 -m venv venv
 	./venv/bin/pip install -r requirements.txt
 
-all: fetch collect extract-facts extract-questions
+all: \
+	fetch \
+	extract-facts \
+	extract-questions \
+	extract-cases
 
 fetch:
 	./venv/bin/python -m tgdigest fetch
