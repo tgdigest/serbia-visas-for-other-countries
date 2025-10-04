@@ -38,6 +38,8 @@ class OpenAIProvider(AIProvider):
 
 
 class AnthropicProvider(AIProvider):
+    MAX_TOKENS_NON_STREAMING = 16384
+
     def __init__(self, api_key: str, model: str):
         super().__init__(api_key, model)
         self.client = Anthropic(api_key=api_key)
@@ -64,7 +66,7 @@ class AnthropicProvider(AIProvider):
 
         kwargs = {
             'model': self.model,
-            'max_tokens': 16384,
+            'max_tokens': 30000,
             'messages': anthropic_messages,
             'tools': [tool_definition],
             'tool_choice': {'type': 'tool', 'name': 'structured_output'},
@@ -73,7 +75,12 @@ class AnthropicProvider(AIProvider):
         if system_message:
             kwargs['system'] = system_message
 
-        response = self.client.messages.create(**kwargs)
+        if kwargs['max_tokens'] > self.MAX_TOKENS_NON_STREAMING:
+            with self.client.messages.stream(**kwargs) as stream:
+                response = stream.get_final_message()
+        else:
+            response = self.client.messages.create(**kwargs)
+
         self.logger.info('Raw API response: %s', response)
 
         if response.stop_reason == 'max_tokens':
