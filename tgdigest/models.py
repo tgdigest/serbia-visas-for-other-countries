@@ -27,7 +27,6 @@ class FactsResponse(BaseModel):
 
 class Question(BaseModel):
     question: str
-    question_message_ids: list[int]
     answers: list[Summary]
 
 
