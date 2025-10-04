@@ -1,0 +1,15 @@
+{#+++#}
+{#title = "Кейсы"#}
+{#+++#}
+
+# Кейсы подачи на визу
+
+{% for month_data in months %}
+## {{ month_data.month.to_month_name() }} {{ month_data.month.year }}
+
+{% for case in month_data.cases %}
+> **{% if case.is_approved %}✅ Одобрено{% else %}❌ Отказ{% endif %}{% if case.consulate_city %}, {{ case.consulate_city }}{% endif %}.** {{ case.summary.text }}
+> {% for link in case.message_links %}[{{ link.get_title() }}]({{ link.get_url() }}){% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endfor %}
+{% endfor %}

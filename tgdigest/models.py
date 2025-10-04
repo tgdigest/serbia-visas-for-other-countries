@@ -15,10 +15,24 @@ class MessagesRequest(BaseModel):
     messages: list[Message]
 
 
+class MessageLink(BaseModel):
+    message_id: int
+    chat: 'Chat'
+
+    def get_url(self) -> str:
+        return f'{self.chat.url}/{self.message_id}'
+
+    def get_title(self) -> str:
+        return f'#{self.message_id}'
+
+
 class Summary(BaseModel):
     text: str
     message_ids: list[int]
     sender: int
+
+    def get_message_links(self, chat: 'Chat') -> list[MessageLink]:
+        return [MessageLink(message_id=msg_id, chat=chat) for msg_id in self.message_ids]
 
 
 class FactsResponse(BaseModel):
@@ -53,6 +67,7 @@ class AutoConfig(BaseModel):
 class Chat(BaseModel):
     title: str
     url: str
+    slug: str
     auto: list[AutoConfig] = []
     files: list[str] = []
 

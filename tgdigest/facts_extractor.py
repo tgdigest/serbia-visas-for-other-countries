@@ -47,7 +47,7 @@ class FactsExtractor:
                 },
                 {
                     'role': 'user',
-                    'content': self.jinja_env.get_template('extract_facts.md.j2').render(),
+                    'content': self.jinja_env.get_template('prompts/extract_facts.md.j2').render(),
                 },
             ])
 

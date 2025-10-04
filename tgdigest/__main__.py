@@ -17,6 +17,7 @@ from tgdigest.generator import Generator
 from tgdigest.helpers import WorkLimiter
 from tgdigest.models import Config
 from tgdigest.questions_extractor import QuestionsExtractor
+from tgdigest.yaml2md import Yaml2Md
 
 
 async def fetch_messages(cfg: Config, *, force_login: bool = False):
@@ -86,6 +87,12 @@ def extract_cases(cfg: Config, *, max_months: int):
         extractor.process_chat(chat, limiter)
 
 
+def yaml_to_markdown(cfg: Config):
+    builder = Yaml2Md(config=cfg, output_dir='site/content')
+    for chat in cfg.chats:
+        builder.process_chat(chat)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Telegram digest')
     parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
@@ -109,6 +116,8 @@ if __name__ == '__main__':
 
     extract_cases_parser = subparsers.add_parser('extract-cases', help='Extract cases from messages')
     extract_cases_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+
+    yaml2md_parser = subparsers.add_parser('yaml2md', help='Build markdown from YAML')
 
     # reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
@@ -147,5 +156,7 @@ if __name__ == '__main__':
         extract_questions(config, max_months=args.max_months)
     elif args.command == 'extract-cases':
         extract_cases(config, max_months=args.max_months)
+    elif args.command == 'yaml2md':
+        yaml_to_markdown(config)
     # elif args.command == 'reorganize':
     #     asyncio.run(reorganize_docs(config))

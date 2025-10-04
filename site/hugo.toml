@@ -1,4 +1,9 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://tgdigest.github.io/serbia-visas-for-other-countries/'
 languageCode = 'ru'
+defaultContentLanguage = 'ru'
 title = 'Визы из Сербии'
 theme = 'hextra'
+
+[languages.ru]
+languageName = 'Русский'
+weight = 1

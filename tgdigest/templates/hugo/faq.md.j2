@@ -1,0 +1,18 @@
++++
+#title = "FAQ"
++++
+
+# Часто задаваемые вопросы
+
+{% for section, questions in groups %}
+## 📖 {{ section }}
+
+{% for qa in questions %}
+### {{ qa.question }}
+{% for answer in qa.answers_with_links %}
+> {{ answer.text }}
+> {% for link in answer.message_links %}[{{ link.get_title() }}]({{ link.get_url() }}){% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endfor %}
+{% endfor %}
+{% endfor %}

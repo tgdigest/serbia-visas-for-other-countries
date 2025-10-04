@@ -25,6 +25,7 @@ anthropic_model: claude-sonnet-4-5-20250929
 chats:
   - title: "Венгрия 🇭🇺"
     url: "https://t.me/c/1608823685/14535"
+    slug: "hungary"
     files:
       - "hungary/*.md"
 #      - "general-faq.md"

@@ -50,7 +50,7 @@ class QuestionsExtractor:
                 },
                 {
                     'role': 'user',
-                    'content': self.jinja_env.get_template('extract_questions.md.j2').render(),
+                    'content': self.jinja_env.get_template('prompts/extract_questions.md.j2').render(),
                 },
             ])
 

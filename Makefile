@@ -22,6 +22,9 @@ extract-questions:
 extract-cases:
 	./venv/bin/python -m tgdigest extract-cases --max-months=1
 
+yaml2md:
+	./venv/bin/python -m tgdigest yaml2md
+
 collect:
 	./venv/bin/python -m tgdigest collect
 
