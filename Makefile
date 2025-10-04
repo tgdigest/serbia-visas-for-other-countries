@@ -32,7 +32,7 @@ reorganize:
 	./venv/bin/python -m tgdigest reorganize
 
 serve:
-	hugo server
+	cd site && hugo server
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true

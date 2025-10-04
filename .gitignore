@@ -47,4 +47,4 @@ htmlcov/
 dist/
 build/
 *.egg-info/
-.eggs/
+.eggs//public/
