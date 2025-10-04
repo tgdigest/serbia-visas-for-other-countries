@@ -86,6 +86,10 @@ class AnthropicProvider(AIProvider):
         if isinstance(input_data, str):
             input_data = json.loads(input_data)
 
+        if '$PARAMETER_NAME' in input_data:
+            input_data = input_data['$PARAMETER_NAME']
+            logging.warning('Claude API returned response wrapped in $PARAMETER_NAME, unwrapped: %s', input_data)
+
         try:
             return response_format(**input_data)
         except ValidationError as e:
