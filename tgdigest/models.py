@@ -105,3 +105,19 @@ class MonthQuestions(BaseModel):
     month: str  # "2022-12"
     md5: str
     questions: list[Question]
+
+
+class Case(BaseModel):
+    is_approved: bool
+    summary: Summary
+
+
+class CasesResponse(BaseModel):
+    """Response model from AI for cases extraction."""
+    cases: list[Case]
+
+
+class MonthCases(BaseModel):
+    month: str  # "2022-12"
+    md5: str
+    cases: list[Case]

@@ -15,6 +15,9 @@ extract-facts:
 extract-questions:
 	./venv/bin/python -m tgdigest extract-questions --max-months=1
 
+extract-cases:
+	./venv/bin/python -m tgdigest extract-cases --max-months=1
+
 collect:
 	./venv/bin/python -m tgdigest collect
 

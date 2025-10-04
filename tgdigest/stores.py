@@ -7,7 +7,7 @@ import yaml
 from pydantic import BaseModel
 
 from .helpers import compute_messages_hash
-from .models import MonthFacts, MonthMessages, MonthQuestions
+from .models import MonthCases, MonthFacts, MonthMessages, MonthQuestions
 
 T = TypeVar('T', bound=BaseModel)
 
@@ -177,6 +177,17 @@ class QuestionsMonthStore(BaseMonthStore):
         self.save_month(month, data)
 
 
+class CasesMonthStore(BaseMonthStore):
+    """Storage for extracted cases."""
+    subdir = 'cases'
+    model_class = MonthCases
+
+    def save_with_source(self, month: Month, cases: list, source_md5: str):
+        """Save cases with source hash."""
+        data = MonthCases(month=month.to_string(), md5=source_md5, cases=cases)
+        self.save_month(month, data)
+
+
 class ChatStore:
     """Manages all data for a chat (cache, facts, questions)."""
 
@@ -188,6 +199,7 @@ class ChatStore:
         self.cache = CacheMonthStore(self)
         self.facts = FactsMonthStore(self)
         self.questions = QuestionsMonthStore(self)
+        self.cases = CasesMonthStore(self)
 
     def _get_chat_dir(self) -> Path:
         url_parts = self.url.replace('https://', '').split('/')

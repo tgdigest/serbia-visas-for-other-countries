@@ -10,6 +10,7 @@ from rich.logging import RichHandler
 
 from tgdigest.ai import AnthropicProvider
 from tgdigest.auto_collector import AutoCollector
+from tgdigest.cases_extractor import CasesExtractor
 from tgdigest.facts_extractor import FactsExtractor
 from tgdigest.fetcher import Fetcher
 from tgdigest.generator import Generator
@@ -74,6 +75,17 @@ def extract_questions(cfg: Config, *, max_months: int):
         extractor.process_chat(chat, limiter)
 
 
+def extract_cases(cfg: Config, *, max_months: int):
+    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
+    extractor = CasesExtractor(config=cfg, provider=provider)
+    limiter = WorkLimiter(max_months)
+
+    for chat in cfg.chats:
+        if not limiter.can_process():
+            break
+        extractor.process_chat(chat, limiter)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Telegram digest')
     parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
@@ -84,9 +96,8 @@ if __name__ == '__main__':
     fetch_parser = subparsers.add_parser('fetch', help='Fetch messages from Telegram')
     fetch_parser.add_argument('--force-login', action='store_true', help='Force re-login even if session exists')
 
-    gen_parser = subparsers.add_parser('generate', help='Generate markdown from cache')
-    gen_parser.add_argument('--output', '-o', default='docs', help='Output directory')
-    gen_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+    # gen_parser = subparsers.add_parser('generate', help='Generate markdown from cache')
+    # gen_parser.add_argument('--output', '-o', default='docs', help='Output directory')
 
     collect_parser = subparsers.add_parser('collect', help='Collect messages matching keywords')
 
@@ -96,7 +107,10 @@ if __name__ == '__main__':
     extract_questions_parser = subparsers.add_parser('extract-questions', help='Extract questions from messages')
     extract_questions_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
-    reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
+    extract_cases_parser = subparsers.add_parser('extract-cases', help='Extract cases from messages')
+    extract_cases_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+
+    # reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
     args = parser.parse_args()
 
@@ -123,13 +137,15 @@ if __name__ == '__main__':
 
     if args.command == 'fetch':
         asyncio.run(fetch_messages(config, force_login=args.force_login))
-    elif args.command == 'generate':
-        asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
+    # elif args.command == 'generate':
+    #     asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
     elif args.command == 'collect':
         collect_auto(config)
     elif args.command == 'extract-facts':
         extract_facts(config, max_months=args.max_months)
     elif args.command == 'extract-questions':
         extract_questions(config, max_months=args.max_months)
-    elif args.command == 'reorganize':
-        asyncio.run(reorganize_docs(config))
+    elif args.command == 'extract-cases':
+        extract_cases(config, max_months=args.max_months)
+    # elif args.command == 'reorganize':
+    #     asyncio.run(reorganize_docs(config))
