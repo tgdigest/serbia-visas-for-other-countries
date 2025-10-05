@@ -1,8 +1,6 @@
 name: LOC graph
 
 on:
-  push:
-    branches: ["main"]
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
@@ -19,5 +17,3 @@ jobs:
           fetch-depth: 0
 
       - uses: botforge-pro/loc-graph-action@main
-        with:
-          exclude: ".cache,venv,site/public,site/_vendor"
