@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from .models import Chat, Config, MessageLink
+from .models import Chat, Config
 from .stores import ChatStore
 from .templates import get_jinja_env
 

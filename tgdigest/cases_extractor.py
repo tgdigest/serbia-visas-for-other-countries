@@ -2,7 +2,7 @@ import logging
 
 from .ai import AIProvider
 from .helpers import WorkLimiter, format_json
-from .models import Chat, Config, CasesResponse, MessagesRequest
+from .models import CasesResponse, Chat, Config, MessagesRequest
 from .stores import ChatStore
 from .templates import get_jinja_env
 

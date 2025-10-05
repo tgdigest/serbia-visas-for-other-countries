@@ -56,19 +56,10 @@ class MonthMessages(BaseModel):
     messages: list[Message]
 
 
-class AutoConfig(BaseModel):
-    keywords: list[str]
-    file: str
-    title: str
-    new_first: bool = True
-    description: str | None = None
-
-
 class Chat(BaseModel):
     title: str
     url: str
     slug: str
-    auto: list[AutoConfig] = []
     files: list[str] = []
 
     def _parse_url(self):

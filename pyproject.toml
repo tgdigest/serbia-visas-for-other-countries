@@ -10,6 +10,7 @@ ignore = [
     "COM812",  # trailing comma (conflicts with formatter)
     "ISC001",  # implicit string concat (conflicts with formatter)
     "PLR0913", # too many arguments
+    "ERA001",  # commented-out code
 ]
 
 [tool.ruff.lint.per-file-ignores]

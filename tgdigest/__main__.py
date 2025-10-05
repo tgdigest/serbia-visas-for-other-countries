@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from rich.logging import RichHandler
 
 from tgdigest.ai import AnthropicProvider
-from tgdigest.auto_collector import AutoCollector
 from tgdigest.cases_extractor import CasesExtractor
 from tgdigest.facts_extractor import FactsExtractor
 from tgdigest.fetcher import Fetcher
@@ -46,12 +45,6 @@ async def reorganize_docs(cfg: Config):
     generator = Generator(config=cfg, provider=provider)
     for chat in cfg.chats:
         await generator.reorganize_docs(chat)
-
-
-def collect_auto(cfg: Config):
-    collector = AutoCollector(config=cfg)
-    for chat in cfg.chats:
-        collector.process_chat(chat)
 
 
 def extract_facts(cfg: Config, *, max_months: int):
@@ -106,8 +99,6 @@ if __name__ == '__main__':
     # gen_parser = subparsers.add_parser('generate', help='Generate markdown from cache')
     # gen_parser.add_argument('--output', '-o', default='docs', help='Output directory')
 
-    collect_parser = subparsers.add_parser('collect', help='Collect messages matching keywords')
-
     extract_facts_parser = subparsers.add_parser('extract-facts', help='Extract facts from messages')
     extract_facts_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
@@ -148,8 +139,6 @@ if __name__ == '__main__':
         asyncio.run(fetch_messages(config, force_login=args.force_login))
     # elif args.command == 'generate':
     #     asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
-    elif args.command == 'collect':
-        collect_auto(config)
     elif args.command == 'extract-facts':
         extract_facts(config, max_months=args.max_months)
     elif args.command == 'extract-questions':

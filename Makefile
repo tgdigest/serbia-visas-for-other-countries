@@ -1,4 +1,4 @@
-.PHONY: install fetch generate collect extract-facts extract-questions reorganize serve clean lint lint-fix test
+.PHONY: install fetch generate extract-facts extract-questions extract-cases yaml2md reorganize serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -24,9 +24,6 @@ extract-cases:
 
 yaml2md:
 	./venv/bin/python -m tgdigest yaml2md
-
-collect:
-	./venv/bin/python -m tgdigest collect
 
 generate:
 	./venv/bin/python -m tgdigest generate --max-months=1

@@ -84,8 +84,8 @@ class AnthropicProvider(AIProvider):
         self.logger.info('Raw API response: %s', response)
 
         if response.stop_reason == 'max_tokens':
-            raise ValueError(f'Response truncated at max_tokens limit ({kwargs["max_tokens"]}). '
-                           f'The model needs more tokens to complete the response.')
+            msg = f'Response truncated at max_tokens={kwargs["max_tokens"]}'
+            raise ValueError(msg)
 
         tool_use = response.content[0]
         input_data = tool_use.input
@@ -99,7 +99,7 @@ class AnthropicProvider(AIProvider):
         ):
             if k in input_data:
                 input_data = input_data[k]
-                logging.warning('Claude API returned response wrapped in %s, unwrapped: %s', k, input_data)
+                self.logger.warning('Claude API returned response wrapped in %s, unwrapped: %s', k, input_data)
                 break
 
         try:
