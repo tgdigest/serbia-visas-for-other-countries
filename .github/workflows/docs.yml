@@ -1,12 +1,11 @@
-name: Deploy Docs
+name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
     paths:
-      - 'docs/**'
-      - 'mkdocs.yml'
+      - 'site/**'
+      - '.github/workflows/docs.yml'
   workflow_dispatch:
 
 permissions:
@@ -18,28 +17,41 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+defaults:
+  run:
+    working-directory: site
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          python-version: 3.11
-      
-      - name: Install dependencies
-        run: make install
-      
-      - name: Build docs
-        run: venv/bin/mkdocs build
-      
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Hugo
+        run: hugo --minify
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site
-  
+          path: ./site/public
+
   deploy:
     environment:
       name: github-pages
