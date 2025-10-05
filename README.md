@@ -1,8 +1,10 @@
-# serbia-visas-for-other-countries
+# Визы из Сербии
 
-https://tgdigest.github.io/serbia-visas-for-other-countries/
+Генератор базы знаний по получению виз из Сербии. Данные автоматически собираются из Telegram-чата [Serbia: visas for other countries](https://t.me/+fIZUn78R5SUzYjhi).
 
-## Lines of Code Over Time
+🌐 **Сайт:** https://tgdigest.github.io/serbia-visas-for-other-countries/
+
+## Статистика строк кода
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/loc-history-dark.svg">
