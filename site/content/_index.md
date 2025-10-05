@@ -1,6 +1,6 @@
 +++
 title = "Визы из Сербии"
-linkTitle = "Главная"
+linkTitle = "Визы"
 type = "docs"
 +++
 
