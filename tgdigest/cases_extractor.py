@@ -17,7 +17,7 @@ class CasesExtractor:
     def process_chat(self, chat: Chat, limiter: WorkLimiter):
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
 
-        store = ChatStore(chat.url)
+        store = ChatStore(chat)
         unprocessed_months = store.cases.get_unprocessed_months()
 
         if not unprocessed_months:

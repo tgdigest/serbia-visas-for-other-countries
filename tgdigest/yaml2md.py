@@ -16,7 +16,7 @@ class Yaml2Md:
     def process_chat(self, chat: Chat):
         self.logger.info('Building markdown for chat: %s (%s)', chat.title, chat.url)
 
-        store = ChatStore(chat.url)
+        store = ChatStore(chat)
 
         self._build_cases(store, chat)
         self._build_faq(store, chat)

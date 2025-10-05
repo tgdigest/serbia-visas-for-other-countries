@@ -22,7 +22,7 @@ class Generator:
     async def process_chat(self, chat: Chat, max_months_per_run: int):
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
 
-        store = ChatStore(chat.url)
+        store = ChatStore(chat)
         all_months = store.cache.get_all_months()
 
         if not all_months:

@@ -15,7 +15,7 @@ class AutoCollector:
 
     def process_chat(self, chat: Chat):
         self.logger.info('Processing chat: %s (%s)', chat.title, chat.url)
-        store = ChatStore(chat.url)
+        store = ChatStore(chat)
 
         for auto_config in chat.auto:
             self._process_auto_config(store, auto_config, chat)

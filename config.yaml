@@ -46,6 +46,7 @@ chats:
           - "#венгрия"
 #  - title: "Франция 🇫🇷"
 #    url: "https://t.me/c/1608823685/14530"
+#    slug: "france"
 #    files:
 #      - "france/*.md"
 ##      - "general-faq.md"
@@ -67,10 +68,12 @@ chats:
 #          - "#мультивиза"
 #  - title: "Страховки"
 #    url: "https://t.me/c/1608823685/29756"
+#    slug: "insurance"
 #    files:
 #      - "insurance.md"
 #  - title: "Греция 🇬🇷"
 #    url: "https://t.me/c/1608823685/37109"
+#    slug: "greece"
 #    files:
 #      - "greece/*.md"
 ##      - "general-faq.md"

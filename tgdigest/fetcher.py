@@ -39,7 +39,7 @@ class Fetcher:
 
         self.logger.info('Loading chat: %s (%s)', chat.title, chat.url)
 
-        store = ChatStore(chat.url)
+        store = ChatStore(chat)
 
         # Get last message ID
         last_id = 0

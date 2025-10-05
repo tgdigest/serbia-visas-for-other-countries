@@ -7,7 +7,7 @@ import yaml
 from pydantic import BaseModel
 
 from .helpers import compute_messages_hash
-from .models import MonthCases, MonthFacts, MonthMessages, MonthQuestions
+from .models import Chat, MonthCases, MonthFacts, MonthMessages, MonthQuestions
 
 T = TypeVar('T', bound=BaseModel)
 
@@ -191,16 +191,11 @@ class CasesMonthStore(BaseMonthStore):
 class ChatStore:
     """Manages all data for a chat (cache, facts, questions)."""
 
-    def __init__(self, url: str, base_path: str = '.'):
-        self.url = url
-        self.base_path = Path(base_path)
-        self.chat_dir = self._get_chat_dir()
+    def __init__(self, chat: Chat):
+        self.chat = chat
+        self.chat_dir = Path('store') / chat.slug
 
         self.cache = CacheMonthStore(self)
         self.facts = FactsMonthStore(self)
         self.questions = QuestionsMonthStore(self)
         self.cases = CasesMonthStore(self)
-
-    def _get_chat_dir(self) -> Path:
-        url_parts = self.url.replace('https://', '').split('/')
-        return self.base_path / Path(*url_parts)
