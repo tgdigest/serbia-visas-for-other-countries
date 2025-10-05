@@ -1,5 +1,7 @@
 +++
-#title = "FAQ"
+linkTitle = "🇭🇺  Венгрия"
+type = "docs"
+weight = 10
 +++
 
 # Часто задаваемые вопросы

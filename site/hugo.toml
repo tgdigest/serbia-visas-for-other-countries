@@ -10,3 +10,13 @@ title = 'Визы из Сербии'
 [languages.ru]
 languageName = 'Русский'
 weight = 1
+
+[menu]
+  [[menu.sidebar]]
+    name = "Главная"
+    pageRef = "/"
+    weight = 1
+
+  [[menu.sidebar]]
+    params.type = "separator"
+    weight = 2

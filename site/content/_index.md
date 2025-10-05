@@ -1,7 +1,9 @@
 +++
-#title = 'Визы из Сербии'
+title = "Визы из Сербии"
+linkTitle = "Главная"
+type = "docs"
 +++
-# О проекте
+
 Этот гайд создан на основе опыта участников телеграм-чата [Serbia: visas for other countries](https://t.me/+fIZUn78R5SUzYjhi) о получении виз из Сербии в страны Шенгена и другие государства.
 
 Это не официальный ресурс, он поддерживается исключительно на энтузиазме. Исходный код открыт и [доступен на GitHub](https://github.com/tgdigest/serbia-visas-for-other-countries).
