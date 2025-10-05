@@ -1,6 +1,7 @@
 +++
 linkTitle = "FAQ"
 type = "docs"
+weight = 1
 +++
 
 # FAQ по визам

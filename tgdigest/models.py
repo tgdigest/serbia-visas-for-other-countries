@@ -60,6 +60,7 @@ class Chat(BaseModel):
     title: str
     url: str
     slug: str
+    description: str = ''
     files: list[str] = []
 
     def _parse_url(self):
@@ -79,6 +80,9 @@ class Chat(BaseModel):
     def get_topic_id(self) -> int:
         match = self._parse_url()
         return int(match.group(2))
+
+    def get_page_title(self) -> str:
+        return self.title
 
 
 class Config(BaseModel):

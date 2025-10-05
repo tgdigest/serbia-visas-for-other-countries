@@ -1,0 +1,17 @@
++++
+linkTitle = "{{ chat.title }}"
+title = "{{ chat.get_page_title() }}"
+type = "docs"
+weight = 10
+[sidebar]
+  open = true
++++
+
+{{ chat.description }}
+
+{% raw %}{{< cards >}}
+  {{< card link="faq" title="FAQ" icon="question-mark-circle" subtitle="Часто задаваемые вопросы" >}}
+{% endraw %}{% if latest_year %}
+  {% raw %}{{< card link="{% endraw %}cases-{{ latest_year }}{% raw %}" title="Кейсы" icon="clipboard-list" subtitle="Истории одобрений и отказов" >}}
+{% endraw %}{% endif %}
+{% raw %}{{< /cards >}}{% endraw %}

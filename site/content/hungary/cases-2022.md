@@ -2,6 +2,7 @@
 linkTitle = "Кейсы 2022"
 title = "Кейсы подачи на визу 2022"
 type = "docs"
+weight = 7978
 +++
 
 

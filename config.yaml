@@ -26,6 +26,7 @@ chats:
   - title: "Венгрия 🇭🇺"
     url: "https://t.me/c/1608823685/14535"
     slug: "hungary"
+    description: "Визы в консульствах Белграда и Суботицы"
     files:
       - "hungary/*.md"
 #      - "general-faq.md"

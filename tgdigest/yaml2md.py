@@ -18,8 +18,22 @@ class Yaml2Md:
 
         store = ChatStore(chat)
 
+        years = self._get_available_years(store)
+        self._build_section_index(chat, years)
         self._build_cases(store, chat)
         self._build_faq(store, chat)
+
+    def _get_available_years(self, store: ChatStore) -> list[int]:
+        all_months = store.cases.get_all_months()
+        years = sorted(set(m.year for m in all_months), reverse=True)
+        return years
+
+    def _build_section_index(self, chat: Chat, years: list[int]):
+        template = self.jinja_env.get_template('hugo/section-index.md.j2')
+        self._save(self.output_dir / chat.slug / '_index.md', template.render(
+            chat=chat,
+            latest_year=years[0] if years else None,
+        ))
 
     def _build_cases(self, store: ChatStore, chat: Chat):
         all_months = store.cases.get_all_months()
@@ -51,13 +65,10 @@ class Yaml2Md:
 
                 months_data.append({'month': month, 'cases': cases_with_links})
 
-            output = template.render(months=months_data, year=year)
-            output_path = self.output_dir / chat.slug / f'cases-{year}.md'
-            output_path.parent.mkdir(parents=True, exist_ok=True)
-            output_path.write_text(output, encoding='utf-8')
-
-            total_cases = sum(len(m['cases']) for m in months_data)
-            self.logger.info('Saved %d cases for %d to %s', total_cases, year, output_path)
+            self._save(self.output_dir / chat.slug / f'cases-{year}.md', template.render(
+                months=months_data,
+                year=year,
+            ))
 
     def _build_faq(self, store: ChatStore, chat: Chat):
         all_months = store.questions.get_all_months()
@@ -92,10 +103,11 @@ class Yaml2Md:
             grouped[section].append(q)
 
         template = self.jinja_env.get_template('hugo/faq.md.j2')
-        output = template.render(groups=sorted(grouped.items()))
+        self._save(self.output_dir / chat.slug / 'faq.md', template.render(
+            groups=sorted(grouped.items()),
+        ))
 
-        output_path = self.output_dir / chat.slug / 'faq.md'
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(output, encoding='utf-8')
-
-        self.logger.info('Saved %d questions to %s', len(all_questions), output_path)
+    def _save(self, path: Path, output: str):
+        self.logger.info('Save %s...', path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(output, encoding='utf-8')

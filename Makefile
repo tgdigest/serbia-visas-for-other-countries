@@ -31,12 +31,12 @@ generate:
 reorganize:
 	./venv/bin/python -m tgdigest reorganize
 
-serve:
+serve: yaml2md
 	cd site && hugo server
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
-	rm -f *.session *.session-journal
+	rm -rf site/public
 
 lint:
 	./venv/bin/python -m ruff check tgdigest/
