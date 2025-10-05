@@ -27,27 +27,37 @@ class Yaml2Md:
             self.logger.info('No cases found for %s', chat.slug)
             return
 
-        months_data = []
-        for month in sorted(all_months, reverse=True):
-            month_data = store.cases.get_month(month)
-
-            cases_with_links = []
-            for case in month_data.cases:
-                case_dict = case.model_dump()
-                case_dict['message_links'] = case.summary.get_message_links(chat)
-                cases_with_links.append(case_dict)
-
-            months_data.append({'month': month, 'cases': cases_with_links})
+        by_year = {}
+        for month in all_months:
+            year = month.year
+            if year not in by_year:
+                by_year[year] = []
+            by_year[year].append(month)
 
         template = self.jinja_env.get_template('hugo/cases.md.j2')
-        output = template.render(months=months_data)
 
-        output_path = self.output_dir / chat.slug / 'cases.md'
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(output, encoding='utf-8')
+        for year in sorted(by_year.keys(), reverse=True):
+            months = sorted(by_year[year])
+            months_data = []
 
-        total_cases = sum(len(m['cases']) for m in months_data)
-        self.logger.info('Saved %d cases to %s', total_cases, output_path)
+            for month in months:
+                month_data = store.cases.get_month(month)
+                cases_with_links = []
+
+                for case in month_data.cases:
+                    case_dict = case.model_dump()
+                    case_dict['message_links'] = case.summary.get_message_links(chat)
+                    cases_with_links.append(case_dict)
+
+                months_data.append({'month': month, 'cases': cases_with_links})
+
+            output = template.render(months=months_data, year=year)
+            output_path = self.output_dir / chat.slug / f'cases-{year}.md'
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(output, encoding='utf-8')
+
+            total_cases = sum(len(m['cases']) for m in months_data)
+            self.logger.info('Saved %d cases for %d to %s', total_cases, year, output_path)
 
     def _build_faq(self, store: ChatStore, chat: Chat):
         all_months = store.questions.get_all_months()

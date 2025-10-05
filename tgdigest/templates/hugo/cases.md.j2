@@ -1,12 +1,11 @@
 +++
-linkTitle = "Кейсы"
+linkTitle = "Кейсы {{ year }}"
+title = "Кейсы подачи на визу {{ year }}"
 type = "docs"
 +++
 
-# Кейсы подачи на визу
-
 {% for month_data in months %}
-## {{ month_data.month.to_month_name() }} {{ month_data.month.year }}
+## {{ month_data.month.to_month_name() }}
 
 {% for case in month_data.cases %}
 > **{% if case.is_approved %}✅ Одобрено{% else %}❌ Отказ{% endif %}{% if case.consulate_city %}, {{ case.consulate_city }}{% endif %}.** {{ case.summary.text }}
