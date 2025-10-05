@@ -84,7 +84,7 @@ class Yaml2Md:
         template = self.jinja_env.get_template('hugo/faq.md.j2')
         output = template.render(groups=sorted(grouped.items()))
 
-        output_path = self.output_dir / chat.slug / '_index.md'
+        output_path = self.output_dir / chat.slug / 'faq.md'
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(output, encoding='utf-8')
 
