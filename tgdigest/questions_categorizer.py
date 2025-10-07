@@ -20,17 +20,19 @@ class QuestionsCategorizer:
         store = ChatStore(chat)
         all_questions = store.questions.get_all_questions()
         unique_questions = sorted({q.question for q in all_questions})
-
         self.logger.info('Found %d unique questions', len(unique_questions))
+
+        questions_indexed = [{'id': i + 1, 'question': q} for i, q in enumerate(unique_questions)]
+        categories_indexed = [{'id': i + 1, **cat.model_dump()} for i, cat in enumerate(self.config.faq_categories)]
 
         response = self.provider.request(QuestionCategorizationResponse, [
             {
                 'role': 'user',
-                'content': format_json('Вопросы', unique_questions),
+                'content': format_json('Вопросы', questions_indexed),
             },
             {
                 'role': 'user',
-                'content': format_json('Категории', [v.model_dump() for v in self.config.faq_categories]),
+                'content': format_json('Категории', categories_indexed),
             },
             {
                 'role': 'user',
@@ -38,5 +40,6 @@ class QuestionsCategorizer:
             },
         ])
 
-        store.save_yaml('questions-categorized.yaml', response)
-        self.logger.info('Saved %d normalized questions', len(response.normalized))
+        result = response.expand(questions_indexed, categories_indexed)
+        store.save_yaml('questions-categorized.yaml', result)
+        self.logger.info('Saved %d categorized questions', len(result.questions))
