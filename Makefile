@@ -25,6 +25,9 @@ extract-cases:
 yaml2md:
 	./venv/bin/python -m tgdigest yaml2md
 
+categorize-questions:
+	./venv/bin/python -m tgdigest categorize-questions
+
 generate:
 	./venv/bin/python -m tgdigest generate --max-months=1
 

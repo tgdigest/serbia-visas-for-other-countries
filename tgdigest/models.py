@@ -85,15 +85,19 @@ class Chat(BaseModel):
         return self.title
 
 
+class FAQCategory(BaseModel):
+    title: str
+    description: str
+
+
 class Config(BaseModel):
     extra_prompt: str = ''
+    faq_categories: list[FAQCategory] = []
     chats: list[Chat]
     docs_dir: str = 'docs'
     openai_model: str = 'gpt-4.1-2025-04-14'
     anthropic_model: str
 
-    def get_auto_files(self) -> set[str]:
-        return {auto_config.file for chat in self.chats for auto_config in chat.auto}
 
 
 class FileDiff(BaseModel):
@@ -132,3 +136,13 @@ class MonthCases(BaseModel):
     month: str  # "2022-12"
     md5: str
     cases: list[Case]
+
+
+class NormalizedQuestion(BaseModel):
+    normalized_question: str
+    category: str
+    source_questions: list[str]
+
+
+class QuestionCategorizationResponse(BaseModel):
+    normalized: list[NormalizedQuestion]

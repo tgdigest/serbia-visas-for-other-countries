@@ -176,6 +176,13 @@ class QuestionsMonthStore(BaseMonthStore):
         data = MonthQuestions(month=month.to_string(), md5=source_md5, questions=questions)
         self.save_month(month, data)
 
+    def get_all_questions(self) -> list:
+        all_questions = []
+        for month in self.get_all_months():
+            month_data = self.get_month(month)
+            all_questions.extend(q for q in month_data.questions if q.answers)
+        return all_questions
+
 
 class CasesMonthStore(BaseMonthStore):
     """Storage for extracted cases."""
@@ -199,3 +206,16 @@ class ChatStore:
         self.facts = FactsMonthStore(self)
         self.questions = QuestionsMonthStore(self)
         self.cases = CasesMonthStore(self)
+
+    def save_yaml(self, filename: str, data: BaseModel):
+        file_path = self.chat_dir / filename
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        with file_path.open('w', encoding='utf-8') as f:
+            yaml.dump(
+                data.model_dump(),
+                f,
+                allow_unicode=True,
+                default_flow_style=False,
+                sort_keys=False,
+            )

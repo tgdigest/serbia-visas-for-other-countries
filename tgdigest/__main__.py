@@ -15,6 +15,7 @@ from tgdigest.fetcher import Fetcher
 from tgdigest.generator import Generator
 from tgdigest.helpers import WorkLimiter
 from tgdigest.models import Config
+from tgdigest.questions_categorizer import QuestionsCategorizer
 from tgdigest.questions_extractor import QuestionsExtractor
 from tgdigest.yaml2md import Yaml2Md
 
@@ -86,6 +87,13 @@ def yaml_to_markdown(cfg: Config):
         builder.process_chat(chat)
 
 
+def categorize_questions(cfg: Config):
+    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
+    categorizer = QuestionsCategorizer(config=cfg, provider=provider)
+    for chat in cfg.chats:
+        categorizer.process_chat(chat)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Telegram digest')
     parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
@@ -109,6 +117,8 @@ if __name__ == '__main__':
     extract_cases_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
     yaml2md_parser = subparsers.add_parser('yaml2md', help='Build markdown from YAML')
+
+    categorize_parser = subparsers.add_parser('categorize-questions', help='Categorize FAQ questions')
 
     # reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
@@ -147,5 +157,7 @@ if __name__ == '__main__':
         extract_cases(config, max_months=args.max_months)
     elif args.command == 'yaml2md':
         yaml_to_markdown(config)
+    elif args.command == 'categorize-questions':
+        categorize_questions(config)
     # elif args.command == 'reorganize':
     #     asyncio.run(reorganize_docs(config))

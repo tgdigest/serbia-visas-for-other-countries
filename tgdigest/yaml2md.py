@@ -25,8 +25,7 @@ class Yaml2Md:
 
     def _get_available_years(self, store: ChatStore) -> list[int]:
         all_months = store.cases.get_all_months()
-        years = sorted(set(m.year for m in all_months), reverse=True)
-        return years
+        return sorted({m.year for m in all_months}, reverse=True)
 
     def _build_section_index(self, chat: Chat, years: list[int]):
         template = self.jinja_env.get_template('hugo/section-index.md.j2')
