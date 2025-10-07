@@ -1,4 +1,5 @@
 import re
+from datetime import UTC, datetime
 
 from pydantic import BaseModel
 
@@ -33,6 +34,14 @@ class Summary(BaseModel):
 
     def get_message_links(self, chat: 'Chat') -> list[MessageLink]:
         return [MessageLink(message_id=msg_id, chat=chat) for msg_id in self.message_ids]
+
+
+class ReferencedSummary(Summary):
+    year: int
+    message_links: list[MessageLink]
+
+    def is_current_year(self) -> bool:
+        return self.year == datetime.now(UTC).year
 
 
 class FactsResponse(BaseModel):
@@ -180,4 +189,10 @@ class QuestionCategorizationResponse(BaseModel):
 
 
 class QuestionCategorizationResult(BaseModel):
+    questions: list[CategorizedQuestion]
+
+
+class MonthCategorizedQuestions(BaseModel):
+    month: str
+    md5: str
     questions: list[CategorizedQuestion]

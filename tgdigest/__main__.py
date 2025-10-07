@@ -87,11 +87,15 @@ def yaml_to_markdown(cfg: Config):
         builder.process_chat(chat)
 
 
-def categorize_questions(cfg: Config):
+def categorize_questions(cfg: Config, *, max_months: int):
     provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
     categorizer = QuestionsCategorizer(config=cfg, provider=provider)
+    limiter = WorkLimiter(max_months)
+
     for chat in cfg.chats:
-        categorizer.process_chat(chat)
+        if not limiter.can_process():
+            break
+        categorizer.process_chat(chat, limiter)
 
 
 if __name__ == '__main__':
@@ -119,6 +123,7 @@ if __name__ == '__main__':
     yaml2md_parser = subparsers.add_parser('yaml2md', help='Build markdown from YAML')
 
     categorize_parser = subparsers.add_parser('categorize-questions', help='Categorize FAQ questions')
+    categorize_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
     # reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
@@ -158,6 +163,6 @@ if __name__ == '__main__':
     elif args.command == 'yaml2md':
         yaml_to_markdown(config)
     elif args.command == 'categorize-questions':
-        categorize_questions(config)
+        categorize_questions(config, max_months=args.max_months)
     # elif args.command == 'reorganize':
     #     asyncio.run(reorganize_docs(config))

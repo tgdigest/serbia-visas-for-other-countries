@@ -14,32 +14,50 @@ class QuestionsCategorizer:
         self.config = config
         self.jinja_env = get_jinja_env()
 
-    def process_chat(self, chat: Chat):
+    def process_chat(self, chat: Chat, limiter):
         self.logger.info('Categorizing questions for: %s', chat.title)
 
         store = ChatStore(chat)
-        all_questions = store.questions.get_all_questions()
-        unique_questions = sorted({q.question for q in all_questions})
-        self.logger.info('Found %d unique questions', len(unique_questions))
+        unprocessed_months = store.categorized_questions.get_unprocessed_months()
 
-        questions_indexed = [{'id': i + 1, 'question': q} for i, q in enumerate(unique_questions)]
+        if not unprocessed_months:
+            self.logger.info('No new months to categorize')
+            return
+
         categories_indexed = [{'id': i + 1, **cat.model_dump()} for i, cat in enumerate(self.config.faq_categories)]
 
-        response = self.provider.request(QuestionCategorizationResponse, [
-            {
-                'role': 'user',
-                'content': format_json('Вопросы', questions_indexed),
-            },
-            {
-                'role': 'user',
-                'content': format_json('Категории', categories_indexed),
-            },
-            {
-                'role': 'user',
-                'content': self.jinja_env.get_template('prompts/categorize_questions.md.j2').render(),
-            },
-        ])
+        for month in unprocessed_months:
+            if not limiter.can_process():
+                self.logger.info('Work limit reached (%s), stopping', limiter)
+                break
 
-        result = response.expand(questions_indexed, categories_indexed)
-        store.save_yaml('questions-categorized.yaml', result)
-        self.logger.info('Saved %d categorized questions', len(result.questions))
+            month_data = store.questions.get_month(month)
+            month_questions = [q.question for q in month_data.questions if q.answers]
+
+            if not month_questions:
+                continue
+
+            unique_questions = sorted(set(month_questions))
+            self.logger.info('Processing %s: %d unique questions', month, len(unique_questions))
+
+            questions_indexed = [{'id': i + 1, 'question': q} for i, q in enumerate(unique_questions)]
+
+            response = self.provider.request(QuestionCategorizationResponse, [
+                {
+                    'role': 'user',
+                    'content': format_json('Вопросы', questions_indexed),
+                },
+                {
+                    'role': 'user',
+                    'content': format_json('Категории', categories_indexed),
+                },
+                {
+                    'role': 'user',
+                    'content': self.jinja_env.get_template('prompts/categorize_questions.md.j2').render(),
+                },
+            ])
+
+            result = response.expand(questions_indexed, categories_indexed)
+            store.categorized_questions.save_with_source(month, result.questions, month_data.md5)
+            limiter.increment()
+            self.logger.info('Saved %d categorized questions for %s (%s)', len(result.questions), month, limiter)

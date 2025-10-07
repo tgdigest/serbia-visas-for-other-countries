@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from .models import Chat, Config
+from .models import Chat, Config, QuestionCategorizationResult, ReferencedSummary
 from .stores import ChatStore
 from .templates import get_jinja_env
 
@@ -70,41 +70,79 @@ class Yaml2Md:
             ))
 
     def _build_faq(self, store: ChatStore, chat: Chat):
-        all_months = store.questions.get_all_months()
-        if not all_months:
-            self.logger.info('No questions found for %s', chat.slug)
-            return
+        all_categorized = []
+        for month in store.categorized_questions.get_all_months():
+            month_data = store.categorized_questions.get_month(month)
+            all_categorized.extend(month_data.questions)
 
-        all_questions = []
-        for month in all_months:
-            month_data = store.questions.get_month(month)
-            for question in month_data.questions:
-                if not question.answers:
-                    continue
+        categorized = QuestionCategorizationResult(questions=all_categorized)
+        question_map = self._build_question_map(store)
 
-                q_dict = question.model_dump()
-                q_dict['answers_with_links'] = []
+        all_questions_in_map = set(question_map)
+        all_questions_categorized = set()
+        for cat_q in categorized.questions:
+            all_questions_categorized.update(cat_q.source_questions)
 
-                for answer in question.answers:
-                    answer_dict = answer.model_dump()
-                    answer_dict['message_links'] = answer.get_message_links(chat)
-                    q_dict['answers_with_links'].append(answer_dict)
+        missing = all_questions_in_map - all_questions_categorized
+        if missing:
+            missing_list = '\n'.join(f'{i}. {q}' for i, q in enumerate(sorted(missing), 1))
+            msg = f'Categorization missing {len(missing)} questions:\n{missing_list}\n\nRun: make categorize-questions'
+            raise ValueError(msg)
 
-                all_questions.append(q_dict)
-
-        all_questions.sort(key=lambda q: q['question'])
-
-        grouped = {}
-        for q in all_questions:
-            section = q['question'][0].upper()
-            if section not in grouped:
-                grouped[section] = []
-            grouped[section].append(q)
+        grouped_by_category = self._group_by_category(categorized, question_map, chat)
 
         template = self.jinja_env.get_template('hugo/faq.md.j2')
         self._save(self.output_dir / chat.slug / 'faq.md', template.render(
-            groups=sorted(grouped.items()),
+            groups=sorted(grouped_by_category.items()),
         ))
+
+    def _build_question_map(self, store: ChatStore):
+        question_map = {}
+        for month in store.questions.get_all_months():
+            month_data = store.questions.get_month(month)
+            for question in month_data.questions:
+                if question.question not in question_map:
+                    question_map[question.question] = []
+                question_map[question.question].append((month, question))
+        return question_map
+
+    def _group_by_category(self, categorized, question_map, chat):
+        grouped_by_category = {}
+        for cat_q in categorized.questions:
+            if cat_q.category not in grouped_by_category:
+                grouped_by_category[cat_q.category] = []
+
+            all_answers = self._collect_answers(cat_q.source_questions, question_map)
+            all_answers.sort(key=lambda x: x[0], reverse=True)
+
+            answers_with_links = [
+                ReferencedSummary(
+                    text=answer.text,
+                    message_ids=answer.message_ids,
+                    sender=answer.sender,
+                    year=month.year,
+                    message_links=answer.get_message_links(chat),
+                )
+                for month, answer in all_answers
+            ]
+
+            grouped_by_category[cat_q.category].append({
+                'question': cat_q.normalized_question,
+                'answers_with_links': answers_with_links,
+            })
+
+        return grouped_by_category
+
+    def _collect_answers(self, source_questions, question_map):
+        all_answers = []
+        for src_q in source_questions:
+            if src_q not in question_map:
+                msg = f'Question not found in map: {src_q}'
+                raise ValueError(msg)
+
+            for month, q in question_map[src_q]:
+                all_answers.extend((month, answer) for answer in q.answers)
+        return all_answers
 
     def _save(self, path: Path, output: str):
         self.logger.info('Save %s...', path)

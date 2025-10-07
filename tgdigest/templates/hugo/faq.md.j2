@@ -12,7 +12,7 @@ weight = 1
 {% for qa in questions %}
 ### {{ qa.question }}
 {% for answer in qa.answers_with_links %}
-> {{ answer.text }}
+> {{ answer.text }}{% if not answer.is_current_year() %} `{{ answer.year }}`{% endif %}
 > {% for link in answer.message_links %}[{{ link.get_title() }}]({{ link.get_url() }}){% if not loop.last %}, {% endif %}{% endfor %}
 
 {% endfor %}

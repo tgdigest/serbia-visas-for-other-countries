@@ -7,7 +7,14 @@ import yaml
 from pydantic import BaseModel
 
 from .helpers import compute_messages_hash
-from .models import Chat, MonthCases, MonthFacts, MonthMessages, MonthQuestions
+from .models import (
+    Chat,
+    MonthCases,
+    MonthCategorizedQuestions,
+    MonthFacts,
+    MonthMessages,
+    MonthQuestions,
+)
 
 T = TypeVar('T', bound=BaseModel)
 
@@ -195,6 +202,39 @@ class CasesMonthStore(BaseMonthStore):
         self.save_month(month, data)
 
 
+class CategorizedQuestionsMonthStore(BaseMonthStore):
+    """Storage for categorized questions."""
+    subdir = 'questions-categorized'
+    model_class = MonthCategorizedQuestions
+
+    def save_with_source(self, month: Month, questions: list, source_md5: str):
+        """Save categorized questions with source hash."""
+        data = MonthCategorizedQuestions(month=month.to_string(), md5=source_md5, questions=questions)
+        self.save_month(month, data)
+
+    def get_unprocessed_months(self) -> list[Month]:
+        """Get months where questions need recategorization."""
+        all_months = self.chat_store.questions.get_all_months()
+        if not all_months:
+            return []
+
+        unprocessed = []
+        for month in all_months:
+            questions_data = self.chat_store.questions.get_month(month)
+            questions_md5 = questions_data.md5
+
+            month_file = self.dir_path / f'{month.to_string()}.yaml'
+            if not month_file.exists():
+                unprocessed.append(month)
+                continue
+
+            categorized_data = self.get_month(month)
+            if categorized_data.md5 != questions_md5:
+                unprocessed.append(month)
+
+        return unprocessed
+
+
 class ChatStore:
     """Manages all data for a chat (cache, facts, questions)."""
 
@@ -206,16 +246,5 @@ class ChatStore:
         self.facts = FactsMonthStore(self)
         self.questions = QuestionsMonthStore(self)
         self.cases = CasesMonthStore(self)
+        self.categorized_questions = CategorizedQuestionsMonthStore(self)
 
-    def save_yaml(self, filename: str, data: BaseModel):
-        file_path = self.chat_dir / filename
-        file_path.parent.mkdir(parents=True, exist_ok=True)
-
-        with file_path.open('w', encoding='utf-8') as f:
-            yaml.dump(
-                data.model_dump(),
-                f,
-                allow_unicode=True,
-                default_flow_style=False,
-                sort_keys=False,
-            )
