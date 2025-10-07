@@ -96,6 +96,7 @@ class AnthropicProvider(AIProvider):
         for k in (
             '$parameter',
             '$PARAMETER_NAME',
+            'parameter',
         ):
             if k in input_data:
                 input_data = input_data[k]
