@@ -26,7 +26,7 @@ yaml2md:
 	./venv/bin/python -m tgdigest yaml2md
 
 categorize-questions:
-	./venv/bin/python -m tgdigest categorize-questions --max-months=1
+	./venv/bin/python -m tgdigest categorize-questions --max-months=6
 
 generate: yaml2md
 	./venv/bin/python -m tgdigest generate --max-months=1

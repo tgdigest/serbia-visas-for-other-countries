@@ -148,15 +148,13 @@ class MonthCases(BaseModel):
 
 
 class CategorizedQuestionRaw(BaseModel):
-    normalized_question: str
+    question_id: int
     category_id: int
-    source_question_ids: list[int]
 
 
 class CategorizedQuestion(BaseModel):
-    normalized_question: str
+    question: str
     category: str
-    source_questions: list[str]
 
 
 class QuestionCategorizationResponse(BaseModel):
@@ -171,18 +169,15 @@ class QuestionCategorizationResponse(BaseModel):
                 msg = f'Invalid category_id={q.category_id}, max={len(categories_indexed)}'
                 raise ValueError(msg) from e
 
-            source_qs = []
-            for qid in q.source_question_ids:
-                try:
-                    source_qs.append(questions_indexed[qid - 1]['question'])
-                except IndexError as e:
-                    msg = f'Invalid source_question_id={qid}, max={len(questions_indexed)}'
-                    raise ValueError(msg) from e
+            try:
+                question = questions_indexed[q.question_id - 1]['question']
+            except IndexError as e:
+                msg = f'Invalid question_id={q.question_id}, max={len(questions_indexed)}'
+                raise ValueError(msg) from e
 
             expanded.append(CategorizedQuestion(
-                normalized_question=q.normalized_question,
+                question=question,
                 category=category,
-                source_questions=source_qs,
             ))
 
         return QuestionCategorizationResult(questions=expanded)

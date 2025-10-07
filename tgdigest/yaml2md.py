@@ -79,9 +79,7 @@ class Yaml2Md:
         question_map = self._build_question_map(store)
 
         all_questions_in_map = set(question_map)
-        all_questions_categorized = set()
-        for cat_q in categorized.questions:
-            all_questions_categorized.update(cat_q.source_questions)
+        all_questions_categorized = {cat_q.question for cat_q in categorized.questions}
 
         missing = all_questions_in_map - all_questions_categorized
         if missing:
@@ -112,7 +110,14 @@ class Yaml2Md:
             if cat_q.category not in grouped_by_category:
                 grouped_by_category[cat_q.category] = []
 
-            all_answers = self._collect_answers(cat_q.source_questions, question_map)
+            if cat_q.question not in question_map:
+                msg = f'Question not found in map: {cat_q.question}'
+                raise ValueError(msg)
+
+            all_answers = []
+            for month, q in question_map[cat_q.question]:
+                all_answers.extend((month, answer) for answer in q.answers)
+
             all_answers.sort(key=lambda x: x[0], reverse=True)
 
             answers_with_links = [
@@ -127,22 +132,11 @@ class Yaml2Md:
             ]
 
             grouped_by_category[cat_q.category].append({
-                'question': cat_q.normalized_question,
+                'question': cat_q.question,
                 'answers_with_links': answers_with_links,
             })
 
         return grouped_by_category
-
-    def _collect_answers(self, source_questions, question_map):
-        all_answers = []
-        for src_q in source_questions:
-            if src_q not in question_map:
-                msg = f'Question not found in map: {src_q}'
-                raise ValueError(msg)
-
-            for month, q in question_map[src_q]:
-                all_answers.extend((month, answer) for answer in q.answers)
-        return all_answers
 
     def _save(self, path: Path, output: str):
         self.logger.info('Save %s...', path)
