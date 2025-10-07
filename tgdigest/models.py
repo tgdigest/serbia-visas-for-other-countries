@@ -92,7 +92,7 @@ class FAQCategory(BaseModel):
 
 class Config(BaseModel):
     extra_prompt: str = ''
-    faq_categories: list[FAQCategory] = []
+    faq_categories: list[FAQCategory]
     chats: list[Chat]
     docs_dir: str = 'docs'
     openai_model: str = 'gpt-4.1-2025-04-14'

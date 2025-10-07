@@ -30,7 +30,7 @@ class QuestionsCategorizer:
             },
             {
                 'role': 'user',
-                'content': format_json('Категории', self.config.faq_categories),
+                'content': format_json('Категории', [v.model_dump() for v in self.config.faq_categories]),
             },
             {
                 'role': 'user',
