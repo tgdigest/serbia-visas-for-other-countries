@@ -1,16 +1,22 @@
 +++
 title = "{{ category.title }}"
 type = "docs"
+weight = {{ weight }}
 +++
 
+{% for letter, questions in letter_groups %}
+## 📖 {{ letter }}
+
 {% for qa in questions %}
-## {{ qa.question }}
+### {{ qa.question }}
 {% for answer in qa.answers_with_links %}
 {% if loop.first or answer.year != loop.previtem.year %}
-### {{ answer.year }}
+**📅 {{ answer.year }}**
+
 {% endif %}
 > {{ answer.text }}
 > {% for link in answer.message_links %}[{{ link.get_title() }}]({{ link.get_url() }}){% if not loop.last %}, {% endif %}{% endfor %}
 
+{% endfor %}
 {% endfor %}
 {% endfor %}

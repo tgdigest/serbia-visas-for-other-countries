@@ -108,13 +108,21 @@ class Yaml2Md:
         )
 
         category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
-        for cat in self.config.faq_categories:
+        for weight, cat in enumerate(self.config.faq_categories, start=1):
             if cat.slug in grouped_by_category:
+                questions = sorted(grouped_by_category[cat.slug], key=lambda q: q['question'])
+
+                by_letter = {}
+                for q in questions:
+                    letter = q['question'][0].upper()
+                    by_letter.setdefault(letter, []).append(q)
+
                 self._save(
                     self.output_dir / chat.slug / 'faq' / f'{cat.slug}.md',
                     category_template.render(
                         category=cat,
-                        questions=grouped_by_category[cat.slug],
+                        weight=weight,
+                        letter_groups=sorted(by_letter.items()),
                     ),
                 )
 
