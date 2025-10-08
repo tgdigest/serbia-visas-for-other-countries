@@ -1,0 +1,11 @@
++++
+linkTitle = "Кейсы"
+title = "Кейсы подачи на визу"
+type = "docs"
++++
+
+{% raw %}{{< cards >}}
+{% endraw %}{% for year_stat in years %}
+  {% raw %}{{< card link="{% endraw %}{{ year_stat.year }}{% raw %}" title="Кейсы {{ year_stat.year }}" subtitle="Одобрено: {{ year_stat.approved }}, отказ: {{ year_stat.rejected }}" >}}
+{% endraw %}{% endfor %}
+{% raw %}{{< /cards >}}{% endraw %}

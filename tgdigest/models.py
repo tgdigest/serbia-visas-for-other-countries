@@ -147,6 +147,12 @@ class MonthCases(BaseModel):
     md5: str
     cases: list[Case]
 
+    def count_approved(self) -> int:
+        return sum(1 for c in self.cases if c.is_approved)
+
+    def count_rejected(self) -> int:
+        return sum(1 for c in self.cases if not c.is_approved)
+
 
 class CategorizedQuestionRaw(BaseModel):
     question_id: int

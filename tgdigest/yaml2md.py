@@ -47,16 +47,19 @@ class Yaml2Md:
                 by_year[year] = []
             by_year[year].append(month)
 
-        template = self.jinja_env.get_template('hugo/cases.md.j2')
-
+        year_stats = []
         for year in sorted(by_year.keys(), reverse=True):
             months = sorted(by_year[year])
+            approved = 0
+            rejected = 0
             months_data = []
 
             for month in months:
                 month_data = store.cases.get_month(month)
-                cases_with_links = []
+                approved += month_data.count_approved()
+                rejected += month_data.count_rejected()
 
+                cases_with_links = []
                 for case in month_data.cases:
                     case_dict = case.model_dump()
                     case_dict['message_links'] = case.summary.get_message_links(chat)
@@ -64,10 +67,19 @@ class Yaml2Md:
 
                 months_data.append({'month': month, 'cases': cases_with_links})
 
-            self._save(self.output_dir / chat.slug / f'cases-{year}.md', template.render(
+            year_stats.append({'year': year, 'approved': approved, 'rejected': rejected})
+
+            year_template = self.jinja_env.get_template('hugo/cases-year.md.j2')
+            self._save(self.output_dir / chat.slug / 'cases' / f'{year}.md', year_template.render(
                 months=months_data,
                 year=year,
             ))
+
+        index_template = self.jinja_env.get_template('hugo/cases-index.md.j2')
+        self._save(
+            self.output_dir / chat.slug / 'cases' / '_index.md',
+            index_template.render(years=year_stats),
+        )
 
     def _build_faq(self, store: ChatStore, chat: Chat):
         all_categorized = []
