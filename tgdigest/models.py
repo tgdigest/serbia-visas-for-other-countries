@@ -96,6 +96,7 @@ class Chat(BaseModel):
 
 class FAQCategory(BaseModel):
     title: str
+    slug: str
     description: str
 
 
@@ -149,26 +150,20 @@ class MonthCases(BaseModel):
 
 class CategorizedQuestionRaw(BaseModel):
     question_id: int
-    category_id: int
+    category_slug: str
 
 
 class CategorizedQuestion(BaseModel):
     question: str
-    category: str
+    category_slug: str
 
 
 class QuestionCategorizationResponse(BaseModel):
     questions: list[CategorizedQuestionRaw]
 
-    def expand(self, questions_indexed: list[dict], categories_indexed: list[dict]) -> 'QuestionCategorizationResult':
+    def expand(self, questions_indexed: list[dict]) -> 'QuestionCategorizationResult':
         expanded = []
         for q in self.questions:
-            try:
-                category = categories_indexed[q.category_id - 1]['title']
-            except IndexError as e:
-                msg = f'Invalid category_id={q.category_id}, max={len(categories_indexed)}'
-                raise ValueError(msg) from e
-
             try:
                 question = questions_indexed[q.question_id - 1]['question']
             except IndexError as e:
@@ -177,7 +172,7 @@ class QuestionCategorizationResponse(BaseModel):
 
             expanded.append(CategorizedQuestion(
                 question=question,
-                category=category,
+                category_slug=q.category_slug,
             ))
 
         return QuestionCategorizationResult(questions=expanded)

@@ -3,47 +3,47 @@ md5: 3d8373bb1369038ce8ba94c8464ab21a
 questions:
 - question: Как долго обычно рассматривают документы на венгерскую визу и когда можно
     планировать поездку?
-  category: Процесс подачи
+  category_slug: process
 - question: Как записаться на подачу документов в венгерское консульство в Суботице?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какие документы нужны для поездки в Венгрию на машине?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для спонсорского письма при подаче на венгерскую
     визу?
-  category: Документы
+  category_slug: documents
 - question: Какие страховки принимают для венгерской визы?
-  category: Требования
+  category_slug: requirements
 - question: Какую сумму нужно показать на счете для получения венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Когда появляются свободные слоты для записи в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли забрать паспорт раньше, если он нужен до окончания рассмотрения
     визы?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли по венгерской визе ехать в другие страны Шенгена?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли подаваться на венгерскую визу как безработный?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на венгерскую визу с ИП без оборотов или с замороженным
     ИП?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу в Суботице, если живешь в Белграде?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли получить мультивизу в Венгрию с первого раза?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Нужна ли справка CROSO для получения венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли отчитываться перед венгерским консульством о поездке после возвращения?
-  category: Поездка
+  category_slug: travel
 - question: Нужно ли переводить документы на сербском языке для венгерского консульства?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли подтверждать запись в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Почему сайт записи венгерского консульства не работает или показывает
     белую страницу?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Пускают ли в консульство раньше назначенного времени?
-  category: Процесс подачи
+  category_slug: process
 - question: Что означает номер визы, который спрашивают при записи на подачу документов
     в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment

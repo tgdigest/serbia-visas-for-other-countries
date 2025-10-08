@@ -24,7 +24,7 @@ class QuestionsCategorizer:
             self.logger.info('No new months to categorize')
             return
 
-        categories_indexed = [{'id': i + 1, **cat.model_dump()} for i, cat in enumerate(self.config.faq_categories)]
+        categories_with_id = [{'id': i + 1, **cat.model_dump()} for i, cat in enumerate(self.config.faq_categories)]
 
         for month in unprocessed_months:
             if not limiter.can_process():
@@ -49,7 +49,7 @@ class QuestionsCategorizer:
                 },
                 {
                     'role': 'user',
-                    'content': format_json('Категории', categories_indexed),
+                    'content': format_json('Категории', categories_with_id),
                 },
                 {
                     'role': 'user',
@@ -57,7 +57,18 @@ class QuestionsCategorizer:
                 },
             ])
 
-            result = response.expand(questions_indexed, categories_indexed)
+            result = response.expand(questions_indexed)
+            self._validate_completeness(response, questions_indexed, month)
             store.categorized_questions.save_with_source(month, result.questions, month_data.md5)
             limiter.increment()
             self.logger.info('Saved %d categorized questions for %s (%s)', len(result.questions), month, limiter)
+
+    def _validate_completeness(self, response, questions_indexed, month):
+        expected_ids = {q['id'] for q in questions_indexed}
+        actual_ids = {q.question_id for q in response.questions}
+
+        if expected_ids != actual_ids:
+            missing = expected_ids - actual_ids
+            extra = actual_ids - expected_ids
+            msg = f'Categorization mismatch for {month}: missing={missing}, extra={extra}'
+            raise ValueError(msg)

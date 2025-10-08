@@ -2,52 +2,52 @@ month: 2024-01
 md5: 6f68119e4b0568456536cc6402d32d7b
 questions:
 - question: Забирают ли паспорт при подаче документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Как записаться на подачу документов на визу в консульство Венгрии в Белграде?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как записаться на подачу документов на визу в консульство Венгрии в Суботице?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как заполнять анкету - от руки или на компьютере?
-  category: Документы
+  category_slug: documents
 - question: Какие вопросы задает консул в Белграде при подаче документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Какие документы нужны если едешь на арендованной машине?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны на детей-школьников при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны по ИП (предузетник) для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны при подаче всей семьей?
-  category: Документы
+  category_slug: documents
 - question: Какие причины отказа в визе бывают?
-  category: Процесс подачи
+  category_slug: process
 - question: Какие требования к сроку действия боравака (ВНЖ) для подачи на визу?
-  category: Требования
+  category_slug: requirements
 - question: Какую визу обычно дают в Венгрии - мульти или под даты поездки?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какую страховку принимают для визы в Венгрию?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли менять бронь отеля после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли подаваться на визу без работы в Сербии (безработным)?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу в Венгрию, если планируется посещение других
     стран Шенгена?
-  category: Поездка
+  category_slug: travel
 - question: На какие даты сейчас дают записи на подачу документов в Белграде?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Нужна ли виньетка для проезда по Венгрии на машине?
-  category: Поездка
+  category_slug: travel
 - question: Нужно ли переводить сербские документы (CROSO, свидетельства) на английский
     для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли предоставлять оплаченную бронь отеля или можно без оплаты?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли спонсорское письмо и как его оформлять?
-  category: Документы
+  category_slug: documents
 - question: Сколько времени занимает рассмотрение визы в Белграде?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько времени занимает рассмотрение визы в Суботице?
-  category: Процесс подачи
+  category_slug: process
 - question: Что такое CROSO и как его получить?
-  category: Документы
+  category_slug: documents

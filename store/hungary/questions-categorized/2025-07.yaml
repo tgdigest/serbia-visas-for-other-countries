@@ -2,44 +2,44 @@ month: 2025-07
 md5: d85153e0b0cb72f1c7cf5e523d155911
 questions:
 - question: Как долго рассматривается заявление на венгерскую визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как оплатить бронь отеля на Booking для визы?
-  category: Бронирование
+  category_slug: booking
 - question: Как поймать слот на запись в консульство Венгрии?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как работает правило 90/180 дней для шенгенских виз?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какая ситуация на границе Сербии с Венгрией летом?
-  category: Поездка
+  category_slug: travel
 - question: Какие документы нужны для ребёнка при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Какой срок действия перевода свидетельства о браке?
-  category: Документы
+  category_slug: documents
 - question: Можно ли в первую поездку получить мультивизу на несколько въездов?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Можно ли заявлять поездки в другие страны Шенгена при подаче на венгерскую
     визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли оставить паспорт у себя после подачи документов на визу, если
     нужно поехать в другую страну?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли отменить бронь отеля после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли подаваться на визу в Суботице, если живёшь в Белграде?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли предоставить онлайн-выписку из АПР (Агентства за привредне регистре)
     или нужна бумажная справка?
-  category: Документы
+  category_slug: documents
 - question: Нужна ли справка о налогах для подачи на венгерскую визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли переводить документы на английский или сербский для подачи на
     визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли писать сопроводительное письмо и тревел-план при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли фотографировать заявителя при подаче документов на визу в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько дней нужно провести в Венгрии, чтобы правильно откатать визу?
-  category: Поездка
+  category_slug: travel
 - question: Что такое справка CROSO и нужна ли она для получения визы?
-  category: Документы
+  category_slug: documents

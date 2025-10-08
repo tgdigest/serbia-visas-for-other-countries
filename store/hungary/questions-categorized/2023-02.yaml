@@ -2,41 +2,41 @@ month: 2023-02
 md5: bb3deedbf1688cc30b188e80cc21c9c9
 questions:
 - question: Дают ли венгры мультивизу при второй подаче?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: За какой срок рассматривают документы и выдают венгерскую визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как часто появляются свободные слоты для записи в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какая пошлина за венгерскую визу и в какой валюте оплачивается?
-  category: Требования
+  category_slug: requirements
 - question: Какая ситуация с очередями на границе Сербия-Венгрия на машине?
-  category: Поездка
+  category_slug: travel
 - question: Какие документы нужны для подачи на венгерскую визу из Сербии?
-  category: Документы
+  category_slug: documents
 - question: Какие финансовые документы нужны для подачи на венгерскую визу из Сербии?
-  category: Документы
+  category_slug: documents
 - question: Какую визу дали при подаче с несколькими странами в маршруте?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какую визу дают при первой подаче на венгерский шенген из Сербии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Можно ли записаться на один слот для всей семьи в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли по однократной венгерской визе ездить в другие страны Шенгена
     (Австрию, Чехию и т.д.)?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли подаваться на визу в Белград, если живёшь в Нови Саде (или наоборот
     - в Субботицу из Белграда)?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли получить венгерскую визу без официального трудоустройства в Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Нужно ли спонсорское письмо, если один из супругов не работает?
-  category: Документы
+  category_slug: documents
 - question: Принимают ли венгры выписки из российских банков?
-  category: Документы
+  category_slug: documents
 - question: Требуют ли венгры 6 месяцев боравака для подачи на визу?
-  category: Требования
+  category_slug: requirements
 - question: Требуют ли венгры подтверждение пребывания в Венгрии после поездки?
-  category: Требования
+  category_slug: requirements
 - question: Что делать, если банк отказывается выдать выписку с остатком на балансе
     для визы?
-  category: Документы
+  category_slug: documents

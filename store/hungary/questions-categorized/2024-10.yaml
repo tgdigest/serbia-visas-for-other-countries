@@ -2,80 +2,80 @@ month: 2024-10
 md5: 96566f97d6bdc3cad5d59cc69a5183e8
 questions:
 - question: Где делать страховку для визы в Венгрию?
-  category: Требования
+  category_slug: requirements
 - question: За сколько дней до поездки можно подаваться на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как ведет себя консул в Белграде при подаче документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Как долго стоять на границе Венгрии при въезде на автобусе или машине?
-  category: Поездка
+  category_slug: travel
 - question: Как получить выписку из банка за 3 месяца в Raiffeisen?
-  category: Документы
+  category_slug: documents
 - question: Какая пошлина за визу для граждан Беларуси?
-  category: Требования
+  category_slug: requirements
 - question: Какие выписки нужны от ИП для визы?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для ребенка при подаче на визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны при поездке на машине в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Какого размера должны быть фотографии для визы в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Какой автобус лучше выбрать из Нови-Сада в Суботицу?
-  category: Поездка
+  category_slug: travel
 - question: Когда выкладывают слоты на визу в Венгрию?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Могут ли отменить визу, если отменить бронь отеля?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли взять с собой переводчика на собеседование в консульство?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли забрать паспорт после подачи документов на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли по венгерской визе выезжать в другие страны Шенгена?
-  category: Поездка
+  category_slug: travel
 - question: Нужен ли договор аренды квартиры для подачи на визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Нужна ли выписка с остатком на счете или достаточно выписки по движению
     средств?
-  category: Документы
+  category_slug: documents
 - question: Нужна ли справка с работы и как она оформляется?
-  category: Документы
+  category_slug: documents
 - question: Нужна ли страховка из Беларуси или нужно делать в Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Нужно ли заполнять онлайн-анкету и загружать документы для Суботицы?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли копировать все документы для ребенка, если подаемся вместе на
     визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли оплачивать брони отелей для визы в Венгрию?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли переводить свидетельство о рождении и свидетельство о браке для
     визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли присутствие ребенка до 12 лет при подаче документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли спонсорское письмо от матери, если есть спонсорское письмо от
     отчима (мать не работает)?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли степлером скреплять документы при подаче?
-  category: Процесс подачи
+  category_slug: process
 - question: При заполнении онлайн-анкеты на визу половина полей остается незаполненной
     при распечатке, хотя в электронном варианте все сохранено. Это нормально или нужно
     пытаться заполнять заново?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько времени рассматривается заявка на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько по времени занимает подача документов в консульстве Белграда?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько человек указывать при бронировании слота на семью (муж, жена,
     ребенок)?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Что делать, если IP заблокирован на сайте консульства?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Что делать, если не успел подтвердить слот и его отменили?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Что писать в поле Occupation при заполнении анкеты, если есть ИП и работаешь
     в IT?
-  category: Документы
+  category_slug: documents
 - question: Что такое CROSO и какие документы от них нужны?
-  category: Документы
+  category_slug: documents

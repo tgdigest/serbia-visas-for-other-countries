@@ -2,66 +2,66 @@ month: 2025-03
 md5: ed19f07161a15926c669f3b6f2c493c8
 questions:
 - question: Блокирует ли сайт консульства IP-адрес при попытках поймать слот?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Дают ли венгры дополнительный день к визе на случай задержки на границе?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Забирают ли паспорт при подаче документов на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как записаться на подачу документов в венгерское консульство в Сербии?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как подтвердить оплату жилья, если транзакция еще не появилась в банковской
     выписке?
-  category: Документы
+  category_slug: documents
 - question: Как часто нужно проверять наличие слотов, чтобы не попасть в бан?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какие документы нужны для получения туристической визы в Венгрию из Сербии?
-  category: Документы
+  category_slug: documents
 - question: Какие причины отказа в визе бывают чаще всего?
-  category: Процесс подачи
+  category_slug: process
 - question: Какую страховку нужно покупать при запросе мультивизы?
-  category: Требования
+  category_slug: requirements
 - question: Когда появляются слоты на запись в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли забрать паспорта за всю семью одному человеку?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли менять даты поездки или отель после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли менять забронированный автомобиль после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли подавать выписки из российских банков для визы в Венгрию из Сербии?
-  category: Документы
+  category_slug: documents
 - question: Можно ли подавать документы на визу в Венгрию с оплаченным жильем в одной
     стране и неоплаченной бронью в другой (например, Будапешт оплачен, Вена - нет)?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли подавать документы на визу в Суботице, проживая в Белграде или
     Новом Саде?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли подавать документы с новым паспортом, если ВНЖ оформлен на старый?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли подаваться на визу с ВНЖ, который находится в процессе продления?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли получить мультивизу в Венгрию при первой подаче из Сербии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Нужен ли 'белый картон' для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Нужен ли план поездки (travel plan) для туристической визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли апостилировать свидетельство о браке для визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли загружать сканы документов в онлайн-анкету или достаточно принести
     бумажные копии?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли переводить документы на английский язык?
-  category: Документы
+  category_slug: documents
 - question: Принимают ли в венгерском консульстве брони с Airbnb?
-  category: Бронирование
+  category_slug: booking
 - question: Сколько времени рассматривается виза C в Венгрию?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Сколько денег нужно показать на счету для визы в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Сколько дней в стране, выдавшей визу, нужно указывать в маршруте при поездке
     в несколько стран Шенгена?
-  category: Поездка
+  category_slug: travel
 - question: Через какие пункты пропуска можно въехать в Венгрию из Сербии на машине
     с российскими номерами?
-  category: Поездка
+  category_slug: travel

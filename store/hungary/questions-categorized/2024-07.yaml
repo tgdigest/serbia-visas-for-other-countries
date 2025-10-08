@@ -3,55 +3,55 @@ md5: 0d7be89ed45327637d51a51bf0ccad91
 questions:
 - question: Как ввести код подтверждения при записи на визу в Венгрию, если приходит
     капча с математическими примерами?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как купить билеты на поезд из Суботицы в Будапешт?
-  category: Поездка
+  category_slug: travel
 - question: Как оплачивать визовый сбор в консульстве Венгрии - наличными или картой?
-  category: Процесс подачи
+  category_slug: process
 - question: Какие документы нужны для подачи на визу в Венгрию в России?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для подачи на визу в Венгрию по ИП?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для спонсорского письма при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие преимущества дает National Card по сравнению с обычным рабочим ВНЖ
     Венгрии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какой срок визы обычно дают венгры при первой подаче?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какую валюту лучше брать в Венгрию - евро или форинты?
-  category: Поездка
+  category_slug: travel
 - question: Когда появляются слоты для записи на подачу документов на визу в Белград?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли подавать документы на визу в Венгрию, если планируется поездка
     не только в Венгрию, но и в другие страны Шенгена?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу в Венгрию в России, если есть сербский ВНЖ?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу в Венгрию со свежим ВНЖ?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли сократить срок бронирования отеля после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Нужна ли страховка для подачи на визу в Венгрию, если есть сербский ОМС?
-  category: Требования
+  category_slug: requirements
 - question: Нужна ли страховка на автомобиль при подаче документов на визу, если планируется
     поездка на машине?
-  category: Требования
+  category_slug: requirements
 - question: Нужно ли оплачивать бронь отеля для подачи на визу в Венгрию?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли переводить банковские выписки на английский язык для подачи на
     визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли подтверждать запись на подачу документов в Суботице по телефону?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Нужно ли фото вклеивать в новую анкету на визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Проверяет ли консульство Венгрии отмену бронирования отелей?
-  category: Бронирование
+  category_slug: booking
 - question: Сколько времени занимает рассмотрение визы в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Что делать, если ВНЖ заканчивается раньше, чем планируемая поездка?
-  category: Требования
+  category_slug: requirements
 - question: Что такое National Card (Национальная карта) Венгрии и кто может на нее
     подаваться?
-  category: Типы и сроки виз
+  category_slug: visa-types

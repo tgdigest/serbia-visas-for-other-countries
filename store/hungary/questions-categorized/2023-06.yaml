@@ -2,78 +2,78 @@ month: 2023-06
 md5: 1de337382b9bb3dc195efbd94184471d
 questions:
 - question: За сколько времени до поездки нужно подавать документы на визу в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Забирают ли паспорт при подаче документов на визу в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Как добраться из Белграда в Будапешт на автобусе?
-  category: Поездка
+  category_slug: travel
 - question: Как записаться на подачу документов в консульство Венгрии в Сербии?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как заполнять анкету на визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Как отменить запись в консульство Венгрии?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как получить паспорт с визой в Суботице?
-  category: Процесс подачи
+  category_slug: process
 - question: Как происходит процесс подачи документов в консульстве Венгрии?
-  category: Процесс подачи
+  category_slug: process
 - question: Как составить план поездки для визы в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для подачи на туристическую визу в Венгрию из Сербии?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для поездки в Венгрию на машине?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны от работодателя для визы в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Какие страховки принимают для визы в Венгрию?
-  category: Требования
+  category_slug: requirements
 - question: Какую визу дают в Венгрии при первой подаче из Сербии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какую визу дают при второй и третьей подаче в Венгрию из Сербии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Когда появляются слоты на запись в консульство Венгрии в Сербии (Белград/Суботица)
     и как их отслеживать?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Критично ли отсутствие 3 пейслипов при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Можно ли ехать в другие страны Шенгена по венгерской визе?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли записаться на подачу документов без номера JMBG (до получения
     боравака)?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли подавать документы в консульство в Белграде при прописке в Нови
     Саде или наоборот?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли подаваться на визу в Венгрию с внж на 4 месяца?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подать документы на визу в Венгрию без ВНЖ Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подать документы на всю семью по одному слоту?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли распечатать или отсканировать документы в консульстве?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли везти детей в консульство для подачи на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли ждать определенный срок после получения боравака перед подачей
     на визу в Венгрию?
-  category: Требования
+  category_slug: requirements
 - question: Нужно ли менять номер боравака в бронировании, если получил продление?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Нужно ли подтверждать запись в консульство перед подачей?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Нужно ли предоставлять копию боравака при подаче документов?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли спонсорское письмо при подаче на визу семьей?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли указывать несколько поездок при подаче на визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Нужны ли паспортные данные при покупке билетов через Air Serbia для визы?
-  category: Бронирование
+  category_slug: booking
 - question: Принимают ли бронь с Букинга без оплаты для визы в Венгрию?
-  category: Бронирование
+  category_slug: booking
 - question: Проходит ли собеседование при подаче на визу в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько времени рассматривают документы на визу в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Что делать, если не пришло письмо-подтверждение записи на почту?
-  category: Запись на подачу
+  category_slug: appointment

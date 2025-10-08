@@ -2,84 +2,84 @@ month: 2023-10
 md5: 578a7b165034c5c27fa1daf23183613b
 questions:
 - question: Где купить медицинскую страховку для визы?
-  category: Требования
+  category_slug: requirements
 - question: Говорят ли в венгерском департаменте (VIP) на английском языке?
-  category: Процесс подачи
+  category_slug: process
 - question: Забирают ли паспорта при подаче на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как записаться на подачу документов в консульство Венгрии в Суботице?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как записаться на подачу, если на сайте нет мест?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как оплачивается консульский сбор?
-  category: Требования
+  category_slug: requirements
 - question: Как решить вопрос с интернетом в Венгрии?
-  category: Поездка
+  category_slug: travel
 - question: Как часто нужно проверять сайт для поиска свободных слотов?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какие выписки из банка нужны для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие документы из налоговой (APR) нужны для подачи на визу, если ты ИП?
-  category: Документы
+  category_slug: documents
 - question: Какие документы могут спросить на границе при въезде в Венгрию?
-  category: Поездка
+  category_slug: travel
 - question: Какие документы нужны для ИП (предпринимателя) при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для подачи на визу, если супруга официально не работает?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для поездки на арендованной машине в Венгрию?
-  category: Поездка
+  category_slug: travel
 - question: Какие сроки рассмотрения визы в венгерском консульстве?
-  category: Процесс подачи
+  category_slug: process
 - question: Какой срок визы дают при первой подаче в Венгрию?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Когда появляются слоты на запись для подачи на визу в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли забрать паспорта на семью одному человеку?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли подаваться на визу без официального трудоустройства в Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу с двумя загранпаспортами РФ?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу, если ВНЖ заканчивается и подано на продление?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу, если ВНЖ заканчивается менее чем через 3
     месяца после поездки?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на туристическую визу в Венгрию, пока рассматривается
     заявка на визу D?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли получить мультивизу при второй подаче?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Можно ли указывать в плане поездки транзит через Польшу в Россию на машине
     с российскими номерами?
-  category: Документы
+  category_slug: documents
 - question: На каком языке общаются в консульстве при подаче документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужна ли виза D для въезда в Венгрию, если уже есть действующая французская
     мультивиза?
-  category: Требования
+  category_slug: requirements
 - question: Нужна ли страховка на машину при подаче на визу?
-  category: Требования
+  category_slug: requirements
 - question: Нужно ли брать ребенка с собой на подачу документов на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли заверять спонсорское письмо у нотариуса для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли оплачивать отель заранее для подачи на визу?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли подтверждение боравка (уверенье) для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Проверяют ли венгры, действительно ли ты живешь по указанному адресу при
     получении визы Digital Nomad?
-  category: Требования
+  category_slug: requirements
 - question: Сколько времени занимает прохождение границы Сербия-Венгрия на автобусе?
-  category: Поездка
+  category_slug: travel
 - question: Сколько времени занимает процесс получения визы D (Digital Nomad) в Венгрию
     через Сербию?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько фотографий нужно для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Что делать после поездки - нужно ли отчитываться консульству?
-  category: Поездка
+  category_slug: travel
 - question: Что делать, если консульство просит дополнительные документы после подачи?
-  category: Процесс подачи
+  category_slug: process

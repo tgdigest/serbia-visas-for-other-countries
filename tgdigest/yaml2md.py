@@ -99,6 +99,8 @@ class Yaml2Md:
         for month in store.questions.get_all_months():
             month_data = store.questions.get_month(month)
             for question in month_data.questions:
+                if not question.answers:
+                    continue
                 if question.question not in question_map:
                     question_map[question.question] = []
                 question_map[question.question].append((month, question))
@@ -107,9 +109,6 @@ class Yaml2Md:
     def _group_by_category(self, categorized, question_map, chat):
         grouped_by_category = {}
         for cat_q in categorized.questions:
-            if cat_q.category not in grouped_by_category:
-                grouped_by_category[cat_q.category] = []
-
             if cat_q.question not in question_map:
                 msg = f'Question not found in map: {cat_q.question}'
                 raise ValueError(msg)
@@ -131,7 +130,7 @@ class Yaml2Md:
                 for month, answer in all_answers
             ]
 
-            grouped_by_category[cat_q.category].append({
+            grouped_by_category.setdefault(cat_q.category_slug, []).append({
                 'question': cat_q.question,
                 'answers_with_links': answers_with_links,
             })

@@ -2,57 +2,57 @@ month: 2024-11
 md5: 515b47353f4b8910ffc4f86a6a395585
 questions:
 - question: Блокируют ли IP-адрес при частой проверке слотов?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как быстро разбирают слоты после появления?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как заполнять онлайн анкету на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как оплачивается визовый сбор?
-  category: Требования
+  category_slug: requirements
 - question: Какая страховка нужна для визы?
-  category: Требования
+  category_slug: requirements
 - question: Какие документы нужны для подачи на шенгенскую визу в Венгрию для ИП (предузетника)?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для поездки на машине?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для поездки с собакой в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Какие правила пребывания в Венгрии для мультивизы?
-  category: Поездка
+  category_slug: travel
 - question: Какие шансы получить мультивизу в Белграде?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какую сумму денег нужно показывать на счетах для получения визы?
-  category: Документы
+  category_slug: documents
 - question: Когда и как часто появляются слоты на запись в венгерское консульство
     в Сербии?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли в первую поездку указывать несколько стран кроме Венгрии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Можно ли забронировать слот на несколько человек одновременно?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли отменить бронь отеля после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли подаваться на визу если ВНЖ заканчивается через 2 месяца?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу сразу после получения ВНЖ?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли получить паспорта за всех членов семьи одному человеку?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужен ли договор аренды квартиры для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Нужен ли судебный перевод свидетельства о рождении/браке?
-  category: Документы
+  category_slug: documents
 - question: Нужна ли справка об уплате налогов для ИП при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли брать детей на подачу документов на визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли оплачивать бронь отеля заранее или достаточно просто брони?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли переводить выписку из АПР (извод о регистрации компании)?
-  category: Документы
+  category_slug: documents
 - question: Сколько времени делается виза после подачи документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько времени занимает проезд границы на автобусе?
-  category: Поездка
+  category_slug: travel
 - question: Учитываются ли визы полученные в Суботице при подаче в Белграде?
-  category: Типы и сроки виз
+  category_slug: visa-types

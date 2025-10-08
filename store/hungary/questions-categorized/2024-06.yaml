@@ -2,44 +2,44 @@ month: 2024-06
 md5: 73f6c57a2e48f0f560afb5ef63960ca9
 questions:
 - question: Возвращает ли Wizz Air деньги в случае невыдачи визы?
-  category: Поездка
+  category_slug: travel
 - question: Дают ли венгры мультивизу при первой подаче?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Есть ли пример спонсорского письма на жену для венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Как оплачивать визовый сбор в консульстве Венгрии в Белграде - можно ли
     в динарах?
-  category: Требования
+  category_slug: requirements
 - question: Как часто венгерское консульство выкладывает слоты для записи в Белграде?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какие визы дают венгры после первой и второй успешной подачи?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какие документы нужны для получения венгерской визы по ИП в Сербии?
-  category: Документы
+  category_slug: documents
 - question: Можно ли записываться на подачу визы с партнером не в браке или нужно
     2 слота?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли менять бронь отеля после получения венгерской визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли по однократной венгерской визе ездить в другие страны Шенгена?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли подаваться на венгерскую визу без ВНЖ в Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на венгерскую визу на 2 недели и поехать в Германию?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли получить венгерскую визу с ВНЖ по таланту без официального дохода
     в Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Нужна ли медицинская страховка для венгерской визы и какие требования?
-  category: Требования
+  category_slug: requirements
 - question: Нужно ли переводить документы на сербском языке на английский для венгерской
     визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли подтверждать запись в консульство Венгрии в Суботице по телефону?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Требуют ли венгры оплату забронированного жилья или достаточно просто
     забронировать?
-  category: Бронирование
+  category_slug: booking
 - question: Что делать если истек ВНЖ в Сербии, а новый еще не готов - можно ли подаваться
     на венгерскую визу?
-  category: Требования
+  category_slug: requirements

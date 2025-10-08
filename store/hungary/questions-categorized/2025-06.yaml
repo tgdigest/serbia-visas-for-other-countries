@@ -2,51 +2,51 @@ month: 2025-06
 md5: 509f6ab318531a7bfec6fc237121e326
 questions:
 - question: Где можно купить билеты на поезд из Суботицы в Венгрию?
-  category: Поездка
+  category_slug: travel
 - question: Дают ли венгры мультивизы и с какого раза?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: За сколько времени до поездки можно подавать на венгерскую визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Как быстро пересекается граница Сербия-Венгрия?
-  category: Поездка
+  category_slug: travel
 - question: Как долго рассматривают документы на визу в Суботице?
-  category: Процесс подачи
+  category_slug: process
 - question: Как часто появляются слоты на запись в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какие выводы можно сделать для получения мультивизы в Венгрию?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какие документы нужны для подачи на венгерскую визу по ИП?
-  category: Документы
+  category_slug: documents
 - question: Какой минимальный остаток на счете нужен для получения венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Какой тревел-план нужен для поездки на машине в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Куда подавать документы на визу, если въезд через Венгрию, но больше дней
     в другой стране?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли менять способ транспорта после получения визы (например, вместо
     автобуса ехать на машине)?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли подаваться в консульство Суботицы, проживая в Белграде?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли подаваться на визу с разными email для членов семьи?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли подать на визу с ВНЖ по таланту без ИП и работы?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли получить венгерскую визу с ВНЖ по недвижимости без официальной
     работы?
-  category: Требования
+  category_slug: requirements
 - question: Нужен ли двойной комплект документов при подаче на двоих супругов?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли оплачивать все брони отелей для венгерской визы?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли переводить выписку с банковского счета для венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли подтверждать запись на подачу документов?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Принимают ли брони с Airbnb для венгерской визы?
-  category: Бронирование
+  category_slug: booking
 - question: Принимают ли прямые брони отелей для венгерской визы?
-  category: Бронирование
+  category_slug: booking
 - question: Сколько дней нужно провести в Венгрии при поездке в несколько стран Шенгена?
-  category: Поездка
+  category_slug: travel

@@ -2,75 +2,75 @@ month: 2023-08
 md5: 56295cbf4f4b01693a57a6e618f87c02
 questions:
 - question: Как долго проходится граница Хоргош на автобусе?
-  category: Поездка
+  category_slug: travel
 - question: Как записаться на подачу документов на визу?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как заполнять анкету на визу - от руки или можно печатно?
-  category: Документы
+  category_slug: documents
 - question: Как получить документ APR printout для ИП?
-  category: Документы
+  category_slug: documents
 - question: Какие визы обычно дают венгры - под даты поездки или мультивизы?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какие вопросы задают на собеседовании в посольстве?
-  category: Процесс подачи
+  category_slug: process
 - question: Какие документы нужны для подачи на визу при трудоустройстве через ИП?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны от спонсора при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны при поездке на автомобиле?
-  category: Документы
+  category_slug: documents
 - question: Какие требования к сроку действия ВНЖ после окончания поездки?
-  category: Требования
+  category_slug: requirements
 - question: Какие фотографии нужны на визу - матовые или глянцевые?
-  category: Документы
+  category_slug: documents
 - question: Какую медицинскую страховку нужно оформить для поездки в Венгрию?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли въезжать в другие страны Шенгена по однократной венгерской визе?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли забрать паспорта одному человеку за всех подававшихся?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли менять планы поездки после получения визы?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли оплатить визовый сбор картой в посольстве?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли оплачивать в Будапеште евровой картой или нужны наличные форинты?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли пересечь границу Венгрии на велосипеде?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли подаваться на визу сразу после получения ВНЖ в Сербии?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли показывать выписку по доходам с ИП в РФ для туристической визы?
-  category: Документы
+  category_slug: documents
 - question: Можно ли приходить в посольство в шортах?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужен ли ВНЖ Сербии для подачи на национальную (рабочую) визу Венгрии?
-  category: Требования
+  category_slug: requirements
 - question: Нужен ли маршрутный лист если едешь на машине и бронь жилья на весь срок
     в одном отеле?
-  category: Документы
+  category_slug: documents
 - question: Нужна ли запись для получения паспорта с визой?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужна ли справка из пенсионного фонда (PIO) для ИП?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли бронировать отдельные слоты для каждого члена семьи или достаточно
     одного слота на всех?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Нужно ли в справке с работы упоминать дни отпуска для поездки?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли делать копии выписки из банка или достаточно оригинала?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли заверять спонсорское письмо у нотариуса?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли печатать заявление на визу с двух сторон листа или с одной?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли прикладывать договор аренды жилья при подаче на визу?
-  category: Документы
+  category_slug: documents
 - question: По какому адресу находится венгерское посольство в Белграде?
-  category: Процесс подачи
+  category_slug: process
 - question: Подходят ли выписки из банков других стран (не Сербии) для подтверждения
     финансов?
-  category: Документы
+  category_slug: documents
 - question: Сколько времени обычно рассматривают визу?
-  category: Процесс подачи
+  category_slug: process
 - question: Что делать если сайт записи не открывается или показывает пустую страницу?
-  category: Запись на подачу
+  category_slug: appointment

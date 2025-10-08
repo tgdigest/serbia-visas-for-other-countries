@@ -2,41 +2,41 @@ month: 2024-09
 md5: 96fd4ec7da3983979956ff1aedec3f4b
 questions:
 - question: Дают ли венгры мультивизы с первой подачи в Сербии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Как записаться на подачу документов на туристическую визу в Венгрию? На
     сайте нет доступных слотов
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как заполнить онлайн-анкету на визу в Венгрию?
-  category: Документы
+  category_slug: documents
 - question: Как получить справку CROSO для подачи на визу?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для подачи на визу по спонсорству?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для подачи на туристическую визу в Венгрию из Сербии?
-  category: Документы
+  category_slug: documents
 - question: Какие права нужны для вождения в Венгрии с сербским ВНЖ?
-  category: Поездка
+  category_slug: travel
 - question: Какой срок рассмотрения документов на туристическую визу в Венгрию?
-  category: Процесс подачи
+  category_slug: process
 - question: Какую страховку лучше оформить для визы в Венгрию?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли въехать в Шенген через другую страну, если виза выдана Венгрией?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли отменить или изменить бронь отеля после получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Можно ли подавать на визу в Венгрию сразу после получения сербского ВНЖ?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли подаваться на визу семьей по одному слоту?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Можно ли подать на несколько поездок сразу и дадут ли визу на все?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Нужна ли дополнительная страховка на автомобиль для поездки в Венгрию?
-  category: Поездка
+  category_slug: travel
 - question: Нужно ли вести ребенка в консульство при подаче документов?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли оплачивать бронь отеля для подачи на визу?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли переводить документы с русского языка на английский или сербский?
-  category: Документы
+  category_slug: documents
 - question: Сколько стоит виньетка в Венгрии и где ее купить?
-  category: Поездка
+  category_slug: travel

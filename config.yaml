@@ -24,18 +24,25 @@ anthropic_model: claude-sonnet-4-5-20250929
 
 faq_categories:
   - title: "Запись на подачу"
+    slug: "appointment"
     description: "Как записаться, слоты, отмена записи"
   - title: "Документы"
+    slug: "documents"
     description: "Список документов, переводы, финансовые справки"
   - title: "Бронирование"
+    slug: "booking"
     description: "Оплата отелей и билетов, отмена броней"
   - title: "Процесс подачи"
+    slug: "process"
     description: "Где подаваться, собеседование, сроки"
   - title: "Типы и сроки виз"
+    slug: "visa-types"
     description: "Мультивизы, первая/вторая виза"
   - title: "Требования"
+    slug: "requirements"
     description: "Требования к ВНЖ, страховка, стоимость"
   - title: "Поездка"
+    slug: "travel"
     description: "Использование визы, границы, транспорт"
 
 chats:

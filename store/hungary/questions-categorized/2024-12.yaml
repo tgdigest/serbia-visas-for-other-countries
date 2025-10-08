@@ -2,42 +2,42 @@ month: 2024-12
 md5: 27829ffc3dfd88b3dfd9ca5a071ed477
 questions:
 - question: Как оплачивается визовый сбор в венгерском консульстве?
-  category: Требования
+  category_slug: requirements
 - question: Как часто появляются свободные слоты для записи в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какая визовая история нужна для подачи на венгерскую визу?
-  category: Требования
+  category_slug: requirements
 - question: Какие документы нужны для получения венгерской визы с ВНЖ Сербии?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны от спонсора поездки?
-  category: Документы
+  category_slug: documents
 - question: Какие требования к фотографии для венгерской визы?
-  category: Требования
+  category_slug: requirements
 - question: Какой график работы венгерского консульства в праздничные дни?
-  category: Процесс подачи
+  category_slug: process
 - question: Какой срок визы дают в Венгрии при первой подаче с ВНЖ Сербии?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Можно ли менять маршрут поездки после получения визы?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли подаваться на венгерскую визу в Суботице, если живешь в Белграде?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли получить венгерскую визу без работы в Сербии, только с недвижимостью?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли указывать в маршруте другие страны Шенгена кроме Венгрии?
-  category: Поездка
+  category_slug: travel
 - question: Нужно ли заполнять анкету онлайн или можно принести бумажную?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли переводить выписку из банка для венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли предоставлять оплаченную бронь отеля?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли спонсорское письмо для детей при семейной подаче?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли уведомлять консульство об изменении брони отеля?
-  category: Бронирование
+  category_slug: booking
 - question: Сколько времени занимает рассмотрение визы в венгерском консульстве?
-  category: Процесс подачи
+  category_slug: process
 - question: Что делать, если венгерская виза была аннулирована?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Что такое читач с ВНЖ и где его получить?
-  category: Требования
+  category_slug: requirements

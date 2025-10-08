@@ -2,56 +2,56 @@ month: 2024-03
 md5: d2b00a8d5c6a212cc3670a7954c9b76b
 questions:
 - question: Где купить страховку для венгерской визы?
-  category: Требования
+  category_slug: requirements
 - question: Как записаться на подачу документов в венгерское консульство в Сербии?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Как оплачивается консульский сбор в Суботице - картой или наличными?
-  category: Требования
+  category_slug: requirements
 - question: Какая сумма покрытия страховки должна быть для венгерской визы?
-  category: Требования
+  category_slug: requirements
 - question: Какие данные нужны для записи по телефону в венгерское консульство?
-  category: Запись на подачу
+  category_slug: appointment
 - question: Какие документы нужны для подачи на венгерскую визу семьей, если муж спонсор?
-  category: Документы
+  category_slug: documents
 - question: Какие документы нужны для поездки на арендованной машине?
-  category: Документы
+  category_slug: documents
 - question: Какие шансы получить мультивизу в Венгрию?
-  category: Типы и сроки виз
+  category_slug: visa-types
 - question: Какой размер фото нужен для венгерской визы?
-  category: Требования
+  category_slug: requirements
 - question: Критично ли, если ВНЖ заканчивается менее чем через 3 месяца после планируемой
     поездки?
-  category: Требования
+  category_slug: requirements
 - question: Можно ли въехать в Венгрию по французской визе, если Венгрия будет первой
     страной въезда?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли въехать в Венгрию по шенгенской визе другой страны?
-  category: Поездка
+  category_slug: travel
 - question: Можно ли забрать паспорт за другого человека в Суботице?
-  category: Процесс подачи
+  category_slug: process
 - question: Можно ли подать документы на венгерскую визу с ВНЖ по таланту и доходом
     от российского ИП?
-  category: Документы
+  category_slug: documents
 - question: Можно ли предоставить выписку о средствах со счета ИП вместо личного счета?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли вклеивать фото в анкету или отдать отдельно?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли заверять спонсорское письмо у нотариуса?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли оплачивать бронь отеля для получения визы?
-  category: Бронирование
+  category_slug: booking
 - question: Нужно ли переводить документы на английский для венгерской визы?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли предоставлять движение средств по счету или достаточно справки
     об остатке?
-  category: Документы
+  category_slug: documents
 - question: Нужно ли присутствие детей при подаче документов на визу в Суботице?
-  category: Процесс подачи
+  category_slug: process
 - question: Нужно ли указывать даты отпуска в справке с работы для туристического
     шенгена?
-  category: Документы
+  category_slug: documents
 - question: Сколько времени занимает рассмотрение документов на визу в Белграде и
     Суботице?
-  category: Процесс подачи
+  category_slug: process
 - question: Сколько слотов нужно бронировать для семьи из 2 взрослых и 2 детей?
-  category: Запись на подачу
+  category_slug: appointment
