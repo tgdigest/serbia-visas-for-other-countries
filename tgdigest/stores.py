@@ -153,6 +153,7 @@ class QuestionsMonthStore(BaseMonthStore):
                         )
                         for answer in q.answers
                     )
+        all_answers.sort(key=lambda a: a.month, reverse=True)
         return all_answers
 
 
