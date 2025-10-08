@@ -137,7 +137,7 @@ class Yaml2Md:
                 'answers_with_links': [],
             })
             question_answers[normalized_question]['answers_with_links'].extend(answers_with_links)
-            question_answers[normalized_question]['answers_with_links'].sort(key=lambda a: a.month, reverse=True)
+            question_answers[normalized_question]['answers_with_links'].sort(key=lambda a: a.sort_key)
 
         for data in question_answers.values():
             grouped_by_category.setdefault(data.pop('category_slug'), []).append(data)

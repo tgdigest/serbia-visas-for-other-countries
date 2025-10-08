@@ -70,6 +70,10 @@ class ReferencedSummary(Summary):
     def year(self) -> int:
         return self.month.year
 
+    @property
+    def sort_key(self) -> tuple:
+        return -self.month.year, self.text
+
 
 class FactsResponse(BaseModel):
     """Response model from AI for facts extraction."""
