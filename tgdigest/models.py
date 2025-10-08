@@ -29,22 +29,6 @@ class Month:
         ]
         return names[self.month - 1]
 
-    @property
-    def key(self) -> tuple[int, int]:
-        return self.year, self.month
-
-    def __str__(self) -> str:
-        return self.to_string()
-
-    def __lt__(self, other: 'Month') -> bool:
-        return self.key < other.key
-
-    def __eq__(self, other: 'Month') -> bool:
-        return self.key == other.key
-
-    def __hash__(self) -> int:
-        return hash(self.key)
-
 
 class Message(BaseModel):
     id: int

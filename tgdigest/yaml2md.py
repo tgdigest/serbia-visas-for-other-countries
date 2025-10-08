@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from .models import Chat, Config, QuestionCategorizationResult
+from .models import Chat, Config, QuestionCategorizationResult, CategorizedQuestion
 from .stores import ChatStore
 from .templates import get_jinja_env
 
@@ -82,90 +82,66 @@ class Yaml2Md:
         )
 
     def _build_faq(self, store: ChatStore, chat: Chat):
-        all_categorized = []
-        for month in store.categorized_questions.get_all_months():
-            month_data = store.categorized_questions.get_month(month)
-            all_categorized.extend(month_data.questions)
+        all_categorized = store.categorized_questions.get_all_categorized()
 
-        categorized = QuestionCategorizationResult(questions=all_categorized)
-
-        date_specific = {cat_q.question for cat_q in categorized.questions if cat_q.is_date_specific}
+        date_specific = {cat_q.question for cat_q in all_categorized if cat_q.is_date_specific}
         all_with_answers = {q.question for q in store.questions.get_all_questions()} - date_specific
-        all_categorized_non_date = {cat_q.question for cat_q in categorized.questions if not cat_q.is_date_specific}
+        all_categorized_non_date = {cat_q.question for cat_q in all_categorized if not cat_q.is_date_specific}
 
-        missing = all_with_answers - all_categorized_non_date
-        if missing:
+        if missing := all_with_answers - all_categorized_non_date:
             missing_list = '\n'.join(f'{i}. {q}' for i, q in enumerate(sorted(missing), 1))
             msg = f'Categorization missing {len(missing)} questions:\n{missing_list}\n\nRun: make categorize-questions'
             raise ValueError(msg)
 
-        grouped_by_category = self._group_by_category(categorized, chat, store)
-
         index_template = self.jinja_env.get_template('hugo/faq-index.md.j2')
-        self._save(
-            self.output_dir / chat.slug / 'faq' / '_index.md',
-            index_template.render(categories=self.config.faq_categories),
-        )
+        self._save(self.output_dir / chat.slug / 'faq' / '_index.md', index_template.render(
+            categories=self.config.faq_categories,
+        ))
 
+        grouped_by_category = self._group_by_category(all_categorized, chat, store)
         category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
-        for weight, cat in enumerate(self.config.faq_categories, start=1):
-            if cat.slug in grouped_by_category:
-                questions = sorted(grouped_by_category[cat.slug], key=lambda q: q['question'])
+        for weight, category in enumerate(self.config.faq_categories, start=1):
+            if category.slug in grouped_by_category:
+                questions = sorted(grouped_by_category[category.slug], key=lambda q: q['question'])
 
                 by_letter = {}
                 for q in questions:
                     letter = q['question'][0].upper()
                     by_letter.setdefault(letter, []).append(q)
 
-                self._save(
-                    self.output_dir / chat.slug / 'faq' / f'{cat.slug}.md',
-                    category_template.render(
-                        category=cat,
-                        weight=weight,
-                        letter_groups=sorted(by_letter.items()),
-                    ),
-                )
+                self._save(self.output_dir / chat.slug / 'faq' / f'{category.slug}.md', category_template.render(
+                    category=category,
+                    weight=weight,
+                    letter_groups=sorted(by_letter.items()),
+                ))
 
-    def _build_question_map(self, store: ChatStore):
-        question_map = {}
-        for month in store.questions.get_all_months():
-            month_data = store.questions.get_month(month)
-            for question in month_data.questions:
-                if not question.answers:
-                    continue
-                if question.question not in question_map:
-                    question_map[question.question] = []
-                question_map[question.question].append((month, question))
-        return question_map
-
-    def _group_by_category(self, categorized, chat: Chat, store: ChatStore):
+    def _group_by_category(self, all_categorized: list[CategorizedQuestion], chat: Chat, store: ChatStore):
         grouped_by_category = {}
         question_answers = {}
 
-        for cat_q in categorized.questions:
-            if cat_q.is_date_specific:
+        for q in all_categorized:
+            if q.is_date_specific:
+                self.logger.debug(f'Skipping date-specific question: `%s` in category `%s`', q.question, q.category_slug)
                 continue
 
-            normalized_question = store.normalized_faq.normalize_question(cat_q.category_slug, cat_q.question)
-            answers_with_links = store.questions.get_all_answers_for_question(cat_q.question, chat)
-
+            answers_with_links = store.questions.get_all_answers_for_question(q.question, chat)
             if not answers_with_links:
+                self.logger.warning(f'No answers for question: `%s` in category `%s`', q.question, q.category_slug)
                 continue
 
-            if normalized_question in question_answers:
-                question_answers[normalized_question]['answers_with_links'].extend(answers_with_links)
-            else:
-                question_answers[normalized_question] = {
-                    'question': normalized_question,
-                    'category_slug': cat_q.category_slug,
-                    'answers_with_links': answers_with_links,
-                }
+            normalized_question = store.normalized_faq.normalize_question(q.category_slug, q.question)
+            if normalized_question != q.question:
+                self.logger.info(f'Normalized question: `%s` -> `%s` in category `%s`', q.question, normalized_question, q.category_slug)
 
-        for q_data in question_answers.values():
-            grouped_by_category.setdefault(q_data['category_slug'], []).append({
-                'question': q_data['question'],
-                'answers_with_links': q_data['answers_with_links'],
+            question_answers.setdefault(normalized_question, {
+                'question': normalized_question,
+                'category_slug': q.category_slug,
+                'answers_with_links': [],
             })
+            question_answers[normalized_question]['answers_with_links'].extend(answers_with_links)
+
+        for data in question_answers.values():
+            grouped_by_category.setdefault(data.pop('category_slug'), []).append(data)
 
         return grouped_by_category
 

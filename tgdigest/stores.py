@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 from .helpers import compute_messages_hash, compute_text_hash
 from .models import CategoryNormalizedQuestions, Chat, Month, MonthCases, MonthCategorizedQuestions, MonthFacts, \
-    MonthMessages, MonthQuestions, ReferencedSummary
+    MonthMessages, MonthQuestions, ReferencedSummary, CategorizedQuestion
 
 T: TypeVar = TypeVar('T', bound=BaseModel)
 
@@ -131,11 +131,11 @@ class QuestionsMonthStore(BaseMonthStore):
         ))
 
     def get_all_questions(self) -> list:
-        all_questions = []
+        res = []
         for month in self.get_all_months():
             month_data = self.get_month(month)
-            all_questions.extend(q for q in month_data.questions if q.answers)
-        return all_questions
+            res.extend(q for q in month_data.questions if q.answers)
+        return res
 
     def get_all_answers_for_question(self, question_text: str, chat) -> list:
         all_answers = []
@@ -201,6 +201,13 @@ class CategorizedQuestionsMonthStore(BaseMonthStore):
                 unprocessed.append(month)
 
         return unprocessed
+
+    def get_all_categorized(self) -> list[CategorizedQuestion]:
+        all_categorized = []
+        for month in self.get_all_months():
+            month_data = self.get_month(month)
+            all_categorized.extend(month_data.questions)
+        return all_categorized
 
 
 class NormalizedFAQStore:
