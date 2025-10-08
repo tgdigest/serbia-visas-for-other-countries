@@ -11,6 +11,7 @@ ignore = [
     "ISC001",  # implicit string concat (conflicts with formatter)
     "PLR0913", # too many arguments
     "ERA001",  # commented-out code
+    "S324",    # md5 for checksums not crypto
 ]
 
 [tool.ruff.lint.per-file-ignores]

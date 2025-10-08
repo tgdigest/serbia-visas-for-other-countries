@@ -5,9 +5,13 @@ from .models import Message
 
 
 def compute_messages_hash(messages: list[Message]) -> str:
-    """Compute MD5 hash from message IDs."""
     ids = ','.join(str(msg.id) for msg in messages)
-    return hashlib.md5(ids.encode()).hexdigest()  # noqa: S324
+    return hashlib.md5(ids.encode()).hexdigest()
+
+
+def compute_text_hash(texts: list[str]) -> str:
+    combined = '|'.join(sorted(texts))
+    return hashlib.md5(combined.encode()).hexdigest()
 
 
 def format_json(title: str, data) -> str:

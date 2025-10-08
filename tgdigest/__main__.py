@@ -11,6 +11,7 @@ from rich.logging import RichHandler
 from tgdigest.ai import AnthropicProvider
 from tgdigest.cases_extractor import CasesExtractor
 from tgdigest.facts_extractor import FactsExtractor
+from tgdigest.faq_normalizer import FAQNormalizer
 from tgdigest.fetcher import Fetcher
 from tgdigest.generator import Generator
 from tgdigest.helpers import WorkLimiter
@@ -98,6 +99,15 @@ def categorize_questions(cfg: Config, *, max_months: int):
         categorizer.process_chat(chat, limiter)
 
 
+def normalize_faq(cfg: Config, *, max_categories: int):
+    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
+    normalizer = FAQNormalizer(config=cfg, provider=provider)
+    limiter = WorkLimiter(max_categories)
+
+    for chat in cfg.chats:
+        normalizer.process_chat(chat, limiter)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Telegram digest')
     parser.add_argument('--config', '-c', default='config.yaml', help='Path to config file')
@@ -124,6 +134,9 @@ if __name__ == '__main__':
 
     categorize_parser = subparsers.add_parser('categorize-questions', help='Categorize FAQ questions')
     categorize_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
+
+    normalize_parser = subparsers.add_parser('normalize-faq', help='Normalize FAQ questions')
+    normalize_parser.add_argument('--max-categories', type=int, default=1, help='Max categories to process per run')
 
     # reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
 
@@ -164,5 +177,7 @@ if __name__ == '__main__':
         yaml_to_markdown(config)
     elif args.command == 'categorize-questions':
         categorize_questions(config, max_months=args.max_months)
+    elif args.command == 'normalize-faq':
+        normalize_faq(config, max_categories=args.max_categories)
     # elif args.command == 'reorganize':
     #     asyncio.run(reorganize_docs(config))

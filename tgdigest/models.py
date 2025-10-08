@@ -1,7 +1,36 @@
 import re
-from datetime import UTC, datetime
+from dataclasses import dataclass
+from datetime import datetime
 
 from pydantic import BaseModel
+
+
+@dataclass(frozen=True, order=True)
+class Month:
+    year: int
+    month: int
+
+    @classmethod
+    def from_string(cls, s: str) -> 'Month':
+        year, month = s.split('-')
+        return cls(year=int(year), month=int(month))
+
+    @classmethod
+    def from_date(cls, dt: datetime) -> 'Month':
+        return cls(year=dt.year, month=dt.month)
+
+    def to_string(self) -> str:
+        return f'{self.year:04d}-{self.month:02d}'
+
+    def to_month_name(self) -> str:
+        names = [
+            'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+        ]
+        return names[self.month - 1]
+
+    def __str__(self) -> str:
+        return self.to_string()
 
 
 class Message(BaseModel):
@@ -37,11 +66,12 @@ class Summary(BaseModel):
 
 
 class ReferencedSummary(Summary):
-    year: int
+    month: Month
     message_links: list[MessageLink]
 
-    def is_current_year(self) -> bool:
-        return self.year == datetime.now(UTC).year
+    @property
+    def year(self) -> int:
+        return self.month.year
 
 
 class FactsResponse(BaseModel):
@@ -107,6 +137,9 @@ class Config(BaseModel):
     docs_dir: str = 'docs'
     openai_model: str = 'gpt-4.1-2025-04-14'
     anthropic_model: str
+
+    def get_faq_category_by_slug(self, slug: str) -> FAQCategory:
+        return next(c for c in self.faq_categories if c.slug == slug)
 
 
 
@@ -195,3 +228,18 @@ class MonthCategorizedQuestions(BaseModel):
     month: str
     md5: str
     questions: list[CategorizedQuestion]
+
+
+class NormalizedFAQQuestion(BaseModel):
+    normalized_question: str
+    source_questions: list[str]
+
+
+class FAQNormalizationResponse(BaseModel):
+    questions: list[NormalizedFAQQuestion]
+
+
+class CategoryNormalizedQuestions(BaseModel):
+    category_slug: str
+    questions_text_md5: str
+    questions: list[NormalizedFAQQuestion]

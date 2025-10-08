@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from .models import Chat, Config, QuestionCategorizationResult, ReferencedSummary
+from .models import Chat, Config, QuestionCategorizationResult
 from .stores import ChatStore
 from .templates import get_jinja_env
 
@@ -88,18 +88,18 @@ class Yaml2Md:
             all_categorized.extend(month_data.questions)
 
         categorized = QuestionCategorizationResult(questions=all_categorized)
-        question_map = self._build_question_map(store)
 
-        all_questions_in_map = set(question_map)
-        all_questions_categorized = {cat_q.question for cat_q in categorized.questions}
+        date_specific = {cat_q.question for cat_q in categorized.questions if cat_q.is_date_specific}
+        all_with_answers = {q.question for q in store.questions.get_all_questions()} - date_specific
+        all_categorized_non_date = {cat_q.question for cat_q in categorized.questions if not cat_q.is_date_specific}
 
-        missing = all_questions_in_map - all_questions_categorized
+        missing = all_with_answers - all_categorized_non_date
         if missing:
             missing_list = '\n'.join(f'{i}. {q}' for i, q in enumerate(sorted(missing), 1))
             msg = f'Categorization missing {len(missing)} questions:\n{missing_list}\n\nRun: make categorize-questions'
             raise ValueError(msg)
 
-        grouped_by_category = self._group_by_category(categorized, question_map, chat)
+        grouped_by_category = self._group_by_category(categorized, chat, store)
 
         index_template = self.jinja_env.get_template('hugo/faq-index.md.j2')
         self._save(
@@ -138,7 +138,7 @@ class Yaml2Md:
                 question_map[question.question].append((month, question))
         return question_map
 
-    def _group_by_category(self, categorized, question_map, chat):
+    def _group_by_category(self, categorized, chat: Chat, store: ChatStore):
         grouped_by_category = {}
         question_answers = {}
 
@@ -146,31 +146,17 @@ class Yaml2Md:
             if cat_q.is_date_specific:
                 continue
 
-            if cat_q.question not in question_map:
+            normalized_question = store.normalized_faq.normalize_question(cat_q.category_slug, cat_q.question)
+            answers_with_links = store.questions.get_all_answers_for_question(cat_q.question, chat)
+
+            if not answers_with_links:
                 continue
 
-            all_answers = []
-            for month, q in question_map[cat_q.question]:
-                all_answers.extend((month, answer) for answer in q.answers)
-
-            all_answers.sort(key=lambda x: x[0], reverse=True)
-
-            answers_with_links = [
-                ReferencedSummary(
-                    text=answer.text,
-                    message_ids=answer.message_ids,
-                    sender=answer.sender,
-                    year=month.year,
-                    message_links=answer.get_message_links(chat),
-                )
-                for month, answer in all_answers
-            ]
-
-            if cat_q.question in question_answers:
-                question_answers[cat_q.question]['answers_with_links'].extend(answers_with_links)
+            if normalized_question in question_answers:
+                question_answers[normalized_question]['answers_with_links'].extend(answers_with_links)
             else:
-                question_answers[cat_q.question] = {
-                    'question': cat_q.question,
+                question_answers[normalized_question] = {
+                    'question': normalized_question,
                     'category_slug': cat_q.category_slug,
                     'answers_with_links': answers_with_links,
                 }

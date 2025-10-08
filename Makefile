@@ -1,4 +1,4 @@
-.PHONY: install fetch generate extract-facts extract-questions extract-cases yaml2md reorganize serve clean lint lint-fix test
+.PHONY: install fetch generate extract-facts extract-questions extract-cases yaml2md categorize-questions normalize-faq reorganize serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -27,6 +27,9 @@ yaml2md:
 
 categorize-questions:
 	./venv/bin/python -m tgdigest categorize-questions --max-months=6
+
+normalize-faq:
+	./venv/bin/python -m tgdigest normalize-faq --max-categories=1
 
 generate: yaml2md
 	./venv/bin/python -m tgdigest generate --max-months=1

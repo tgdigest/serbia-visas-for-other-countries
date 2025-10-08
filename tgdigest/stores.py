@@ -1,55 +1,14 @@
-from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
 from typing import TypeVar
 
 import yaml
 from pydantic import BaseModel
 
-from .helpers import compute_messages_hash
-from .models import (
-    Chat,
-    MonthCases,
-    MonthCategorizedQuestions,
-    MonthFacts,
-    MonthMessages,
-    MonthQuestions,
-)
+from .helpers import compute_messages_hash, compute_text_hash
+from .models import CategoryNormalizedQuestions, Chat, Month, MonthCases, MonthCategorizedQuestions, MonthFacts, \
+    MonthMessages, MonthQuestions, ReferencedSummary
 
-T = TypeVar('T', bound=BaseModel)
-
-
-@dataclass(frozen=True, order=True)
-class Month:
-    """Represents a year-month period."""
-    year: int
-    month: int
-
-    @classmethod
-    def from_string(cls, s: str) -> 'Month':
-        """Parse from YYYY-MM format."""
-        year, month = s.split('-')
-        return cls(year=int(year), month=int(month))
-
-    @classmethod
-    def from_date(cls, dt: datetime) -> 'Month':
-        """Create from datetime."""
-        return cls(year=dt.year, month=dt.month)
-
-    def to_string(self) -> str:
-        """Convert to YYYY-MM format."""
-        return f'{self.year:04d}-{self.month:02d}'
-
-    def to_month_name(self) -> str:
-        """Get month name in Russian."""
-        names = [
-            'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
-        ]
-        return names[self.month - 1]
-
-    def __str__(self) -> str:
-        return self.to_string()
+T: TypeVar = TypeVar('T', bound=BaseModel)
 
 
 class BaseMonthStore:
@@ -62,59 +21,41 @@ class BaseMonthStore:
         if self.subdir is None:
             msg = f'{self.__class__.__name__} must define subdir'
             raise ValueError(msg)
+
         if self.model_class is None:
             msg = f'{self.__class__.__name__} must define model_class'
             raise ValueError(msg)
 
         self.chat_store = chat_store
+        self._cache = {}
 
     @property
     def dir_path(self) -> Path:
         return self.chat_store.chat_dir / self.subdir
 
+    def get_month_file(self, month: Month) -> Path:
+        return self.dir_path / f'{month.to_string()}.yaml'
+
     def get_month(self, month: Month) -> T:
-        """Load data for a specific month."""
-        month_file = self.dir_path / f'{month.to_string()}.yaml'
-        with month_file.open(encoding='utf-8') as f:
-            return self.model_class(**yaml.safe_load(f))
+        if month not in self._cache:
+            with self.get_month_file(month).open(encoding='utf-8') as f:
+                self._cache[month] = self.model_class(**yaml.safe_load(f))
+        return self._cache[month]
 
-    def save_month(self, month: Month, data: T | dict):
-        """Save data for a specific month."""
-        self.dir_path.mkdir(parents=True, exist_ok=True)
-        month_file = self.dir_path / f'{month.to_string()}.yaml'
-
-        data_dict = data.model_dump(exclude_defaults=True) if isinstance(data, BaseModel) else data
-
-        with month_file.open('w', encoding='utf-8') as f:
-            yaml.dump(
-                data_dict,
-                f,
-                allow_unicode=True,
-                default_flow_style=False,
-                sort_keys=False
-            )
-
-    def exists(self) -> bool:
-        """Check if directory exists and has any data."""
-        return self.dir_path.exists() and any(self.dir_path.glob('*.yaml'))
+    def save_month(self, month: Month, data: T):
+        self.chat_store.save_yaml(self.get_month_file(month), data)
 
     def get_all_months(self) -> list[Month]:
-        """Get all available months sorted."""
-        if not self.dir_path.exists():
-            return []
-
         months = []
-        for yaml_file in sorted(self.dir_path.glob('*.yaml')):
-            try:
-                month = Month.from_string(yaml_file.stem)
-                months.append(month)
-            except ValueError:
-                continue
-
+        if self.dir_path.exists():
+            for yaml_file in sorted(self.dir_path.glob('*.yaml')):
+                try:
+                    months.append(Month.from_string(yaml_file.stem))
+                except ValueError:
+                    continue
         return sorted(months)
 
     def get_unprocessed_months(self) -> list[Month]:
-        """Get months that need processing based on md5 hash comparison."""
         all_months = self.chat_store.cache.get_all_months()
         if not all_months:
             return []
@@ -124,8 +65,7 @@ class BaseMonthStore:
             cache_data = self.chat_store.cache.get_month(month)
             cache_md5 = cache_data.md5
 
-            month_file = self.dir_path / f'{month.to_string()}.yaml'
-            if not month_file.exists():
+            if not self.get_month_file(month).exists():
                 unprocessed.append(month)
                 continue
 
@@ -144,9 +84,8 @@ class CacheMonthStore(BaseMonthStore):
     def append_messages(self, month: Month, new_messages: list):
         """Append messages to existing month data, merging by ID."""
         existing_messages = []
-        month_file = self.dir_path / f'{month.to_string()}.yaml'
 
-        if month_file.exists():
+        if self.get_month_file(month).exists():
             existing_data = self.get_month(month)
             existing_messages = existing_data.messages
 
@@ -158,8 +97,11 @@ class CacheMonthStore(BaseMonthStore):
         existing_messages.sort(key=lambda x: x.id)
 
         md5 = compute_messages_hash(existing_messages)
-        data = MonthMessages(month=month.to_string(), md5=md5, messages=existing_messages)
-        self.save_month(month, data)
+        self.save_month(month, MonthMessages(
+            month=month.to_string(),
+            md5=md5,
+            messages=existing_messages,
+        ))
 
 
 class FactsMonthStore(BaseMonthStore):
@@ -169,8 +111,11 @@ class FactsMonthStore(BaseMonthStore):
 
     def save_with_source(self, month: Month, facts: list[str], source_md5: str):
         """Save facts with source hash."""
-        data = MonthFacts(month=month.to_string(), md5=source_md5, facts=facts)
-        self.save_month(month, data)
+        self.save_month(month, MonthFacts(
+            month=month.to_string(),
+            md5=source_md5,
+            facts=facts,
+        ))
 
 
 class QuestionsMonthStore(BaseMonthStore):
@@ -179,9 +124,11 @@ class QuestionsMonthStore(BaseMonthStore):
     model_class = MonthQuestions
 
     def save_with_source(self, month: Month, questions: list, source_md5: str):
-        """Save questions with source hash."""
-        data = MonthQuestions(month=month.to_string(), md5=source_md5, questions=questions)
-        self.save_month(month, data)
+        self.save_month(month, MonthQuestions(
+            month=month.to_string(),
+            md5=source_md5,
+            questions=questions,
+        ))
 
     def get_all_questions(self) -> list:
         all_questions = []
@@ -189,6 +136,24 @@ class QuestionsMonthStore(BaseMonthStore):
             month_data = self.get_month(month)
             all_questions.extend(q for q in month_data.questions if q.answers)
         return all_questions
+
+    def get_all_answers_for_question(self, question_text: str, chat) -> list:
+        all_answers = []
+        for month in self.get_all_months():
+            month_data = self.get_month(month)
+            for q in month_data.questions:
+                if q.question == question_text:
+                    all_answers.extend(
+                        ReferencedSummary(
+                            text=answer.text,
+                            message_ids=answer.message_ids,
+                            sender=answer.sender,
+                            month=month,
+                            message_links=answer.get_message_links(chat),
+                        )
+                        for answer in q.answers
+                    )
+        return all_answers
 
 
 class CasesMonthStore(BaseMonthStore):
@@ -198,8 +163,11 @@ class CasesMonthStore(BaseMonthStore):
 
     def save_with_source(self, month: Month, cases: list, source_md5: str):
         """Save cases with source hash."""
-        data = MonthCases(month=month.to_string(), md5=source_md5, cases=cases)
-        self.save_month(month, data)
+        self.save_month(month, MonthCases(
+            month=month.to_string(),
+            md5=source_md5,
+            cases=cases,
+        ))
 
 
 class CategorizedQuestionsMonthStore(BaseMonthStore):
@@ -208,12 +176,13 @@ class CategorizedQuestionsMonthStore(BaseMonthStore):
     model_class = MonthCategorizedQuestions
 
     def save_with_source(self, month: Month, questions: list, source_md5: str):
-        """Save categorized questions with source hash."""
-        data = MonthCategorizedQuestions(month=month.to_string(), md5=source_md5, questions=questions)
-        self.save_month(month, data)
+        self.save_month(month, MonthCategorizedQuestions(
+            month=month.to_string(),
+            md5=source_md5,
+            questions=questions,
+        ))
 
     def get_unprocessed_months(self) -> list[Month]:
-        """Get months where questions need recategorization."""
         all_months = self.chat_store.questions.get_all_months()
         if not all_months:
             return []
@@ -223,16 +192,66 @@ class CategorizedQuestionsMonthStore(BaseMonthStore):
             questions_data = self.chat_store.questions.get_month(month)
             questions_md5 = questions_data.md5
 
-            month_file = self.dir_path / f'{month.to_string()}.yaml'
-            if not month_file.exists():
+            if not self.get_month_file(month).exists():
                 unprocessed.append(month)
                 continue
 
-            categorized_data = self.get_month(month)
-            if categorized_data.md5 != questions_md5:
+            if self.get_month(month).md5 != questions_md5:
                 unprocessed.append(month)
 
         return unprocessed
+
+
+class NormalizedFAQStore:
+    def __init__(self, chat_store: 'ChatStore'):
+        self.chat_store = chat_store
+        self._cache = {}
+
+    def get_category_file(self, category_slug: str) -> Path:
+        return self.chat_store.chat_dir / 'faq-normalized' / f'{category_slug}.yaml'
+
+    def save_category(self, category_slug: str, data: CategoryNormalizedQuestions):
+        self.chat_store.save_yaml(self.get_category_file(category_slug), data)
+
+    def load_category(self, category_slug: str) -> CategoryNormalizedQuestions:
+        if category_slug not in self._cache:
+            if self.get_category_file(category_slug).exists():
+                with self.get_category_file(category_slug).open(encoding='utf-8') as f:
+                    self._cache[category_slug] = CategoryNormalizedQuestions(**yaml.safe_load(f))
+            else:
+                self._cache[category_slug] = CategoryNormalizedQuestions(
+                    category_slug=category_slug,
+                    questions_text_md5='',
+                    questions=[],
+                )
+        return self._cache[category_slug]
+
+    def get_unprocessed_categories(self, faq_categories: list) -> list[str]:
+        return [
+            cat.slug for cat in faq_categories
+            if self.load_category(cat.slug).questions_text_md5 != self.compute_category_md5(cat.slug)
+        ]
+
+    def get_category_questions(self, category_slug: str) -> tuple[str, list[str]]:
+        all_questions = []
+        for month in self.chat_store.categorized_questions.get_all_months():
+            month_data = self.chat_store.categorized_questions.get_month(month)
+            all_questions.extend(
+                cat_q.question
+                for cat_q in month_data.questions
+                if cat_q.category_slug == category_slug and not cat_q.is_date_specific
+            )
+        return compute_text_hash(all_questions), sorted(set(all_questions))
+
+    def compute_category_md5(self, category_slug: str) -> str:
+        return self.get_category_questions(category_slug)[0]
+
+    def normalize_question(self, category_slug: str, question: str) -> str:
+        normalized = self.load_category(category_slug)
+        for norm_q in normalized.questions:
+            if question in norm_q.source_questions:
+                return norm_q.normalized_question
+        return question
 
 
 class ChatStore:
@@ -247,4 +266,15 @@ class ChatStore:
         self.questions = QuestionsMonthStore(self)
         self.cases = CasesMonthStore(self)
         self.categorized_questions = CategorizedQuestionsMonthStore(self)
+        self.normalized_faq = NormalizedFAQStore(self)
 
+    def save_yaml(self, file_path: Path, data: BaseModel):
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        with file_path.open('w', encoding='utf-8') as f:
+            yaml.dump(
+                data.model_dump(exclude_defaults=True),
+                f,
+                allow_unicode=True,
+                default_flow_style=False,
+                sort_keys=False,
+            )
