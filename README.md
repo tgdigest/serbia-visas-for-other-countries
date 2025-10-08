@@ -2,7 +2,9 @@
 
 Генератор базы знаний по получению виз из Сербии. Данные автоматически собираются из Telegram-чата [Serbia: visas for other countries](https://t.me/+fIZUn78R5SUzYjhi).
 
-🌐 **Сайт:** https://tgdigest.github.io/serbia-visas-for-other-countries/
+**Сайт:** https://tgdigest.github.io/serbia-visas-for-other-countries/
+
+**Вопросы, идеи, благодарности:** http://t.me/sdfsdhgjkbmnmxc
 
 ## Статистика строк кода
 
