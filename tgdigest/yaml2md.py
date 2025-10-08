@@ -102,10 +102,8 @@ class Yaml2Md:
         category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
         for weight, category in enumerate(self.config.faq_categories, start=1):
             if category.slug in grouped_by_category:
-                questions = sorted(grouped_by_category[category.slug], key=lambda q: q['question'])
-
                 by_letter = {}
-                for q in questions:
+                for q in sorted(grouped_by_category[category.slug], key=lambda q: q['question']):
                     letter = q['question'][0].upper()
                     by_letter.setdefault(letter, []).append(q)
 
@@ -139,6 +137,7 @@ class Yaml2Md:
                 'answers_with_links': [],
             })
             question_answers[normalized_question]['answers_with_links'].extend(answers_with_links)
+            question_answers[normalized_question]['answers_with_links'].sort(key=lambda a: a.month, reverse=True)
 
         for data in question_answers.values():
             grouped_by_category.setdefault(data.pop('category_slug'), []).append(data)

@@ -137,24 +137,23 @@ class QuestionsMonthStore(BaseMonthStore):
             res.extend(q for q in month_data.questions if q.answers)
         return res
 
-    def get_all_answers_for_question(self, question_text: str, chat) -> list:
-        all_answers = []
+    def get_all_answers_for_question(self, question_text: str, chat) -> list[ReferencedSummary]:
+        res = []
         for month in self.get_all_months():
-            month_data = self.get_month(month)
-            for q in month_data.questions:
-                if q.question == question_text:
-                    all_answers.extend(
-                        ReferencedSummary(
-                            text=answer.text,
-                            message_ids=answer.message_ids,
-                            sender=answer.sender,
-                            month=month,
-                            message_links=answer.get_message_links(chat),
-                        )
-                        for answer in q.answers
+            for q in self.get_month(month).questions:
+                if q.question != question_text:
+                    continue
+                res.extend(
+                    ReferencedSummary(
+                        text=answer.text,
+                        message_ids=answer.message_ids,
+                        sender=answer.sender,
+                        month=month,
+                        message_links=answer.get_message_links(chat),
                     )
-        all_answers.sort(key=lambda a: a.month, reverse=True)
-        return all_answers
+                    for answer in q.answers
+                )
+        return res
 
 
 class CasesMonthStore(BaseMonthStore):
