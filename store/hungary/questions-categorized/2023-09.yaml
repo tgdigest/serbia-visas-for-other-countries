@@ -9,6 +9,7 @@ questions:
 - question: Есть ли свободные слоты для записи в консульство Венгрии в Субботице на
     18-20 сентября?
   category_slug: appointment
+  is_date_specific: true
 - question: Имеет ли смысл подаваться на визу если боравак истекает через полтора
     месяца?
   category_slug: requirements
@@ -31,6 +32,7 @@ questions:
   category_slug: documents
 - question: Какие сейчас очереди на границе Сербия-Венгрия и проверяют ли брони отелей?
   category_slug: travel
+  is_date_specific: true
 - question: Какие требования к страховке для визы в Венгрию? Принимают ли страховку
     Тинькофф?
   category_slug: requirements
@@ -82,4 +84,4 @@ questions:
 - question: Сколько времени рассматривают визу в Венгрию?
   category_slug: process
 - question: Сколько должно быть денег на счету на двоих для визы в Венгрию?
-  category_slug: documents
+  category_slug: requirements

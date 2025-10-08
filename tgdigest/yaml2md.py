@@ -140,7 +140,12 @@ class Yaml2Md:
 
     def _group_by_category(self, categorized, question_map, chat):
         grouped_by_category = {}
+        question_answers = {}
+
         for cat_q in categorized.questions:
+            if cat_q.is_date_specific:
+                continue
+
             if cat_q.question not in question_map:
                 continue
 
@@ -161,9 +166,19 @@ class Yaml2Md:
                 for month, answer in all_answers
             ]
 
-            grouped_by_category.setdefault(cat_q.category_slug, []).append({
-                'question': cat_q.question,
-                'answers_with_links': answers_with_links,
+            if cat_q.question in question_answers:
+                question_answers[cat_q.question]['answers_with_links'].extend(answers_with_links)
+            else:
+                question_answers[cat_q.question] = {
+                    'question': cat_q.question,
+                    'category_slug': cat_q.category_slug,
+                    'answers_with_links': answers_with_links,
+                }
+
+        for q_data in question_answers.values():
+            grouped_by_category.setdefault(q_data['category_slug'], []).append({
+                'question': q_data['question'],
+                'answers_with_links': q_data['answers_with_links'],
             })
 
         return grouped_by_category

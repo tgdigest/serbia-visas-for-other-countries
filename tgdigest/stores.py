@@ -83,7 +83,7 @@ class BaseMonthStore:
         self.dir_path.mkdir(parents=True, exist_ok=True)
         month_file = self.dir_path / f'{month.to_string()}.yaml'
 
-        data_dict = data.model_dump() if isinstance(data, BaseModel) else data
+        data_dict = data.model_dump(exclude_defaults=True) if isinstance(data, BaseModel) else data
 
         with month_file.open('w', encoding='utf-8') as f:
             yaml.dump(

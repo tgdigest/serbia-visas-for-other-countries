@@ -157,11 +157,13 @@ class MonthCases(BaseModel):
 class CategorizedQuestionRaw(BaseModel):
     question_id: int
     category_slug: str
+    is_date_specific: bool
 
 
 class CategorizedQuestion(BaseModel):
     question: str
     category_slug: str
+    is_date_specific: bool = False
 
 
 class QuestionCategorizationResponse(BaseModel):
@@ -179,6 +181,7 @@ class QuestionCategorizationResponse(BaseModel):
             expanded.append(CategorizedQuestion(
                 question=question,
                 category_slug=q.category_slug,
+                is_date_specific=q.is_date_specific,
             ))
 
         return QuestionCategorizationResult(questions=expanded)
