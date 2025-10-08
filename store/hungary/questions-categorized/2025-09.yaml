@@ -1,0 +1,108 @@
+month: 2025-09
+md5: b6b44c2440e181856f44b53917e39676
+questions:
+- question: Всегда ли запрашивают чеки после поездки (report back form)?
+  category_slug: travel
+- question: Где можно оформить годовую страховку для визы и сколько она стоит?
+  category_slug: requirements
+- question: Дают ли визу по пятилетнему (небиометрическому) паспорту?
+  category_slug: requirements
+- question: Если при бронировании слота указал 2 человека, это значит что можно подаваться
+    вдвоем в один слот?
+  category_slug: appointment
+- question: Есть ли смысл подаваться на мультивизу при получении первой визы?
+  category_slug: visa-types
+- question: Как донести дополнительные документы в консульство Венгрии, если их запросили
+    после подачи?
+  category_slug: process
+- question: Как ловить слоты на семью из 4 человек?
+  category_slug: appointment
+- question: Какая оплата визового сбора в консульстве - наличные или карта?
+  category_slug: requirements
+- question: Какие документы нужны для подачи на визу по ИП?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу по найму в Суботице?
+  category_slug: documents
+- question: Какие документы нужны для подтверждения работы в сербском найме при подаче
+    на венгерскую визу?
+  category_slug: documents
+- question: Какие документы нужны для поездки на машине в Венгрию?
+  category_slug: documents
+- question: Какие требования к маршруту поездки для получения венгерской визы?
+  category_slug: requirements
+- question: Какие требования по доходу на ИП для получения венгерской визы?
+  category_slug: requirements
+- question: Какой остаток на счете нужен для поездки на 5-6 дней?
+  category_slug: requirements
+- question: Какой паспорт показывать на выезде из Сербии, если ВНЖ привязан к новому
+    паспорту, а виза в старом?
+  category_slug: travel
+- question: Когда появляются слоты на запись в консульство Венгрии?
+  category_slug: appointment
+- question: Можно ли въезжать в Чехию по венгерской визе С гражданам РФ?
+  category_slug: travel
+- question: Можно ли въезжать в другие страны Шенгена по венгерской визе или нужно
+    проводить больше времени в Венгрии?
+  category_slug: travel
+- question: Можно ли жителям Белграда подаваться в Суботице?
+  category_slug: process
+- question: Можно ли заполнить анкету на визу в бумажном виде или обязательно онлайн?
+  category_slug: documents
+- question: Можно ли менять билеты после получения визы?
+  category_slug: booking
+- question: Можно ли не оставлять паспорт при подаче документов на визу?
+  category_slug: process
+- question: Можно ли остаться в шенгене дольше запланированной первой поездки, если
+    дали мультивизу?
+  category_slug: travel
+- question: Можно ли подавать документы на визу без сербского банковского счета?
+  category_slug: documents
+- question: Можно ли подавать на визу с недавно открытым ИП (меньше месяца)?
+  category_slug: requirements
+- question: Можно ли подаваться на визу в Суботице, если ВНЖ получен в Белграде?
+  category_slug: process
+- question: Можно ли подаваться на визу сразу после получения ВНЖ?
+  category_slug: requirements
+- question: Можно ли показывать выписки из нескольких банков за пределами Сербии для
+    доказательства платежеспособности?
+  category_slug: documents
+- question: Можно ли показывать счета из иностранных банков вместо сербских при подаче
+    на визу?
+  category_slug: documents
+- question: Можно ли предоставлять билеты на автобус вместо авиабилетов для визы?
+  category_slug: booking
+- question: Нужна ли печать на выписке из банка или можно распечатать из приложения?
+  category_slug: documents
+- question: Нужна ли справка об отсутствии долгов по налогам для ИП?
+  category_slug: documents
+- question: Нужно ли брать ребенка с собой в консульство для подачи документов?
+  category_slug: process
+- question: Нужно ли заверять у нотариуса спонсорское письмо от мужа для получения
+    венгерской визы?
+  category_slug: documents
+- question: Нужно ли переводить документы на английский язык для подачи на визу?
+  category_slug: documents
+- question: Нужно ли предоставлять брони отелей для обеих поездок, если заявляешь
+    две поездки?
+  category_slug: booking
+- question: Нужно ли предоставлять договор аренды квартиры при подаче на визу?
+  category_slug: documents
+- question: Нужно ли уверение из МУПа при подаче на визу, если это первый ВНЖ карточкой?
+  category_slug: documents
+- question: Нужны ли оригиналы справок с работы или подойдут сканы?
+  category_slug: documents
+- question: Почему могут отказать в визе при хорошем финансовом положении?
+  category_slug: process
+- question: Сколько времени делают венгерскую визу?
+  category_slug: process
+- question: Сколько времени занимает прием документов в консульстве Венгрии?
+  category_slug: process
+- question: Что будет, если сильно изменить маршрут поездки и отменить отель в Венгрии
+    после получения визы?
+  category_slug: travel
+- question: Что делать, если не пришло письмо с подтверждением слота через 16 дней?
+  category_slug: appointment
+- question: Что делать, если отменили бронь отеля после получения визы?
+  category_slug: booking
+- question: Что делать, если слот отменился после подтверждения?
+  category_slug: appointment

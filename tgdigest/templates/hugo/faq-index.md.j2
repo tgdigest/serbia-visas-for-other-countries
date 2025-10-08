@@ -1,0 +1,12 @@
++++
+linkTitle = "FAQ"
+title = "Часто задаваемые вопросы"
+type = "docs"
+weight = 1
++++
+
+{% raw %}{{< cards >}}
+{% endraw %}{% for cat in categories %}
+  {% raw %}{{< card link="{% endraw %}{{ cat.slug }}{% raw %}" title="{% endraw %}{{ cat.title }}{% raw %}" subtitle="{% endraw %}{{ cat.description }}{% raw %}" >}}
+{% endraw %}{% endfor %}
+{% raw %}{{< /cards >}}{% endraw %}

@@ -1,0 +1,130 @@
+month: 2025-05
+md5: 55a47c5ce8d6f2241cd5dc13e3a11340
+questions:
+- question: В течение какого срока надо направить онлайн-анкету с документами после
+    того как поймал слот?
+  category_slug: process
+- question: В чем оплачивается пошлина на визу в посольстве - евро или динары?
+  category_slug: requirements
+- question: Во сколько приглашают за получением паспорта в Белграде?
+  category_slug: process
+- question: Есть ли требования к сроку свежести документов с работы?
+  category_slug: documents
+- question: Забирают ли все страницы трудового договора?
+  category_slug: documents
+- question: Как долго рассматривают заявку и сколько до получения визы в среднем?
+  category_slug: process
+- question: Как записаться на визу на двоих или на семью?
+  category_slug: appointment
+- question: Как заполнять онлайн форму на венгерскую визу, если планируется менять
+    отели по ходу путешествия?
+  category_slug: documents
+- question: Как заполнять поле Type of public place в онлайн-анкете для адреса в Венгрии?
+  category_slug: documents
+- question: Как подготовить пакет документов если подаются два супруга, один из которых
+    по спонсорству?
+  category_slug: documents
+- question: Какие документы из банка нужно подавать - все три варианта или достаточно
+    одного?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу по ИП?
+  category_slug: documents
+- question: Какие правила использования мультивизы у венгров чтобы потом еще раз дали
+    визу?
+  category_slug: visa-types
+- question: Какой номер боравака указывать в анкете - reg number или identity number?
+  category_slug: documents
+- question: Какой оборот надо показать по ИП и за какой срок? Реально ли получить
+    визу с ИП-нулевкой?
+  category_slug: documents
+- question: Когда выкладывают слоты в Суботице?
+  category_slug: appointment
+- question: Когда выкладывают слоты на запись в консульство в Белграде?
+  category_slug: appointment
+- question: Можно ли выехать в Австрию на пару дней по венгерской визе если это первый
+    шенген?
+  category_slug: travel
+- question: Можно ли изменить дату второй поездки в пределах срока визы?
+  category_slug: travel
+- question: Можно ли лететь с венгерским шенгеном из Белграда в другой город Европы
+    (не Будапешт)?
+  category_slug: travel
+- question: Можно ли менять адрес прописки с Белграда на Суботицу для подачи документов
+    в Суботице?
+  category_slug: process
+- question: Можно ли не предоставлять поступления по работе официальной, а лишь остаток
+    на счету?
+  category_slug: documents
+- question: Можно ли не прикреплять сканы документов при заполнении онлайн-анкеты?
+  category_slug: documents
+- question: Можно ли отменять или менять брони отелей после получения визы?
+  category_slug: booking
+- question: Можно ли оформить визу без договора аренды квартиры?
+  category_slug: requirements
+- question: Можно ли подавать документы на несколько поездок с промежутком более 3
+    месяцев?
+  category_slug: visa-types
+- question: Можно ли подаваться на визу в Венгрию через визацентр VFS?
+  category_slug: process
+- question: Можно ли подать документы на венгерскую визу после того как сербский ВНЖ
+    approved, но пластиковая карта еще не готова?
+  category_slug: requirements
+- question: Можно ли подать на визу указав что на пару дней в Италию поедем кроме
+    Венгрии?
+  category_slug: documents
+- question: Можно ли получить визу с российским ИП и доходом там же, но с сербским
+    ВНЖ?
+  category_slug: requirements
+- question: Можно ли попросить в консульстве справку о том, что забрали паспорта?
+  category_slug: process
+- question: Можно ли проживая в Белграде подаваться на визу в Суботице?
+  category_slug: process
+- question: Можно ли рассчитывать на мультивизу если было около 6 виз по другим странам?
+  category_slug: visa-types
+- question: Можно ли с венгерским номадом перемещаться по шенгенской зоне?
+  category_slug: travel
+- question: Можно ли скреплять документы степлером?
+  category_slug: documents
+- question: Можно ли снять евро в банкомате в Венгрии?
+  category_slug: travel
+- question: Можно ли указать в маршруте Чехию если паспорт РФ?
+  category_slug: documents
+- question: Нужно ли на детей прикладывать финансовые документы?
+  category_slug: documents
+- question: Нужно ли переводить документы на венгерский язык или достаточно перевода
+    на английский?
+  category_slug: documents
+- question: Нужно ли предоставлять копии паспорта и фото при подаче?
+  category_slug: documents
+- question: Обязательно ли оплачивать жилье или достаточно брони без оплаты?
+  category_slug: booking
+- question: Одобрят ли венгры визу если маршрут включает несколько стран и в Венгрии
+    не большинство дней?
+  category_slug: visa-types
+- question: Одобряют ли венгры визу в пустой паспорт без визовой истории?
+  category_slug: visa-types
+- question: Отражается ли слот в личном кабинете на сайте?
+  category_slug: appointment
+- question: Подойдет ли доход вне Сербии (в том числе в РФ) для получения визы?
+  category_slug: documents
+- question: Принимают ли брони с Airbnb или только с Booking?
+  category_slug: booking
+- question: Принимают ли с небиометрическим паспортом?
+  category_slug: requirements
+- question: Принимают ли фото с серым фоном?
+  category_slug: requirements
+- question: Приходит ли письмо с просьбой подтвердить свой визит перед подачей?
+  category_slug: appointment
+- question: Сколько в среднем лучше показать денег на счете для первого шенгена?
+  category_slug: documents
+- question: Сколько по времени рассматривают заявление на визу до выдачи паспортов?
+  category_slug: process
+- question: Сколько стоит консульский сбор и можно ли оплатить картой?
+  category_slug: requirements
+- question: Что значит certificate of the accountant для ИП?
+  category_slug: documents
+- question: 'Что лучше указывать в анкете: работу дистанционно в РФ как источник дохода
+    или статус безработного с суммами на счёте?'
+  category_slug: documents
+- question: Что указывать в пункте details of travel document - ordinary или special?
+  category_slug: documents

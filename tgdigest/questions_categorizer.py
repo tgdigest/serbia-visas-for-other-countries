@@ -32,7 +32,7 @@ class QuestionsCategorizer:
                 break
 
             month_data = store.questions.get_month(month)
-            month_questions = [q.question for q in month_data.questions if q.answers]
+            month_questions = [q.question for q in month_data.questions]
 
             if not month_questions:
                 continue

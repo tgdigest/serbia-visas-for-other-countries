@@ -1,0 +1,75 @@
+month: 2025-02
+md5: f901f632c4a873599a9fa32cecc0ae8e
+questions:
+- question: Берут ли консульский сбор за детей до 6 лет?
+  category_slug: requirements
+- question: Дают ли венгры мультивизу на первую подачу?
+  category_slug: visa-types
+- question: Как венгры проверяют, сколько дней проведено в Венгрии?
+  category_slug: visa-types
+- question: Как заполнить анкету на визу - онлайн или на бумаге?
+  category_slug: documents
+- question: Как не попасть в бан при проверке слотов?
+  category_slug: appointment
+- question: Как оплачивать визовый сбор в консульстве?
+  category_slug: requirements
+- question: Как подать апелляцию в Суботице?
+  category_slug: process
+- question: Как часто выкладывают слоты на запись в консульство Венгрии?
+  category_slug: appointment
+- question: Как часто появляются слоты на визу D?
+  category_slug: appointment
+- question: Какие документы нужны для подачи на венгерскую визу в Сербии?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу D (рабочую)?
+  category_slug: documents
+- question: Какие документы нужны от спонсора при подаче на визу?
+  category_slug: documents
+- question: Какое покрытие должно быть у страховки для венгерской визы?
+  category_slug: requirements
+- question: Какой номер ВНЖ нужно указывать при бронировании слота?
+  category_slug: appointment
+- question: Можно ли въехать в Венгрию через Хорватию, если виза венгерская?
+  category_slug: travel
+- question: Можно ли использовать сербскую здравственну картицу вместо платной страховки?
+  category_slug: requirements
+- question: Можно ли использовать старое уверенье о боравке из МУПа?
+  category_slug: documents
+- question: Можно ли купить билеты на электричку Суботица-Сегед заранее?
+  category_slug: travel
+- question: Можно ли подавать на визу C и D параллельно?
+  category_slug: visa-types
+- question: Можно ли подаваться на венгерскую визу из России по доверенности?
+  category_slug: process
+- question: Можно ли подаваться на визу в Суботице, если живешь в Белграде?
+  category_slug: process
+- question: Можно ли экономить дни мультивизы, переезжая границу сразу после полуночи?
+  category_slug: travel
+- question: Нужен ли перевод внутреннего паспорта России для визы в Венгрию?
+  category_slug: documents
+- question: Нужен ли перевод документов с сербского языка для венгерской визы?
+  category_slug: documents
+- question: Нужна ли выписка из банка с движением средств или достаточно просто положить
+    деньги на счет перед подачей?
+  category_slug: documents
+- question: Нужна ли галочка в последнем пункте при заполнении анкеты на обычную визу?
+  category_slug: documents
+- question: Нужно ли покупать страховку на весь период мультивизы или достаточно под
+    первую поездку?
+  category_slug: requirements
+- question: Нужно ли согласие второго родителя для поездки ребенка с одним родителем?
+  category_slug: documents
+- question: Нужно ли уведомлять посольство об изменении броней после получения визы?
+  category_slug: booking
+- question: Нужны ли полностью оплаченные брони отелей для венгерской визы?
+  category_slug: booking
+- question: Реально ли поймать слоты на семью из 3-4 человек?
+  category_slug: appointment
+- question: Сколько времени занимает прохождение границы на автобусе до Будапешта?
+  category_slug: travel
+- question: Сколько времени рассматривают документы на визу в Суботице?
+  category_slug: process
+- question: Сколько стоят услуги помогаторов по оформлению визы?
+  category_slug: requirements
+- question: Что делать если в документах от CORSO неправильная буква в фамилии?
+  category_slug: documents

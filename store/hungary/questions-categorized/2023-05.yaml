@@ -1,0 +1,96 @@
+month: 2023-05
+md5: 2ecb290f4de3977c79746651efa0855e
+questions:
+- question: Дают ли венгры мультивизы или только под даты поездки?
+  category_slug: visa-types
+- question: За сколько дней сейчас делают шенген визу в Венгрию в среднем?
+  category_slug: process
+- question: Забирают ли паспорт при подаче документов на визу?
+  category_slug: process
+- question: Как записаться на визу в Суботицу?
+  category_slug: appointment
+- question: Как написать cover letter для турвизы в Венгрию?
+  category_slug: documents
+- question: Как часто открываются новые слоты для записи на визу в Белграде?
+  category_slug: appointment
+- question: Какие вопросы задают на собеседовании в венгерском консульстве?
+  category_slug: process
+- question: Какие документы нужны для подачи на визу ребенку для поездки с классом?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу с ВНЖ по работе?
+  category_slug: documents
+- question: Какие документы нужны для подачи на краткосрочную визу в Венгрию для пары
+    на своей машине с ВНЖ по учебе в Сербии?
+  category_slug: documents
+- question: Какова вероятность получить визу на 20 дней с поездкой по нескольким странам
+    (Словакия, Австрия, Венгрия)?
+  category_slug: visa-types
+- question: 'Какой размер фото нужен для визы: 3х4 или 3,5х4,5?'
+  category_slug: requirements
+- question: Какую страховку нужно делать для венгерской визы? Подходят ли российские
+    страховки (Альфа, Тинькофф)?
+  category_slug: requirements
+- question: Когда открываются новые слоты на запись в июль?
+  category_slug: appointment
+- question: Можно ли взять с собой переводчика на подачу документов в венгерское консульство?
+  category_slug: process
+- question: Можно ли забрать паспорт после назначенной даты или в первой половине
+    дня?
+  category_slug: process
+- question: Можно ли подавать выписку с динарского счета в консульство?
+  category_slug: documents
+- question: Можно ли подаваться на визу с выпиской со счета, которому меньше 3 месяцев?
+  category_slug: documents
+- question: Можно ли подаваться на визу, если ВНЖ истекает менее чем через 3 месяца?
+  category_slug: requirements
+- question: Можно ли подаваться на шенген, если сделал боровак примерно месяц назад?
+  category_slug: requirements
+- question: Можно ли получить визу с новым ИП без оборотов, если есть ВНЖ и достаточно
+    средств на личном счету?
+  category_slug: documents
+- question: Можно ли с венгерской визой выезжать в соседние страны (Австрию, Словакию)?
+  category_slug: travel
+- question: На каком языке общаются в венгерском консульстве при подаче документов?
+  category_slug: process
+- question: Нужен ли белый картон при подаче на визу, если уже есть ВНЖ?
+  category_slug: documents
+- question: Нужен ли план поездки при подаче документов?
+  category_slug: documents
+- question: Нужна ли выписка из APR для визы по ИП? Обязательно ли с синей печатью
+    или достаточно распечатки?
+  category_slug: documents
+- question: Нужна ли выписка с движением средств на английском языке или достаточно
+    на сербском?
+  category_slug: documents
+- question: Нужно ли делать копии всех шенгенов из предыдущих паспортов?
+  category_slug: documents
+- question: Нужно ли оплачивать брони отелей и билеты при подаче на визу?
+  category_slug: booking
+- question: Нужно ли оповещать консульство, если после получения визы решил изменить
+    вид транспорта (например, вместо автобуса лететь на самолете)?
+  category_slug: travel
+- question: Нужно ли переводить документы для визы? На какой язык?
+  category_slug: documents
+- question: Нужно ли приносить доказательство зарплаты при подаче на визу с ВНЖ по
+    недвижимости (работа удаленная в России)?
+  category_slug: documents
+- question: Обязательно ли предоставлять документ об отпуске при подаче на визу?
+  category_slug: documents
+- question: По какой причине могут отказать в визе при наличии ВНЖ по обучению?
+  category_slug: visa-types
+- question: Сколько стоит консульский сбор и как его оплачивать?
+  category_slug: requirements
+- question: 'Что выбирать при записи на визу: Visa application (short term; schengen
+    -C) или Appeal (schengen visa)?'
+  category_slug: appointment
+- question: Что делать после возвращения из поездки по венгерской визе?
+  category_slug: travel
+- question: Что делать, если сайт для записи не открывается или показывает пустую
+    страницу?
+  category_slug: appointment
+- question: Что значит однократный въезд по венгерской визе? Можно ли с однократной
+    визой заехать в Венгрию, потом слетать через Испанию в Португалию и вернуться
+    обратно в Венгрию?
+  category_slug: travel
+- question: Что такое уверенье о бороваку и как его получить?
+  category_slug: documents

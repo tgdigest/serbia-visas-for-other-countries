@@ -1,0 +1,97 @@
+month: 2023-01
+md5: 58c0cdd170da3c61f790d37da840f4a8
+questions:
+- question: В каком виде нужно предоставлять свидетельство о браке?
+  category_slug: documents
+- question: Влияют ли визы, полученные в России, на получение визы в Сербии?
+  category_slug: requirements
+- question: Возвратные ли билеты на Flix Bus?
+  category_slug: booking
+- question: Где заполнять анкету на визу - от руки или можно в электронном виде?
+  category_slug: process
+- question: Дают ли венгры мультивизы или только под даты поездки?
+  category_slug: visa-types
+- question: За какой максимальный срок до поездки можно подавать на туристический
+    шенген?
+  category_slug: visa-types
+- question: За какой минимальный срок до поездки нужно подавать документы на визу?
+  category_slug: process
+- question: Как записаться на подачу документов в консульство Венгрии?
+  category_slug: appointment
+- question: Как записаться на подачу документов семьей?
+  category_slug: appointment
+- question: Как оформить спонсорское письмо для супруга/супруги?
+  category_slug: documents
+- question: Какая справка о движении средств нужна - короткая или развернутая выписка?
+  category_slug: documents
+- question: Какая стоимость визы в Венгрию для граждан России?
+  category_slug: requirements
+- question: Какие документы нужно предоставить при подаче на визу в Венгрию?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу с ВНЖ по ИП?
+  category_slug: documents
+- question: Какие документы нужны для поездки на арендованной машине?
+  category_slug: documents
+- question: Какие документы нужны для поездки на машине с сербами в качестве пассажира?
+  category_slug: documents
+- question: Какие документы нужны от работодателя для получения визы?
+  category_slug: documents
+- question: Какой номер нужно вводить при записи на подачу документов - Personal num
+    или номер с буквой A?
+  category_slug: appointment
+- question: Какой опыт подачи документов на визу с полным пакетом?
+  category_slug: process
+- question: Какой размер фотографии нужен для визы?
+  category_slug: requirements
+- question: Какую страховку принимают для визы?
+  category_slug: requirements
+- question: Какую сумму денег нужно показать на счете для получения визы?
+  category_slug: requirements
+- question: Может ли венгерская виза ограничивать въезд только в Венгрию?
+  category_slug: visa-types
+- question: Можно ли въезжать в Шенген не через страну, выдавшую визу?
+  category_slug: travel
+- question: Можно ли лететь напрямую в Германию по венгерской визе из Сербии?
+  category_slug: travel
+- question: Можно ли оставить паспорт себе на период рассмотрения документов?
+  category_slug: process
+- question: Можно ли подавать документы на визу с российскими документами о работе
+    и выписками из российских банков при наличии ВНЖ по ИП?
+  category_slug: documents
+- question: Можно ли подаваться на визу с размещением у друзей, а не в отеле?
+  category_slug: booking
+- question: Можно ли подаваться на визу сразу после получения ВНЖ или нужно ждать?
+  category_slug: requirements
+- question: Можно ли подаваться на транзитную визу Венгрии с белым картоном без ВНЖ?
+  category_slug: requirements
+- question: Можно ли подать документы на визу с маршрутом через несколько стран, если
+    в Венгрии будет меньше дней?
+  category_slug: visa-types
+- question: Можно ли подать документы на визу, если ВНЖ заканчивается менее чем через
+    3 месяца после планируемой поездки?
+  category_slug: requirements
+- question: Можно ли получить венгерскую визу для поездки в несколько стран Шенгена?
+  category_slug: visa-types
+- question: Можно ли получить венгерскую визу для транзита в Россию через Польшу?
+  category_slug: visa-types
+- question: Нужен ли оригинал договора аренды жилья в Сербии или достаточно копии?
+  category_slug: documents
+- question: Нужна ли отдельная анкета на ребенка при подаче на визу?
+  category_slug: documents
+- question: Нужно ли оплачивать бронирование отеля с Booking.com или достаточно бесплатной
+    брони с возможностью отмены?
+  category_slug: booking
+- question: Нужно ли получать разрешение полиции для въезда в Венгрию?
+  category_slug: requirements
+- question: Нужно ли предварительно отправлять документы или заполнять форму перед
+    визитом в посольство?
+  category_slug: process
+- question: Сколько времени занимает прохождение границы Сербия-Венгрия на автобусе?
+  category_slug: travel
+- question: Сколько времени занимает прохождение границы Сербия-Венгрия на машине?
+  category_slug: travel
+- question: Что делать если виза заканчивается в день выезда и есть риск задержки
+    на границе?
+  category_slug: travel
+- question: Что такое white card и как ее получить?
+  category_slug: requirements

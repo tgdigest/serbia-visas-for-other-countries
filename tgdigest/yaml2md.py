@@ -89,10 +89,22 @@ class Yaml2Md:
 
         grouped_by_category = self._group_by_category(categorized, question_map, chat)
 
-        template = self.jinja_env.get_template('hugo/faq.md.j2')
-        self._save(self.output_dir / chat.slug / 'faq.md', template.render(
-            groups=sorted(grouped_by_category.items()),
-        ))
+        index_template = self.jinja_env.get_template('hugo/faq-index.md.j2')
+        self._save(
+            self.output_dir / chat.slug / 'faq' / '_index.md',
+            index_template.render(categories=self.config.faq_categories),
+        )
+
+        category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
+        for cat in self.config.faq_categories:
+            if cat.slug in grouped_by_category:
+                self._save(
+                    self.output_dir / chat.slug / 'faq' / f'{cat.slug}.md',
+                    category_template.render(
+                        category=cat,
+                        questions=grouped_by_category[cat.slug],
+                    ),
+                )
 
     def _build_question_map(self, store: ChatStore):
         question_map = {}
@@ -110,8 +122,7 @@ class Yaml2Md:
         grouped_by_category = {}
         for cat_q in categorized.questions:
             if cat_q.question not in question_map:
-                msg = f'Question not found in map: {cat_q.question}'
-                raise ValueError(msg)
+                continue
 
             all_answers = []
             for month, q in question_map[cat_q.question]:

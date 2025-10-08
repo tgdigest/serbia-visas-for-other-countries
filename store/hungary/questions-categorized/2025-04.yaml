@@ -1,0 +1,212 @@
+month: 2025-04
+md5: fa608a4e276e4d5d1677a2a1e59a0aed
+questions:
+- question: Берут ли отпечатки пальцев на границе с Венгрией?
+  category_slug: travel
+- question: Где взять подтверждение оплаты с Booking?
+  category_slug: booking
+- question: Где купить билеты на венгерские железные дороги?
+  category_slug: travel
+- question: Где можно запросить свежую выписку из АПР (Агенция за привредне регистре)?
+  category_slug: documents
+- question: Должна ли быть оплачена бронь жилья на 30 дней для White Card?
+  category_slug: booking
+- question: Есть ли у Венгрии правило о минимальном сроке действия сербского ВНЖ для
+    подачи на визу?
+  category_slug: requirements
+- question: За сколько времени до подачи нужно брать выписку со счета?
+  category_slug: documents
+- question: Как быстро разбирают слоты после выкладки?
+  category_slug: appointment
+- question: Как записаться на визу семьей - нужно регистрировать каждого члена семьи
+    отдельно?
+  category_slug: appointment
+- question: Как использовать автозаполнение для ловли слотов?
+  category_slug: appointment
+- question: Как оплачивать визовый сбор?
+  category_slug: requirements
+- question: Как подтвердить ВНЖ при подаче на визу?
+  category_slug: documents
+- question: Как сейчас записываться на визу в Суботице?
+  category_slug: appointment
+- question: Как часто нужно проверять наличие слотов?
+  category_slug: appointment
+- question: Какая пошлина за визу в Венгрию?
+  category_slug: requirements
+- question: Какая страховка требуется для поездки в Венгрию?
+  category_slug: requirements
+- question: Какие автобусы ходят из Будапешта в Суботицу?
+  category_slug: travel
+- question: Какие документы на машину нужны при подаче на визу, если едете на своей
+    машине с сербскими номерами?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу при работе в сербской компании?
+  category_slug: documents
+- question: Какие документы нужны для подачи на визу с ВНЖ по недвижимости и удаленной
+    работой?
+  category_slug: documents
+- question: Какие документы нужны для получения паспорта с визой?
+  category_slug: process
+- question: Какие последствия отмены брони или изменения маршрута после получения
+    визы?
+  category_slug: booking
+- question: Какие рекомендации дает венгерский консул по подаче на визу?
+  category_slug: process
+- question: Какие справки от работодателя нужны при подаче на визу?
+  category_slug: documents
+- question: Какие требования к фото на визу?
+  category_slug: requirements
+- question: Какой номер ВНЖ указывать в анкете - Reg. broj или EBS?
+  category_slug: documents
+- question: Какой срок годности у справок из банка для подачи на визу?
+  category_slug: documents
+- question: Какой тип визы выбрать, если планируется 4 дня в Венгрии и 2 дня в Австрии?
+  category_slug: visa-types
+- question: Когда выкладывают слоты на запись в консульство?
+  category_slug: appointment
+- question: Когда ожидать выкладку слотов в мае 2025?
+  category_slug: appointment
+- question: Можно ли для White Card показывать доход с разных мест работы за последние
+    6 месяцев?
+  category_slug: documents
+- question: Можно ли ехать в Венгрию на автобусе или лучше на поезде?
+  category_slug: travel
+- question: Можно ли использовать боты для ловли слотов?
+  category_slug: appointment
+- question: Можно ли менять данные человека в забронированном слоте?
+  category_slug: appointment
+- question: Можно ли подавать заявку на визу на сентябрь заранее, учитывая сложности
+    со слотами?
+  category_slug: appointment
+- question: Можно ли подаваться в Белграде, если живешь в Нови Саде?
+  category_slug: process
+- question: Можно ли подаваться в Суботице, если живешь в Белграде?
+  category_slug: process
+- question: Можно ли подаваться на White Card без ВНЖ в Сербии?
+  category_slug: requirements
+- question: Можно ли подаваться на визу в Венгрию из России?
+  category_slug: process
+- question: Можно ли подаваться на визу через Венгрию, если первая поездка в другую
+    страну?
+  category_slug: visa-types
+- question: Можно ли подать на визу с ВНЖ по недвижимости и работой на российскую
+    компанию?
+  category_slug: requirements
+- question: Можно ли подать на визу с работой в российской компании без трудоустройства
+    в Сербии?
+  category_slug: requirements
+- question: Можно ли подать на визу, если ВНЖ по фирме-нулевке, а деньги получаю в
+    крипте?
+  category_slug: requirements
+- question: Можно ли податься по доверенности в Белграде?
+  category_slug: process
+- question: Можно ли получить визу White Card (Digital Nomad) в Венгрии?
+  category_slug: visa-types
+- question: Можно ли получить визу на несовершеннолетнего без родителей?
+  category_slug: process
+- question: Можно ли получить визу с ВНЖ по воссоединению семьи без работы?
+  category_slug: requirements
+- question: Можно ли поменяться слотами с другим человеком?
+  category_slug: appointment
+- question: Можно ли применить стратегию 'безопасного запроса' при подаче на венгерскую
+    визу - указать Multiple entries, но в письме написать, что готов принять однократную?
+  category_slug: visa-types
+- question: Можно ли пытаться поймать слот и в Белграде, и в Суботице одновременно?
+    Где шансов больше?
+  category_slug: appointment
+- question: Нужен ли извод (выписка из АПР) для визы, если есть решение о регистрации
+    ИП?
+  category_slug: documents
+- question: Нужен ли план поездки (travel plan) при подаче на визу?
+  category_slug: documents
+- question: Нужен ли план поездки на отдельном листе?
+  category_slug: documents
+- question: Нужен ли школьный контракт при подаче на визу для ребенка?
+  category_slug: documents
+- question: Нужна ли долгосрочная аренда для White Card в Венгрии?
+  category_slug: requirements
+- question: Нужна ли зеленая карта (green card) для поездки в Венгрию на сербской
+    машине?
+  category_slug: travel
+- question: Нужна ли справка CROSO при подаче на визу?
+  category_slug: documents
+- question: Нужна ли страховка из российской компании?
+  category_slug: requirements
+- question: Нужно ли досылать документы после подачи, если консульство запросило?
+  category_slug: process
+- question: Нужно ли заверять копии документов при подаче на визу?
+  category_slug: documents
+- question: Нужно ли записываться на получение паспорта после одобрения визы?
+  category_slug: process
+- question: Нужно ли оплачивать бронь на Booking при подаче на визу?
+  category_slug: booking
+- question: Нужно ли отдавать паспорт на весь срок рассмотрения визы D?
+  category_slug: process
+- question: Нужно ли переводить документы при подаче на визу?
+  category_slug: documents
+- question: Нужно ли переводить и заверять свидетельства о браке и рождении для подачи
+    на визу семьей?
+  category_slug: documents
+- question: Нужно ли подтверждать бронь слота за 3 дня до подачи?
+  category_slug: appointment
+- question: Нужно ли прикладывать документы онлайн при заполнении анкеты?
+  category_slug: process
+- question: Нужно ли присутствие обоих супругов при подаче на визу, если биометрия
+    уже сдана?
+  category_slug: process
+- question: Нужно ли свидетельство о рождении для взрослых при подаче на визу?
+  category_slug: documents
+- question: Нужно ли уведомлять о наличии нового паспорта при получении визы D?
+  category_slug: process
+- question: Нужны ли белые картоны при подаче на визу?
+  category_slug: documents
+- question: Нужны ли копии паспортов членов семьи, если им не нужна виза?
+  category_slug: documents
+- question: Обязательно ли оплачивать бронь на Booking?
+  category_slug: booking
+- question: Почему не делают нормальную очередь на запись вместо системы со слотами?
+  category_slug: appointment
+- question: Почему отменяют слоты в Суботице для жителей Белграда?
+  category_slug: appointment
+- question: Принимают ли брони с Airbnb в консульстве Венгрии?
+  category_slug: booking
+- question: Принимают ли выписки со счетов из российских банков?
+  category_slug: documents
+- question: Реально ли поймать слот на визу?
+  category_slug: appointment
+- question: Сколько времени занимает ловля слота на запись в венгерское консульство?
+  category_slug: appointment
+- question: Сколько времени занимает прохождение границы Хоргош 1?
+  category_slug: travel
+- question: Сколько времени обрабатывается заявление на визу в Белграде?
+  category_slug: process
+- question: Сколько дней должно быть в Венгрии при поездке в несколько стран?
+  category_slug: travel
+- question: Сколько фотографий нужно для подачи на визу?
+  category_slug: requirements
+- question: Через какой пограничный пункт лучше въезжать в Венгрию из Сербии?
+  category_slug: travel
+- question: Что делать, если в консульстве отказались ставить визу в новый паспорт,
+    сославшись на регистрацию по старому?
+  category_slug: process
+- question: Что делать, если нет слотов для получения паспорта в Суботице?
+  category_slug: process
+- question: Что делать, если отменили бронь жилья после получения визы?
+  category_slug: booking
+- question: Что делать, если попросили сдать отпечатки пальцев, хотя сдавал недавно?
+  category_slug: process
+- question: Что делать, если работаешь не на сербского работодателя?
+  category_slug: requirements
+- question: Что писать в новом поле 'Residential community in Serbia' при заполнении
+    анкеты?
+  category_slug: process
+- question: Что писать в поле 'Type of public place' при заполнении анкеты?
+  category_slug: process
+- question: Что такое 'нецелевое использование' визы по мнению венгерского консула?
+  category_slug: visa-types
+- question: Что указывать в поле 'Serbian residence permit number and validity' в
+    анкете?
+  category_slug: process
+- question: Что указывать в поле 'государственный идентификационный номер' при заполнении
+    анкеты?
+  category_slug: process

@@ -1,0 +1,93 @@
+month: 2025-01
+md5: 99dff37d788065ce3f2374aaac91d29a
+questions:
+- question: Как быстро разбирают слоты после их появления?
+  category_slug: appointment
+- question: Как записаться на подачу документов семьей в Суботице?
+  category_slug: appointment
+- question: Как заполнять анкету на несколько поездок?
+  category_slug: documents
+- question: Как часто можно проверять слоты на сайте, чтобы не заблокировали?
+  category_slug: appointment
+- question: Какие документы нужны для подачи на туристическую визу в Венгрию?
+  category_slug: documents
+- question: Какие документы нужны для поездки в Венгрию на машине?
+  category_slug: documents
+- question: Какие сроки по ВНЖ должны быть для подачи на шенген в Венгрию?
+  category_slug: requirements
+- question: Какие страницы паспорта нужно копировать для подачи на визу?
+  category_slug: documents
+- question: Какое впечатление от консульства Венгрии в Белграде?
+  category_slug: process
+- question: Какой визовый сбор и как его оплатить?
+  category_slug: requirements
+- question: Какой минимальный баланс на счету нужен для одобрения визы?
+  category_slug: requirements
+- question: Какой примерно срок получения слота на подачу на визу в Белграде (от запроса
+    до даты подачи)?
+  category_slug: appointment
+- question: Когда обычно выкладывают новые слоты на запись?
+  category_slug: appointment
+- question: Можно ли въехать в Венгрию на машине с российскими номерами и потом вернуться
+    обратно в Сербию?
+  category_slug: travel
+- question: Можно ли ездить в Венгрию на своем авто с российскими правами?
+  category_slug: travel
+- question: Можно ли изменить вид транспорта после получения визы (например, с автобуса
+    на поезд)?
+  category_slug: travel
+- question: Можно ли оставить паспорт у себя до вынесения решения по визе?
+  category_slug: process
+- question: Можно ли подаваться на визу в Суботице, если боравак получен в другом
+    городе (например, Нови Саде)?
+  category_slug: process
+- question: Можно ли подаваться на визу с планом поездки в несколько стран Шенгена?
+  category_slug: visa-types
+- question: Можно ли подаваться на визу с трудовым договором на part time (частичную
+    занятость)?
+  category_slug: requirements
+- question: Можно ли подаваться на визу, если ВНЖ заканчивается через несколько месяцев?
+  category_slug: requirements
+- question: Можно ли подаваться на туристическую визу в Венгрию без ВНЖ Сербии?
+  category_slug: requirements
+- question: Можно ли подать на визу в паспорт без налепницы, если есть пластиковая
+    ID карта ВНЖ?
+  category_slug: requirements
+- question: Можно ли подать на визу с паспортом без биометрии (старого образца)?
+  category_slug: requirements
+- question: Можно ли получить визу без работы, но с деньгами на счету?
+  category_slug: requirements
+- question: Можно ли проходить подачу документов на визу вместе, если муж с женой?
+  category_slug: process
+- question: На какой срок дают туристическую визу в Венгрию?
+  category_slug: visa-types
+- question: Нужна ли страховка для подачи на визу и на какую сумму?
+  category_slug: requirements
+- question: Нужно ли апостилировать свидетельство о рождении для подачи на визу?
+  category_slug: documents
+- question: Нужно ли детям до 12 лет присутствовать при подаче документов?
+  category_slug: process
+- question: Нужно ли заполнять анкету онлайн или можно принести заполненную бумажную?
+  category_slug: documents
+- question: Нужно ли младенцу (меньше 1 года) собирать все документы для визы?
+  category_slug: documents
+- question: Нужно ли оплачивать жилье для подачи на визу или достаточно брони?
+  category_slug: booking
+- question: Нужно ли переводить документы на венгерский язык?
+  category_slug: documents
+- question: Нужно ли подтверждать слот после того, как его поймал?
+  category_slug: appointment
+- question: Нужно ли получать новую справку CROSO, если есть справка, полученная в
+    сентябре, а на работе ничего не менялось?
+  category_slug: documents
+- question: Нужно ли указывать количество въездов в анкете, если планируется поездка
+    в Венгрию и затем в другую страну Шенгена?
+  category_slug: documents
+- question: Сколько времени занимает прохождение границы Сербия-Венгрия на машине?
+  category_slug: travel
+- question: Сколько времени занимает рассмотрение визы после подачи документов?
+  category_slug: process
+- question: Сколько примерно требуется евро в день на счету для одобрения визы?
+  category_slug: requirements
+- question: Что такое 'виза шоппинг' и почему по этой причине могут отказать?
+  category_slug: visa-types

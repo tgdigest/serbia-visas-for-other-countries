@@ -1,0 +1,58 @@
+month: 2025-10
+md5: fa7744f989a977233e503ca56038a130
+questions:
+- question: Венгры выдают визы только под даты поездки или дают мультивизы?
+  category_slug: visa-types
+- question: Должны ли все брони быть оплаченными при подаче на визу?
+  category_slug: booking
+- question: Если слот на подачу завтра, придет ли второе подтверждающее письмо автоматически?
+  category_slug: appointment
+- question: Есть ли шанс получить визу на 2 поездки, если по второй поездке не прикладывать
+    брони?
+  category_slug: visa-types
+- question: Как быстро разлетаются слоты после появления?
+  category_slug: appointment
+- question: Как долго можно ждать ответа по решению о визе?
+  category_slug: process
+- question: Как ловить слот на запись на ВНЖ Венгрии в Белграде? Есть ли методика
+    или личный опыт?
+  category_slug: appointment
+- question: Какие документы дают после подачи в консульстве?
+  category_slug: process
+- question: Какие документы требуются для туристической визы для студентов (не работающих)?
+  category_slug: documents
+- question: Какое время доступно для записи на забор паспорта с визой в Суботице?
+  category_slug: appointment
+- question: Может ли быть заполнено 2 анкеты с одного личного кабинета для двух людей?
+  category_slug: process
+- question: Может ли ребенок до года подаваться на венгерский шенген с 5-летним загранпаспортом?
+  category_slug: requirements
+- question: Можно ли анкету распечатать и вручную заполнить?
+  category_slug: documents
+- question: Можно ли отменять заявленные брони отелей после подачи на визу?
+  category_slug: booking
+- question: На какой язык переводить свидетельства о браке и о рождении ребенка?
+  category_slug: documents
+- question: Насколько свежей должна быть банковская выписка?
+  category_slug: documents
+- question: Насколько часто появляются слоты в Суботице?
+  category_slug: appointment
+- question: Нужен ли отдельный слот на подачу для младенца?
+  category_slug: appointment
+- question: Нужна ли отдельная страховка (грин-карта) для машины на сербских номерах
+    для въезда в Венгрию?
+  category_slug: travel
+- question: Подойдет ли скан распечатанный от работодателя о зарплате и отпуске или
+    нужны оригинальные документы?
+  category_slug: documents
+- question: Приходят ли письма о подтверждении записи на подачу документов?
+  category_slug: appointment
+- question: Сколько времени обычно проходит с момента подачи заявления до выдачи визы?
+  category_slug: process
+- question: Три недели на подготовку документов для подачи - хватит ли?
+  category_slug: process
+- question: Что делать, если договор аренды заканчивается раньше поездки, но позже
+    подачи на визу?
+  category_slug: documents
+- question: Что делать, если пришло письмо об отмене брони на подачу?
+  category_slug: appointment

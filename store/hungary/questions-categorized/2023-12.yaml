@@ -1,0 +1,95 @@
+month: 2023-12
+md5: 6553f1f79a8146f66bfb3a3eabc5d47a
+questions:
+- question: Важно ли, что автомобиль на сербских номерах, а водительские права российские?
+  category_slug: travel
+- question: Дают ли визу со свежим бороваком (полученным недавно)?
+  category_slug: requirements
+- question: Дают ли шенген с ВНЖ по учебе?
+  category_slug: requirements
+- question: Есть ли прямой поезд из Белграда в Будапешт?
+  category_slug: travel
+- question: За сколько дней до подачи приходит письмо-подтверждение бронирования термина?
+  category_slug: appointment
+- question: Как быстро разбирают слоты на запись в консульство?
+  category_slug: appointment
+- question: Как долго действует белый картон и нужно ли его обновлять?
+  category_slug: requirements
+- question: Как избежать блокировки при частой проверке сайта записи?
+  category_slug: appointment
+- question: Как консульство информирует о готовности визы?
+  category_slug: process
+- question: Как работает поезд из Суботицы в Будапешт?
+  category_slug: travel
+- question: Как считать дату начала действия ВНЖ, если она не указана во вклейке?
+  category_slug: requirements
+- question: Какие вопросы задают на собеседовании с консулом при подаче на визу?
+  category_slug: process
+- question: Какие документы требуются для подачи на визу безработному с ВНЖ Сербии
+    по недвижимости?
+  category_slug: documents
+- question: Какие очереди на границе с Венгрией на машине?
+  category_slug: travel
+- question: Какой минимальный бюджет закладывать на поездку в Венгрию?
+  category_slug: travel
+- question: Когда обычно выкидывают слоты на запись в консульство Венгрии?
+  category_slug: appointment
+- question: Можно ли взять один слот на двух взрослых супругов?
+  category_slug: appointment
+- question: Можно ли забрать паспорт после подачи документов и принести позже?
+  category_slug: process
+- question: Можно ли записаться на визу в Суботице по телефону?
+  category_slug: appointment
+- question: Можно ли заполнять анкету на визу, редактируя PDF, или нужно заполнять
+    от руки?
+  category_slug: documents
+- question: Можно ли подавать документы на венгерскую визу в Белграде, если проживаешь
+    в Нови Саде?
+  category_slug: process
+- question: Можно ли подавать заявку на прием в посольство, если боровак заканчивается
+    раньше даты подачи, но уже подано заявление на продление?
+  category_slug: requirements
+- question: Можно ли показывать поездку в несколько стран Шенгена при подаче на туристическую
+    визу Венгрии?
+  category_slug: booking
+- question: Можно ли получить транзитную визу Венгрии для проезда в Великобританию
+    без сербского ВНЖ?
+  category_slug: requirements
+- question: Нужно ли делать перевод свидетельства о браке для подачи на визу?
+  category_slug: documents
+- question: Нужно ли предоставлять детальный план поездки при подаче на визу в Венгрию?
+  category_slug: documents
+- question: Нужно ли предоставлять уверенье о бораваке от МУПа или достаточно наклейки
+    в паспорте?
+  category_slug: documents
+- question: Нужно ли прикладывать трудовой договор мужа для жены при подаче на визу,
+    если поездка совместная?
+  category_slug: documents
+- question: Нужно ли присутствие обоих родителей при подаче документов на визу для
+    ребенка?
+  category_slug: process
+- question: Нужны ли оригиналы выписок из банка или достаточно ксерокопий?
+  category_slug: documents
+- question: Освобождены ли дети от визового сбора?
+  category_slug: requirements
+- question: Подойдет ли русская страховка для оформления визы в Венгрию?
+  category_slug: requirements
+- question: Принимают ли в консульстве Венгрии паспорт с новым номером, если ВНЖ вклеен
+    в старый паспорт?
+  category_slug: requirements
+- question: Принимают ли в январе-феврале 2024 документы на визу D в Венгрию?
+  category_slug: process
+- question: Сколько по времени длится слот в консульстве?
+  category_slug: appointment
+- question: Сколько слотов нужно для семьи из 3 человек?
+  category_slug: appointment
+- question: Сколько стоит виза в Венгрию для взрослого?
+  category_slug: requirements
+- question: Ставят ли печать отказа в паспорт при отказе в венгерской визе?
+  category_slug: process
+- question: Что делать, если после заполнения данных на сайте записи появляется белый
+    экран?
+  category_slug: appointment
+- question: Что означает виза на 1 въезд - можно ли въехать в Венгрию и выехать через
+    другую страну?
+  category_slug: visa-types
