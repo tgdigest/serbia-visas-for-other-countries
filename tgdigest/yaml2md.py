@@ -112,31 +112,45 @@ class Yaml2Md:
         category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
         for weight, category in enumerate(chat.faq.categories, start=1):
             if category.slug in grouped_by_category:
-                by_letter = {}
-                for q in sorted(grouped_by_category[category.slug], key=lambda q: q['question']):
-                    letter = q['question'][0].upper()
-                    by_letter.setdefault(letter, []).append(q)
+                questions = sorted(grouped_by_category[category.slug], key=lambda q: q['question'])
+
+                if chat.faq.group_by_letter:
+                    by_letter = {}
+                    for q in questions:
+                        letter = q['question'][0].upper()
+                        by_letter.setdefault(letter, []).append(q)
+                    subheadings = [(f'📖 {letter}', qs) for letter, qs in sorted(by_letter.items())]
+                else:
+                    subheadings = None
 
                 self._save(self.output_dir / chat.slug / 'faq' / f'{category.slug}.md', category_template.render(
                     category=category,
                     weight=weight,
-                    letter_groups=sorted(by_letter.items()),
+                    subheadings=subheadings,
+                    questions=questions if not chat.faq.group_by_letter else None,
+                    show_years=chat.faq.show_years,
                 ))
 
     def _build_faq_without_categories(self, store: ChatStore, chat: Chat):
         all_questions = [q.question for q in store.questions.get_all_questions()]
         questions_with_answers = self._collect_question_answers(all_questions, None, chat, store)
 
-        by_letter = {}
-        for data in questions_with_answers:
-            letter = data['question'][0].upper()
-            by_letter.setdefault(letter, []).append(data)
+        if chat.faq.group_by_letter:
+            by_letter = {}
+            for data in questions_with_answers:
+                letter = data['question'][0].upper()
+                by_letter.setdefault(letter, []).append(data)
+            subheadings = [(f'📖 {letter}', qs) for letter, qs in sorted(by_letter.items())]
+        else:
+            subheadings = None
 
         category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
         self._save(self.output_dir / chat.slug / 'faq' / '_index.md', category_template.render(
             category=None,
             weight=1,
-            letter_groups=sorted(by_letter.items()),
+            subheadings=subheadings,
+            questions=questions_with_answers if not chat.faq.group_by_letter else None,
+            show_years=chat.faq.show_years,
         ))
 
     def _collect_question_answers(self, questions_iter, category_slug, chat, store):

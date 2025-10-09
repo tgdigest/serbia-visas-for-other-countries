@@ -4,13 +4,14 @@ type = "docs"
 weight = {{ weight }}
 +++
 
-{% for letter, questions in letter_groups %}
-## 📖 {{ letter }}
+{% if subheadings %}
+{% for heading, questions in subheadings %}
+## {{ heading }}
 
 {% for qa in questions %}
 ### {{ qa.question }}
 {% for answer in qa.answers_with_links %}
-{% if loop.first or answer.year != loop.previtem.year %}
+{% if show_years and (loop.first or answer.year != loop.previtem.year) %}
 **📅 {{ answer.year }}**
 
 {% endif %}
@@ -20,3 +21,17 @@ weight = {{ weight }}
 {% endfor %}
 {% endfor %}
 {% endfor %}
+{% else %}
+{% for qa in questions %}
+### {{ qa.question }}
+{% for answer in qa.answers_with_links %}
+{% if show_years and (loop.first or answer.year != loop.previtem.year) %}
+**📅 {{ answer.year }}**
+
+{% endif %}
+> {{ answer.text }}
+> {% for link in answer.message_links %}[{{ link.get_title() }}]({{ link.get_url() }}){% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endfor %}
+{% endfor %}
+{% endif %}

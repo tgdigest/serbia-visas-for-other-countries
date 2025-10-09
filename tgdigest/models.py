@@ -108,6 +108,8 @@ class FAQCategory(BaseModel):
 class FAQConfig(BaseModel):
     enabled: bool
     categories: list[FAQCategory] = []
+    show_years: bool = False
+    group_by_letter: bool = False
 
     def has_categories(self) -> bool:
         return len(self.categories) > 0
