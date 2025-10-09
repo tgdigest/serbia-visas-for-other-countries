@@ -3,33 +3,32 @@ md5: 6edc2c85bd16db76d348ba87429e2562
 questions:
 - question: Как работает страховка на 30 дней в течение года? Накапливаются ли дни
     как в визе?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие виды страховок бывают - разовая и многоразовая?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие посольства требуют явное указание COVID в страховке?
-  category_slug: selection
+  category_slug: requirements
 - question: Какой оптимальный вариант страховки если есть счет в Райффайзен банке?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку посоветуете для Кипра?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку с покрытием COVID приняли в Австрии?
-  category_slug: selection
-  is_date_specific: true
+  category_slug: requirements
 - question: Какую страховую компанию выбрать для путешествий по всему миру?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли использовать страховку Дунав для ВНЖ в Сербии для подачи на шенген?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли для шенгена в Белграде международная страховка от Тинькофф
     банка?
-  category_slug: usage
+  category_slug: requirements
 - question: Покрывает ли страховка Дунав COVID?
-  category_slug: selection
+  category_slug: purchase
 - question: Покрывает ли страховка Райф-Премиум риски COVID-19 для посольств?
-  category_slug: selection
+  category_slug: requirements
 - question: Сколько стоит годовая страховка на семью из 5 человек для австрийской
     визы? Это нормальная цена - 40 000?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит страховка Wiener Stadtische и какие у них условия?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит страховка Дунав на короткий срок?
-  category_slug: selection
+  category_slug: purchase

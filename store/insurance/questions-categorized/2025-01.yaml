@@ -3,32 +3,32 @@ md5: 51a7dbb274a455f34715d1c455315a9e
 questions:
 - question: В каких страховых компаниях можно получить страховку с суммой покрытия
     не менее 100000 евро?
-  category_slug: selection
+  category_slug: requirements
 - question: Где купить самую дешевую страховку для подачи в консульство?
-  category_slug: selection
+  category_slug: purchase
 - question: Где можно быстро сделать страховку в Нови Саде?
-  category_slug: selection
+  category_slug: purchase
 - question: Где можно оформить страховку на несколько въездов для семьи на год?
-  category_slug: selection
+  category_slug: purchase
 - question: Достаточно ли при подаче на многократную визу предоставить страховку только
     под первую поездку?
-  category_slug: usage
+  category_slug: requirements
 - question: Какая страховая компания действительно работает за границей с покрытием
     «цео свет»?
-  category_slug: selection
+  category_slug: actual-use
 - question: Можно ли вернуть деньги за страховку в случае отказа в визе?
-  category_slug: usage
+  category_slug: other
 - question: Можно ли использовать прошлогоднюю страховку повторно, если пробыли меньше
     дней?
-  category_slug: usage
+  category_slug: requirements
 - question: Можно ли оформить страховку Дунав осигуранье онлайн или нужно идти в офис?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли поменять даты или расширить уже купленную страховку в Grawe?
-  category_slug: usage
+  category_slug: other
 - question: Сколько стоит страховка на семью в Дунав осигуранье?
-  category_slug: selection
+  category_slug: purchase
 - question: Что делать, если после покупки страховки Grawe на сайте ничего не пришло
     на почту?
-  category_slug: selection
+  category_slug: other
 - question: Что лучше - покупать страховку Grawe онлайн или в офисе?
-  category_slug: selection
+  category_slug: purchase

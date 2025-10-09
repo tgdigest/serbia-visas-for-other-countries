@@ -3,18 +3,18 @@ md5: 44640bd1c057dcbd57ae1baab36a2e80
 questions:
 - question: Если подаюсь на визу с документами на две поездки (в октябре и декабре),
     нужно подавать две отдельные страховки на даты поездок или одну большую на 3 месяца?
-  category_slug: usage
+  category_slug: requirements
   is_date_specific: true
 - question: Какую спортивную страховку можно выбрать для велосипедного спорта?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли использовать страховку Тинькофф для визы в Грецию и каковы условия
     этой страховки?
-  category_slug: selection
+  category_slug: purchase
 - question: Обязательна ли страховка для въезда в Великобританию?
-  category_slug: selection
+  category_slug: requirements
 - question: Сколько стоит страховка для туристов для поездки в Европу и каковы условия
     возврата при отказе в визе?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит страховка для учебной визы D в Сербию на 6 месяцев с минимальным
     покрытием 20000 евро?
-  category_slug: selection
+  category_slug: purchase

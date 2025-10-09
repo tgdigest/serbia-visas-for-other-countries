@@ -2,54 +2,54 @@ month: 2025-07
 md5: 9ab1f21c6cf2d5eee4096bf727ba80a7
 questions:
 - question: Где в Нови Саде купить страховку с покрытием 30 000 евро недорого?
-  category_slug: selection
+  category_slug: purchase
 - question: Где выгодно оформить разовую страховку на неделю для поездки в Италию?
-  category_slug: selection
+  category_slug: purchase
 - question: Где купить недорогую страховку для Шенгена в Суботице?
-  category_slug: selection
+  category_slug: purchase
 - question: Где купить страховку для Шенгена - онлайн или лично?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие условия семейной годовой страховки от Grawe?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли для мультивизы делать страховку только на первый въезд, а затем
     для фактических въездов?
-  category_slug: usage
+  category_slug: requirements
 - question: Можно ли использовать семейную годовую страховку от Grawe для подачи на
     рабочую польскую визу (D)?
-  category_slug: usage
+  category_slug: requirements
 - question: Можно ли получить годовую мультивизу, если страховка оформлена только
     на 90 дней?
-  category_slug: usage
+  category_slug: requirements
 - question: Можно ли скорректировать даты уже купленной страховки от Дунав?
-  category_slug: usage
+  category_slug: purchase
 - question: Можно ли указывать последний день поездки как последний день действия
     страховки?
-  category_slug: usage
+  category_slug: requirements
 - question: Нормально ли для шенгенской визы, что в страховке указано worldwide, а
     не конкретно Шенгенская зона?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли страховка Grawe для визы в Нидерланды?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли страховка от Мастеркард Голд для визы?
-  category_slug: usage
+  category_slug: requirements
 - question: Почему на DDOR максимум 10 дней можно указать? Где взять страховку на
     более длительный срок (например, на 15 дней)?
-  category_slug: selection
+  category_slug: purchase
 - question: Принимают ли консульства годовую страховку с ограниченным количеством
     дней пребывания?
-  category_slug: usage
+  category_slug: requirements
 - question: Сколько стоит годовая туристическая страховка от Grawe с поездками до
     45 дней?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит путная страховка на 15-20 дней?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит туристическая страховка от Дунав на 2 недели и годовая для
     иностранца?
-  category_slug: selection
+  category_slug: purchase
 - question: Страховка от Поштански по бизнес счету - только на владельца или на всю
     семью?
-  category_slug: selection
+  category_slug: purchase
 - question: Что означает разница между "at least 30.000 €" и "up to 30.000 €" в страховке?
-  category_slug: selection
+  category_slug: requirements
 - question: Что такое JMBG и EBS, в чём разница?
-  category_slug: selection
+  category_slug: other

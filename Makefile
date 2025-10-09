@@ -20,7 +20,7 @@ extract-questions:
 	./venv/bin/python -m tgdigest extract-questions --max-months=3
 
 categorize-questions:
-	./venv/bin/python -m tgdigest categorize-questions --max-months=6
+	./venv/bin/python -m tgdigest categorize-questions --max-months=12
 
 normalize-questions:
 	./venv/bin/python -m tgdigest normalize-questions --max-categories=1
@@ -31,7 +31,7 @@ extract-cases:
 yaml2md:
 	./venv/bin/python -m tgdigest yaml2md
 
-serve: yaml2md
+serve: clean yaml2md
 	cd site && hugo server
 
 clean:

@@ -3,38 +3,38 @@ md5: ea848b4c2936dd92a694f6645f7de3c1
 questions:
 - question: Брал ли кто-то бизнес-пакет страховки, когда она действительна половину
     периода, но считается по дням?
-  category_slug: selection
+  category_slug: purchase
 - question: Где можно оформить сербскую страховку и есть ли офисы с русскоговорящими
     сотрудниками?
-  category_slug: selection
+  category_slug: purchase
 - question: Где можно оформить страховку в Сербии на полгода с покрытием 30000+ евро
     и какую лучше выбрать?
-  category_slug: selection
+  category_slug: purchase
 - question: Достаточно ли иметь на руках договор страховки путешественника, оформленной
     онлайн, или нужны какие-то ламинированные карточки?
-  category_slug: usage
+  category_slug: requirements
 - question: Если есть боравак, что вводить в поле JMBG при оформлении страховки онлайн?
-  category_slug: selection
+  category_slug: purchase
 - question: Есть ли страховки для визы на английском языке, которые можно оформить
     онлайн?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие консульства в Белграде принимают российскую страховку (Тинькофф
     или Черехапа) для оформления шенгенской визы?
-  category_slug: selection
+  category_slug: requirements
 - question: Можно ли у какой-либо страховой компании купить страховку с возможностью
     затем ее расторгнуть и вернуть часть стоимости?
-  category_slug: usage
+  category_slug: purchase
 - question: Насколько выгоднее российская страховка по сравнению с сербской для поездок
     в Европу, ОАЭ и Турцию?
-  category_slug: selection
+  category_slug: purchase
 - question: Обязательна ли страховка для поездки в ОАЭ или можно лететь без нее?
-  category_slug: selection
+  category_slug: requirements
 - question: Подойдет ли для шенгенской визы в Хорватию страховка Триглав с покрытием
     30000 евро?
-  category_slug: usage
+  category_slug: requirements
 - question: Что писать в поле JMBG при оформлении страховки Wiener - код из вклейки
     в паспорте или что-то другое?
-  category_slug: selection
+  category_slug: purchase
 - question: Что писать вместо JMBG при оформлении страховки онлайн в Dunav, если нет
     боравка?
-  category_slug: selection
+  category_slug: purchase

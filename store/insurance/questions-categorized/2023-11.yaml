@@ -2,18 +2,18 @@ month: 2023-11
 md5: 5074ddfdbec21bbb76f2224c28f18b63
 questions:
 - question: Где можно оформить самые дешевые страховки онлайн?
-  category_slug: selection
+  category_slug: purchase
 - question: Где можно распечатать бумажный полис со страховой карты в Крагуеваце?
-  category_slug: usage
+  category_slug: purchase
 - question: Как рассчитать годовой полис, если нужно 120 застрахованных дней в году?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку можно оформить онлайн для французской мультивизы с покрытием
     нескольких въездов?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховую компанию выбрать для получения визы Д Сербии?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли получить бумагу о страховании за границей в РФЗО при наличии
     здравствены картицы?
-  category_slug: usage
+  category_slug: other
 - question: Сколько стоит 30-дневная страховка для Европы?
-  category_slug: selection
+  category_slug: purchase

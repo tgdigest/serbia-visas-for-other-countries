@@ -3,11 +3,11 @@ md5: a97e7de4c8ba1be845195ec42c0e6303
 questions:
 - question: Где можно сделать медицинскую страховку для визы (не для поездки, а для
     жизни в Сербии) - чтобы можно было ходить к врачу, на МРТ и т.д., без стоматологии?
-  category_slug: selection
+  category_slug: purchase
 - question: Как быстро можно купить страховку для визы?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие требования к страховке для визы в Венгрию?
-  category_slug: selection
+  category_slug: requirements
 - question: Что нужно распечатать из страхового полиса для посольства, если страховая
     компания прислала файл на 44 страницы (например, Generali)?
-  category_slug: usage
+  category_slug: requirements

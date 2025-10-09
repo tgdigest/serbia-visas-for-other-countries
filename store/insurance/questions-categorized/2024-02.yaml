@@ -2,31 +2,31 @@ month: 2024-02
 md5: d7fdafc59a8ec0f64fd9e4df37573968
 questions:
 - question: В каких странах действует сербская медицинская страховка?
-  category_slug: usage
+  category_slug: actual-use
 - question: Где купить страховку для поездки в Азию?
-  category_slug: selection
+  category_slug: purchase
 - question: Как работает опция GRAWE с покрытием 25 дней подряд?
-  category_slug: selection
+  category_slug: purchase
 - question: Как работает семейная страховка GRAWE - страховая сумма на каждого или
     на всех?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие есть альтернативы семейной страховке с нормальным покрытием на человека?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку можно купить онлайн для Шенгена?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли исключать страховку от COVID-19 из полиса Dunav при подаче на
     Шенген?
-  category_slug: selection
+  category_slug: requirements
 - question: Нужно ли покупать страховку на больше чем 30 дней, чтобы получить визу
     на несколько месяцев?
-  category_slug: selection
+  category_slug: requirements
 - question: Подходит ли семейная страховка Porodicno от Dunav для подачи на Шенген
     семьей из 4 человек?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли сербская страховка (типа ОМС) для получения визы Шенген?
-  category_slug: usage
+  category_slug: requirements
 - question: Что отвечать на вопрос в Uniqa 'является ли подрядчик застрахованным лицом'?
-  category_slug: selection
+  category_slug: purchase
 - question: Что такое 'путно осигуранье' для ребенка при выезде в Боснию и Хорватию,
     если есть сербская здравственна книжица?
-  category_slug: selection
+  category_slug: requirements

@@ -2,21 +2,21 @@ month: 2024-11
 md5: 80b467f87a0ebf79fd1d3db04c0bf221
 questions:
 - question: Где лучше получать страховку для визы?
-  category_slug: selection
+  category_slug: purchase
 - question: Как купить страховку в Uniqa, если поле JMBG обязательное и не дает продолжить?
-  category_slug: selection
+  category_slug: purchase
 - question: Какая стандартная цена на зеленую карту (Green Card) для автомобиля?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку нужно делать для многократной шенгенской визы в Испанию
     и на какой срок?
-  category_slug: selection
+  category_slug: requirements
 - question: Нужна ли зеленая карта для поездки в ЕС на автомобиле с сербской страховкой?
-  category_slug: selection
+  category_slug: requirements
 - question: Нужно ли делать несколько страховок, если планируется посетить больше
     одной страны на территории Евросоюза?
-  category_slug: selection
+  category_slug: requirements
 - question: Продает ли Grawe страховку на путешествие иностранцам с номером EBS (без
     JMBG)?
-  category_slug: selection
+  category_slug: purchase
 - question: Что указывать в поле JMBG при покупке страховки в Dunav, если есть боровак?
-  category_slug: selection
+  category_slug: purchase

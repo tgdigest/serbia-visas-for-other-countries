@@ -3,15 +3,15 @@ md5: 8a564c6663ce9b55016c37f91432ffa9
 questions:
 - question: Действует ли сербский ОМС (обязательное медицинское страхование) как страховка
     для поездки в Испанию?
-  category_slug: usage
+  category_slug: requirements
 - question: Какую страховку порекомендуете для получения шенгенской визы?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую туристическую страховку можно приобрести для поездки в США гражданам
     РФ с сербским ВНЖ? Можно ли покупать российские туристические страховки?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли использовать российскую туристическую страховку для получения
     шенгенской визы?
-  category_slug: usage
+  category_slug: requirements
 - question: Нужно ли для путешествий по ЕС на автомобиле с сербскими номерами и сербской
     страховкой дополнительно приобретать туристическую страховку?
-  category_slug: selection
+  category_slug: requirements

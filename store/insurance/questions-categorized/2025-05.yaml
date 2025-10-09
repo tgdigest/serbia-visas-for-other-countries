@@ -4,25 +4,25 @@ questions:
 - question: Если у меня ВНЖ Сербии и я оформляю страховку с зоной покрытия Европа
     (например, Triglav), распространяется ли она на саму Сербию или только на поездки
     за пределы Сербии?
-  category_slug: selection
+  category_slug: actual-use
 - question: Какая страховка подойдет для поездок из Сербии (при наличии ВНЖ) в Черногорию
     и Боснию на 2-3 месяца?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие условия годовой страховки Grawe для поездок по Европе?
-  category_slug: selection
+  category_slug: purchase
 - question: Какое минимальное покрытие должно быть у страховки для шенгенской визы
     при наличии российского паспорта?
-  category_slug: selection
+  category_slug: requirements
 - question: Можно ли оформить страховку в Grawe онлайн?
-  category_slug: selection
+  category_slug: purchase
 - question: Подходит ли страховка от Дунава и Поштанске (которую выдают при открытии
     бизнес-счета) для получения визы в Шенген?
-  category_slug: usage
+  category_slug: requirements
 - question: Принимают ли в Греции российскую страховку или только местные?
-  category_slug: usage
+  category_slug: requirements
 - question: Что делать, если купил страховку в Grawe, но не получил полис до подачи
     документов на визу?
-  category_slug: usage
+  category_slug: purchase
 - question: Что заполнять в поле JMBG на сайте Дунава при оформлении страховки - номер
     сербского ВНЖ или номер загранпаспорта?
-  category_slug: selection
+  category_slug: purchase

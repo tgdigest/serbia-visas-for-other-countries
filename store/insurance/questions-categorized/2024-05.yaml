@@ -3,34 +3,34 @@ md5: 480dd0e78d28ddb58f7b1bfc0f5ffa21
 questions:
 - question: В какую страховую компанию обратиться, чтобы страховка была на английском
     языке для Австрийского посольства?
-  category_slug: selection
+  category_slug: requirements
 - question: Где купить страховку для шенгенской визы в Испанию?
-  category_slug: selection
+  category_slug: purchase
 - question: Где можно оформить медицинскую страховку для хорватской визы типа D, которая
     признается в Хорватии и Евросоюзе?
-  category_slug: selection
+  category_slug: purchase
 - question: Если в страховке Generali указать конкретную страну (например, Испанию),
     можно ли пользоваться этой страховкой в других странах ЕС?
-  category_slug: usage
+  category_slug: actual-use
 - question: Если купить страховку Generali на год на 90 дней для визы в Испанию, можно
     ли использовать оставшиеся дни для следующей визы, если не пробыли все 90 дней
     в Евросоюзе?
-  category_slug: usage
+  category_slug: requirements
 - question: Есть ли скидки на страховку Generali?
-  category_slug: selection
+  category_slug: purchase
 - question: Как быстро приходит страховка Generali на почту после оплаты?
-  category_slug: selection
+  category_slug: purchase
 - question: Как в Dunav оформить страховку на год с покрытием определенного количества
     дней (например, 30 или 60 дней)?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку выбрать для рабочей визы в Польшу?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку из Сербии взять для поездки во Францию на 10 дней?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку купить для поездки в США?
-  category_slug: selection
+  category_slug: purchase
 - question: Подойдет ли страховка Swisscare для визы?
-  category_slug: usage
+  category_slug: requirements
 - question: Принимают ли страховку Generali при подаче на визу? Нужно ли переводить
     её на английский? Нормально ли, что сумма покрытия не указана в полисе?
-  category_slug: usage
+  category_slug: requirements

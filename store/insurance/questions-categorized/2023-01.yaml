@@ -3,33 +3,33 @@ md5: 3a7c8e3f3414ccefb9ab33fd510724aa
 questions:
 - question: Где можно оформить страховку для шенгенской визы в Белграде и сколько
     это стоит?
-  category_slug: selection
+  category_slug: purchase
 - question: Как правильно рассчитать стоимость страховки на сайте Uniqa для длительной
     поездки?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие документы нужны для получения государственной страховки здоровья
     в Сербии?
-  category_slug: selection
+  category_slug: purchase
 - question: Какие особенности страховки Dunav при использовании в Европе?
-  category_slug: usage
+  category_slug: requirements
 - question: Какие условия страховки Райффайзен банка (Raif Premium)?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли оформить страховку для путешествий без ВНЖ, если форма требует
     JMBG?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли оформить страховку на Азию (например, Вьетнам) онлайн в Uniqa?
-  category_slug: selection
+  category_slug: purchase
 - question: Подойдет ли российская страховка от работы для подачи на визу или нужна
     местная сербская?
-  category_slug: usage
+  category_slug: requirements
 - question: Подойдет ли страховка Dunav для боравка (для получения ВНЖ) для подачи
     на шенгенскую визу?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли государственная страховка здоровья (для владельцев ВНЖ) для
     поездок в шенген?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли страховка Райффайзен банка (Raif Premium) для шенгенской визы?
-  category_slug: usage
+  category_slug: requirements
 - question: Сколько стоит страховка в Dunav на 90 дней для шенгена с покрытием 35
     тысяч евро?
-  category_slug: selection
+  category_slug: purchase

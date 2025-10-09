@@ -3,27 +3,27 @@ md5: bc5321d34f9bc2f2283377289077c70e
 questions:
 - question: Есть ли туристическая страховка при оформлении бизнес-карты Visa в Поштанской
     Штедионице?
-  category_slug: selection
+  category_slug: purchase
 - question: Как оформить семейную страховку для визы с исключением ковида?
-  category_slug: selection
+  category_slug: purchase
 - question: Как оформить страховку на сайте Dunav?
-  category_slug: selection
+  category_slug: purchase
 - question: Как работают страховые компании Winer и Uniqa при обращении за медпомощью
     в Австрии?
-  category_slug: usage
+  category_slug: actual-use
 - question: Какая страховка нужна для запроса визы?
-  category_slug: selection
+  category_slug: requirements
 - question: Меняется ли цена страховки, если убрать пункт с ковидом?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли в Сербии купить страховку для путешествия без паспорта (если
     паспорт в посольстве)?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли вернуть деньги за страховку Dunav, если страховые даты ещё не
     наступили?
-  category_slug: usage
+  category_slug: other
 - question: Нужна ли отдельная страховка на ребенка 6 лет или достаточно страховок
     родителей?
-  category_slug: selection
+  category_slug: requirements
 - question: Нужна ли сербская страховка для подачи на визу в Сербии и нужно ли её
     переводить?
-  category_slug: usage
+  category_slug: requirements

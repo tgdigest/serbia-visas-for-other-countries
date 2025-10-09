@@ -2,30 +2,30 @@ month: 2025-02
 md5: cb68fcca51a55dddf532419e1eaf7912
 questions:
 - question: Где можно недорого застраховаться для поездки в Венгрию?
-  category_slug: selection
+  category_slug: purchase
 - question: Есть ли случаи отказов в приеме документов или в визе из-за русской страховки?
-  category_slug: usage
+  category_slug: requirements
 - question: Как работает страховая компания SafetyWing на практике, возмещают ли расходы?
-  category_slug: usage
+  category_slug: actual-use
 - question: Какую страховку лучше взять для разовой поездки в Испанию?
-  category_slug: selection
+  category_slug: purchase
 - question: На каком языке UNIQA присылает подтверждение страховки и подойдет ли вариант
     на сербском-английском для Франции?
-  category_slug: usage
+  category_slug: requirements
 - question: Примут ли медицинскую страховку из пакета Райффайзен, где указано только
     имя держателя карты, но написано что члены семьи тоже застрахованы (без указания
     их имен), для визы мужа и дочки?
-  category_slug: usage
+  category_slug: requirements
 - question: Принимают ли американскую страховку SafetyWing для визы в Германию?
-  category_slug: selection
+  category_slug: requirements
 - question: Принимают ли белорусские страховки в Румынском посольстве для Шенгенской
     зоны?
-  category_slug: selection
+  category_slug: requirements
 - question: Принимают ли страховки от Дунав без печати и подписи в документе «Подтверда»
     для шенгенской визы?
-  category_slug: usage
+  category_slug: requirements
 - question: Сколько стоит страховка для польской рабочей визы на год от 30000 евро
     покрытия?
-  category_slug: selection
+  category_slug: purchase
 - question: Что вписывать в поле JBMG при оформлении страховки на сайте Grawe?
-  category_slug: selection
+  category_slug: purchase

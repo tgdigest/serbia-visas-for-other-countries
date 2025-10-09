@@ -2,31 +2,31 @@ month: 2023-04
 md5: 3ff7c8c007d2e7dc067a9b4a16e2a048
 questions:
 - question: Как происходит возврат страховки в Dunav и безопасно ли это?
-  category_slug: usage
+  category_slug: purchase
 - question: Как работает годовая страховка с указанием количества дней - это суммарно
     в год или максимальная продолжительность одной поездки?
-  category_slug: selection
+  category_slug: purchase
 - question: Какой JMBG вводить в Dunav osiguranje при оформлении страховки?
-  category_slug: selection
+  category_slug: purchase
 - question: Какой тип страховки выбрать на сайте Generali для путешествий?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую ДМС страховку оформить для повседневной жизни в Сербии (не для виз)?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховую компанию выбрать для туристической страховки в Сербии?
-  category_slug: selection
+  category_slug: purchase
 - question: Кого вписывать в поле Ugovarač osiguranja (страховой подрядчик) и Osiguranik
     (застрахованный) при покупке страховки онлайн?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли вернуть деньги за страховку, если не получилось оформить визу?
-  category_slug: usage
+  category_slug: purchase
 - question: Можно ли вместо сгенерированного JMBG написать номер ВНЖ из вклейки при
     подаче в Dunav?
-  category_slug: selection
+  category_slug: purchase
 - question: На какой срок нужно покупать страховку для поездки в Шенген на 3 дня?
-  category_slug: selection
+  category_slug: requirements
 - question: Почему на сайте Generali при оформлении туристической страховки на одного
     человека перед оплатой удваивается конечная цена?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит годовая страховка на Шенген зону и не переплатил ли я за
     32 тысячи динаров?
-  category_slug: selection
+  category_slug: purchase

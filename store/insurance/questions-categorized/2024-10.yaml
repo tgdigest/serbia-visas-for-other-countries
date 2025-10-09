@@ -3,23 +3,23 @@ md5: a780625e6838fcdf5258dc82e69aeaea
 questions:
 - question: Как российские страховые компании проверяют длительность пребывания за
     границей?
-  category_slug: usage
+  category_slug: actual-use
 - question: Какие условия оплаты по страховке SafetyWing для стран кроме США?
-  category_slug: selection
+  category_slug: actual-use
 - question: Какие условия оплаты по страховке Тинькофф в США?
-  category_slug: selection
+  category_slug: actual-use
 - question: Какую страховку для путешествий в США можно купить?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли использовать страховку от Райффайзен банка Сербии для получения
     визы?
-  category_slug: usage
+  category_slug: requirements
 - question: Можно ли купить страховку SafetyWing только на поездку или нужен контракт
     на 12 месяцев?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли оформить travel страховку в Сербии до получения ВНЖ?
-  category_slug: selection
+  category_slug: purchase
 - question: Принимают ли российские страховки в европейских странах?
-  category_slug: usage
+  category_slug: actual-use
 - question: Работает ли страховка Тинькофф для граждан РФ, проживающих более 90 дней
     за границей или имеющих ВНЖ другой страны?
-  category_slug: usage
+  category_slug: actual-use

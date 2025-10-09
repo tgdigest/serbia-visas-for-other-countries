@@ -3,24 +3,24 @@ md5: 11c208435b47fc61918ba73d453a96f7
 questions:
 - question: Есть ли в Сербии страховка от невылета/отказа в визе, чтобы вернуть бронирование
     жилья?
-  category_slug: selection
+  category_slug: purchase
 - question: Какая самая дешевая туристическая страховка на семью для Греции?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховку для ЕС можно оплатить онлайн без ошибок при покупке?
-  category_slug: selection
+  category_slug: purchase
 - question: Какую страховую выбрать для косметической операции в Сербии?
-  category_slug: selection
+  category_slug: purchase
 - question: Ошибка 'JMBG nije validan' при оформлении онлайн страховки в Uniqua -
     как решить?
-  category_slug: selection
+  category_slug: purchase
 - question: Подойдет ли страховка Тинькофф для подачи на болгарскую визу?
-  category_slug: usage
+  category_slug: requirements
 - question: Страховка для Греции должна быть с покрытием 30000 евро на каждого или
     подойдет на семью?
-  category_slug: selection
+  category_slug: requirements
 - question: Страховка от Дунава - если нужно пойти к врачу, обязательно ли звонить
     им, или можно оплатить на месте и потом вернуть деньги?
-  category_slug: usage
+  category_slug: actual-use
 - question: Туристическая страховка в Generali - будет действовать только в выбранной
     стране или по всему Евросоюзу?
-  category_slug: usage
+  category_slug: actual-use

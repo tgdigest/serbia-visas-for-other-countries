@@ -2,33 +2,33 @@ month: 2024-12
 md5: a9d748559d32b8435e9d0aab421f44cc
 questions:
 - question: Где в Суботице сделать страховку для Венгрии и сколько это стоит?
-  category_slug: selection
+  category_slug: purchase
 - question: Достаточно ли страховки Тинькофф при подаче на визу сейчас?
-  category_slug: usage
+  category_slug: requirements
   is_date_specific: true
 - question: Как работает годовая страховка с покрытием на месяц - если был в Европе
     неделю и не обращался к врачам, останется 30 дней или 23?
-  category_slug: usage
+  category_slug: purchase
 - question: Какая самая дешёвая страховка на Шенген?
-  category_slug: selection
+  category_slug: purchase
 - question: Можно ли оформить годовую страховку в Дунав не гражданам Сербии? В графе
     JMBG писать номер боравка?
-  category_slug: selection
+  category_slug: purchase
 - question: Нужно ли включать опцию Ковид при оформлении страховки Дунав для Шенгена?
-  category_slug: selection
+  category_slug: requirements
 - question: Одобряют ли в посольстве Венгрии страховку от Поштански (которая идет
     с бизнес счетом) - достаточно ли копии пластиковой карты?
-  category_slug: usage
+  category_slug: requirements
 - question: Подходит ли страховка Genki для испанского шенгена?
-  category_slug: usage
+  category_slug: requirements
 - question: При заполнении страховки в Дунав на семью - если заполняю себя как ugovarač
     o osiguranja, буду ли я сам в страховке?
-  category_slug: selection
+  category_slug: purchase
 - question: При оформлении страховки онлайн в Дунав на сербском языке - какой документ
     получу на выходе, будет ли английская версия? Фамилию писать латиницей?
-  category_slug: selection
+  category_slug: purchase
 - question: Примут ли во французском посольстве страховку от Тинькофф на год?
-  category_slug: usage
+  category_slug: requirements
 - question: Что такое страховка от бизнес счета в Райффайзен - есть ли она автоматически
     у всех, кто открыл счет на предпринимателя?
-  category_slug: selection
+  category_slug: purchase

@@ -3,13 +3,13 @@ md5: 7406d7bf9cdc11c066c29bff5c3ca80f
 questions:
 - question: Как получить документ-полис от UNIQA (который идет в комплекте с банковским
     пакетом)? Отвечают ли они на email?
-  category_slug: usage
+  category_slug: purchase
 - question: Подходит ли страховка от банка (которая идет бонусом к карте) для шенгенской
     визы?
-  category_slug: selection
+  category_slug: requirements
 - question: Сколько стоит годовая страховка для шенгена?
-  category_slug: selection
+  category_slug: purchase
 - question: Сколько стоит страховка для шенгена на короткий срок?
-  category_slug: selection
+  category_slug: purchase
 - question: Что указывать в поле JMBG при покупке страховки онлайн?
-  category_slug: selection
+  category_slug: purchase
