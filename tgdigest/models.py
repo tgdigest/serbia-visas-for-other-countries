@@ -74,6 +74,9 @@ class ReferencedSummary(Summary):
     def sort_key(self) -> tuple:
         return -self.month.year, self.text
 
+    def __hash__(self):
+        return hash(self.sort_key)
+
 
 class FactsResponse(BaseModel):
     """Response model from AI for facts extraction."""
