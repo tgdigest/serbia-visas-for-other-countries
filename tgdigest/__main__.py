@@ -13,7 +13,6 @@ from tgdigest.cases_extractor import CasesExtractor
 from tgdigest.facts_extractor import FactsExtractor
 from tgdigest.faq_normalizer import FAQNormalizer
 from tgdigest.fetcher import Fetcher
-from tgdigest.generator import Generator
 from tgdigest.helpers import WorkLimiter
 from tgdigest.models import Config
 from tgdigest.questions_categorizer import QuestionsCategorizer
@@ -31,22 +30,6 @@ async def fetch_messages(cfg: Config, *, force_login: bool = False):
     for chat in cfg.chats:
         await mf.load_chat(chat)
     mf.disconnect()
-
-
-async def generate_markdown(cfg: Config, *, max_months_per_run: int):
-    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
-    generator = Generator(config=cfg, provider=provider)
-    for chat in cfg.chats:
-        if chat.title != 'Греция 🇬🇷':
-            continue
-        await generator.process_chat(chat, max_months_per_run)
-
-
-async def reorganize_docs(cfg: Config):
-    provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
-    generator = Generator(config=cfg, provider=provider)
-    for chat in cfg.chats:
-        await generator.reorganize_docs(chat)
 
 
 def extract_facts(cfg: Config, *, max_months: int):
@@ -138,8 +121,6 @@ if __name__ == '__main__':
     normalize_parser = subparsers.add_parser('normalize-faq', help='Normalize FAQ questions')
     normalize_parser.add_argument('--max-categories', type=int, default=1, help='Max categories to process per run')
 
-    # reorganize_parser = subparsers.add_parser('reorganize', help='Reorganize and improve documentation structure')
-
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -165,8 +146,6 @@ if __name__ == '__main__':
 
     if args.command == 'fetch':
         asyncio.run(fetch_messages(config, force_login=args.force_login))
-    # elif args.command == 'generate':
-    #     asyncio.run(generate_markdown(config, max_months_per_run=args.max_months))
     elif args.command == 'extract-facts':
         extract_facts(config, max_months=args.max_months)
     elif args.command == 'extract-questions':
@@ -179,5 +158,3 @@ if __name__ == '__main__':
         categorize_questions(config, max_months=args.max_months)
     elif args.command == 'normalize-faq':
         normalize_faq(config, max_categories=args.max_categories)
-    # elif args.command == 'reorganize':
-    #     asyncio.run(reorganize_docs(config))

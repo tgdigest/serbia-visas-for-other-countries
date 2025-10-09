@@ -1,4 +1,4 @@
-.PHONY: install fetch generate extract-facts extract-questions extract-cases yaml2md categorize-questions normalize-faq reorganize serve clean lint lint-fix test
+.PHONY: install fetch extract-facts extract-questions extract-cases yaml2md categorize-questions normalize-faq serve clean lint lint-fix test
 
 install:
 	python3 -m venv venv
@@ -17,7 +17,7 @@ extract-facts:
 	./venv/bin/python -m tgdigest extract-facts --max-months=1
 
 extract-questions:
-	./venv/bin/python -m tgdigest extract-questions --max-months=1
+	./venv/bin/python -m tgdigest extract-questions --max-months=3
 
 extract-cases:
 	./venv/bin/python -m tgdigest extract-cases --max-months=3
@@ -30,12 +30,6 @@ categorize-questions:
 
 normalize-faq:
 	./venv/bin/python -m tgdigest normalize-faq --max-categories=1
-
-generate: yaml2md
-	./venv/bin/python -m tgdigest generate --max-months=1
-
-reorganize:
-	./venv/bin/python -m tgdigest reorganize
 
 serve: yaml2md
 	cd site && hugo server
