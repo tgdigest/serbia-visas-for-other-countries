@@ -103,6 +103,7 @@ class FAQCategory(BaseModel):
     title: str
     slug: str
     description: str
+    is_priority: bool = False
 
 
 class FAQConfig(BaseModel):
