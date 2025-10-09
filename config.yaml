@@ -50,23 +50,12 @@ chats:
     url: "https://t.me/c/1608823685/14535"
     slug: "hungary"
     description: "Визы в консульствах Белграда и Суботицы"
-    files:
-      - "hungary/*.md"
-#      - "general-faq.md"
 #  - title: "Франция 🇫🇷"
 #    url: "https://t.me/c/1608823685/14530"
 #    slug: "france"
-#    files:
-#      - "france/*.md"
-##      - "general-faq.md"
 #  - title: "Страховки"
 #    url: "https://t.me/c/1608823685/29756"
 #    slug: "insurance"
-#    files:
-#      - "insurance.md"
 #  - title: "Греция 🇬🇷"
 #    url: "https://t.me/c/1608823685/37109"
 #    slug: "greece"
-#    files:
-#      - "greece/*.md"
-##      - "general-faq.md"
