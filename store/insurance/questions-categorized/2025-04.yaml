@@ -1,0 +1,17 @@
+month: 2025-04
+md5: f11d8711c82bd9fba533fdb4d7189072
+questions:
+- question: В страховке Дунав при выборе страховки на месяц нужно указать период покрытия
+    от 5 до 25 дней. Что это означает и на что влияет?
+  category_slug: selection
+- question: Где можно купить страховку для поездки?
+  category_slug: selection
+- question: Если я проезжаю через Болгарию один день и через месяц возвращаюсь тоже
+    одним днем, страховка нужна на 2 дня или на весь период?
+  category_slug: selection
+- question: Принимают ли семейную страховку или нужна отдельная на каждого человека?
+  category_slug: selection
+- question: Сколько дней ждать ответа от UNIQA на email?
+  category_slug: usage
+- question: Сколько стоит годовая страховка?
+  category_slug: selection

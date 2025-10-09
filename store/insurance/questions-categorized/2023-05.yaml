@@ -1,0 +1,34 @@
+month: 2023-05
+md5: 0ad4e3d39c460c3ec9a760c341c07009
+questions:
+- question: Где в Белграде можно сделать недорогую страховку для ВНЖ?
+  category_slug: selection
+- question: Где можно оформить страховку день в день или получить онлайн-сертификат
+    для длительного путешествия?
+  category_slug: selection
+- question: Где найти годовую страховку с небольшим количеством страховых дней (не
+    на все 365 дней)?
+  category_slug: selection
+- question: Как при покупке страховки Generali выбрать весь мир или Шенген?
+  category_slug: selection
+- question: Какая страховка нужна для национальной немецкой визы на 6 месяцев?
+  category_slug: selection
+- question: Можно ли вернуть деньги за туристическую страховку в случае отказа или
+    непринятия документов посольством?
+  category_slug: usage
+- question: Можно ли оформить страховку в офисе Dunav без ВНЖ?
+  category_slug: selection
+- question: Нужно ли переводить сербскую страховку на английский для посольства?
+  category_slug: usage
+- question: Подходит ли путевое страхование для оформления ВНЖ в Сербии?
+  category_slug: selection
+- question: Подходит ли российская страховка (например, Тинькофф) для визы в Венгрию?
+  category_slug: usage
+- question: Покрывает ли страховка Generali лечение COVID-19?
+  category_slug: selection
+- question: Покрывает ли страховка Raiffeisen Bank всех членов семьи?
+  category_slug: selection
+- question: Что означает 'deca' в форме страховки Uniqua?
+  category_slug: selection
+- question: Что писать в форме страховки Dunav в графе 'broj pasosa/licne karta'?
+  category_slug: selection

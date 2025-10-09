@@ -1,0 +1,28 @@
+month: 2024-01
+md5: cce045d1e70a302e47c221ecd0aa4a9b
+questions:
+- question: Где купить страховку с покрытием в 30 тысяч евро?
+  category_slug: selection
+- question: Где можно купить страховку для ВНЖ в Сербии?
+  category_slug: selection
+- question: Где оформить страховку отмены тура в случае отказа в визе в Сербии?
+  category_slug: selection
+- question: Какие страховки хорошо работают за границей и реально помогают?
+  category_slug: usage
+- question: Какую страховку выбрать для туристической поездки в Азию?
+  category_slug: selection
+- question: Подходит ли российская страховка для визы?
+  category_slug: usage
+- question: Проблемы с покупкой страховки на сайте Dunav - не работают кнопки покупки
+    и логина
+  category_slug: selection
+  is_date_specific: true
+- question: Работает ли российская страховка за границей, если уже находишься за пределами
+    России?
+  category_slug: usage
+- question: Сколько стоит годовая страховка Dunav?
+  category_slug: selection
+- question: Сколько стоит годовая страховка с ограниченным количеством дней поездок?
+  category_slug: selection
+- question: Сколько стоит шенгенская страховка в Сербии?
+  category_slug: selection

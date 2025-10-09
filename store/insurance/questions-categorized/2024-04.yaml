@@ -1,0 +1,29 @@
+month: 2024-04
+md5: b95cd73d61502b60f545799b78f61aba
+questions:
+- question: Выгоднее ли покупать страховку онлайн или через офис?
+  category_slug: selection
+- question: Где можно быстро оформить страховку онлайн?
+  category_slug: selection
+- question: Как получить двуязычную справку для использования сербской здравствены
+    картицы за границей?
+  category_slug: usage
+- question: Как правильно заполнять поле JMBG при оформлении страховки Uniqa онлайн?
+  category_slug: selection
+- question: Какую страховую компанию лучше выбрать для поездки в Европу?
+  category_slug: selection
+- question: Можно ли вернуть деньги за страховку при отказе в визе?
+  category_slug: usage
+- question: Можно ли использовать сербскую здравствену картицу (медицинскую карту)
+    вместо туристической страховки для поездки в Шенген?
+  category_slug: selection
+- question: Можно ли оформить туристическую страховку онлайн только на ребенка до
+    18 лет без взрослых?
+  category_slug: selection
+- question: Нужна ли страховка на автомобиль для поездки в ЕС?
+  category_slug: selection
+- question: Нужно ли распечатывать страховку для подачи на визу?
+  category_slug: usage
+- question: Подходит ли сербская или черногорская медицинская страховка (ОМС) для
+    подачи на визу в Испанию?
+  category_slug: selection

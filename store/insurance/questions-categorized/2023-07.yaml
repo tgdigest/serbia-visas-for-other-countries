@@ -1,0 +1,34 @@
+month: 2023-07
+md5: 047f4abeed5331180eb11d980d94acfc
+questions:
+- question: Где обсуждают тему страховок для авто с российскими и белорусскими номерами
+    в Сербии?
+  category_slug: selection
+- question: Если при оформлении страховки Wiener Städtische нельзя выбрать Шенген,
+    а только отдельные страны, будет ли она действовать во всем Шенгене?
+  category_slug: usage
+- question: Как быстро делается страховка после оплаты онлайн?
+  category_slug: selection
+- question: Как получить полис страховки Dunav после покупки онлайн?
+  category_slug: selection
+- question: Как работает покрытие страховки на 3 года с 90 днями в каждые 365 дней?
+  category_slug: usage
+- question: Какой адрес указывать при оформлении страховки в поле PERMANENT RESIDENCY
+    - российский или сербский?
+  category_slug: selection
+- question: Какую страховку оформлять для визы на 3 месяца и сколько она стоит?
+  category_slug: selection
+- question: Нужна ли страховка на авто с сербскими номерами при поездке в шенгенскую
+    зону?
+  category_slug: selection
+- question: Подойдет ли карта страховой Uniqa на три года с 90 днями туристического
+    покрытия для визы в Италию?
+  category_slug: usage
+- question: При покупке страховки в Wiener для второго человека в PDF указана национальность
+    RS, хотя указывался JMBG как иностранца - это нормально?
+  category_slug: selection
+- question: Принимают ли страховку с сайта europe-insurance.eu для виз?
+  category_slug: selection
+- question: Страховка какой фирмы дает возможность получить помощь без реимбурсмента
+    (с прямой оплатой)?
+  category_slug: selection
