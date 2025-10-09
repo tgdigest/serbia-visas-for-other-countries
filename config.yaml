@@ -50,12 +50,17 @@ chats:
     url: "https://t.me/c/1608823685/14535"
     slug: "hungary"
     description: "Визы в консульствах Белграда и Суботицы"
+    faq: true
+    cases: true
+  - title: "Страховки"
+    url: "https://t.me/c/1608823685/29756"
+    slug: "insurance"
+    description: "Медицинские страховки для виз"
+    faq: true
+    cases: false
 #  - title: "Франция 🇫🇷"
 #    url: "https://t.me/c/1608823685/14530"
 #    slug: "france"
-#  - title: "Страховки"
-#    url: "https://t.me/c/1608823685/29756"
-#    slug: "insurance"
 #  - title: "Греция 🇬🇷"
 #    url: "https://t.me/c/1608823685/37109"
 #    slug: "greece"

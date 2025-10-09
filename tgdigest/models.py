@@ -103,7 +103,9 @@ class Chat(BaseModel):
     title: str
     url: str
     slug: str
-    description: str = ''
+    description: str
+    faq: bool
+    cases: bool
 
     def _parse_url(self):
         match = re.match(r'https://t\.me/c/(\d+)/(\d+)', self.url)

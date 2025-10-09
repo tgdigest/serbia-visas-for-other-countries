@@ -18,10 +18,14 @@ class Yaml2Md:
 
         store = ChatStore(chat)
 
-        years = self._get_available_years(store)
+        years = self._get_available_years(store) if chat.cases else []
         self._build_section_index(chat, years)
-        self._build_cases(store, chat)
-        self._build_faq(store, chat)
+
+        if chat.cases:
+            self._build_cases(store, chat)
+
+        if chat.faq:
+            self._build_faq(store, chat)
 
     def _get_available_years(self, store: ChatStore) -> list[int]:
         all_months = store.cases.get_all_months()
