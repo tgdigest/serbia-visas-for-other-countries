@@ -10,8 +10,10 @@ weight = 10
 Визы в консульствах Белграда и Суботицы
 
 {{< cards >}}
+
   {{< card link="faq" title="FAQ" icon="question-mark-circle" subtitle="Часто задаваемые вопросы" >}}
 
-  {{< card link="cases-2025" title="Кейсы" icon="clipboard-list" subtitle="Истории одобрений и отказов" >}}
+
+  {{< card link="cases/2025" title="Кейсы" icon="clipboard-list" subtitle="Истории одобрений и отказов" >}}
 
 {{< /cards >}}

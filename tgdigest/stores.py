@@ -224,13 +224,15 @@ class NormalizedFAQStore:
         self.chat_store = chat_store
         self._cache = {}
 
-    def get_category_file(self, category_slug: str) -> Path:
+    def get_category_file(self, category_slug: str | None) -> Path:
+        if category_slug is None:
+            return self.chat_store.chat_dir / 'faq-normalized.yaml'
         return self.chat_store.chat_dir / 'faq-normalized' / f'{category_slug}.yaml'
 
-    def save_category(self, category_slug: str, data: CategoryNormalizedQuestions):
+    def save_category(self, category_slug: str | None, data: CategoryNormalizedQuestions):
         self.chat_store.save_yaml(self.get_category_file(category_slug), data)
 
-    def load_category(self, category_slug: str) -> CategoryNormalizedQuestions:
+    def load_category(self, category_slug: str | None) -> CategoryNormalizedQuestions:
         if category_slug not in self._cache:
             if self.get_category_file(category_slug).exists():
                 with self.get_category_file(category_slug).open(encoding='utf-8') as f:
@@ -243,27 +245,34 @@ class NormalizedFAQStore:
                 )
         return self._cache[category_slug]
 
-    def get_unprocessed_categories(self, faq_categories: list) -> list[str]:
+    def get_unprocessed_categories(self, faq_categories: list) -> list[str | None]:
         return [
-            cat.slug for cat in faq_categories
-            if self.load_category(cat.slug).questions_text_md5 != self.compute_category_md5(cat.slug)
+            cat.slug if cat else None for cat in faq_categories
+            if self.load_category(cat.slug if cat else None).questions_text_md5 != self.compute_category_md5(cat.slug if cat else None)
         ]
 
-    def get_category_questions(self, category_slug: str) -> tuple[str, list[str]]:
+    def get_category_questions(self, category_slug: str | None) -> tuple[str, list[str]]:
         all_questions = []
-        for month in self.chat_store.categorized_questions.get_all_months():
-            month_data = self.chat_store.categorized_questions.get_month(month)
-            all_questions.extend(
-                cat_q.question
-                for cat_q in month_data.questions
-                if cat_q.category_slug == category_slug and not cat_q.is_date_specific
-            )
+
+        if category_slug is None:
+            for month in self.chat_store.questions.get_all_months():
+                month_data = self.chat_store.questions.get_month(month)
+                all_questions.extend(q.question for q in month_data.questions if q.answers)
+        else:
+            for month in self.chat_store.categorized_questions.get_all_months():
+                month_data = self.chat_store.categorized_questions.get_month(month)
+                all_questions.extend(
+                    cat_q.question
+                    for cat_q in month_data.questions
+                    if cat_q.category_slug == category_slug and not cat_q.is_date_specific
+                )
+
         return compute_text_hash(all_questions), sorted(set(all_questions))
 
-    def compute_category_md5(self, category_slug: str) -> str:
+    def compute_category_md5(self, category_slug: str | None) -> str:
         return self.get_category_questions(category_slug)[0]
 
-    def normalize_question(self, category_slug: str, question: str) -> str:
+    def normalize_question(self, category_slug: str | None, question: str) -> str:
         normalized = self.load_category(category_slug)
         for norm_q in normalized.questions:
             if question in norm_q.source_questions:

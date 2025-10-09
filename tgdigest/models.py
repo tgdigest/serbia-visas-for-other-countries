@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 @dataclass(frozen=True, order=True)
@@ -99,13 +99,30 @@ class MonthMessages(BaseModel):
     messages: list[Message]
 
 
+class FAQCategory(BaseModel):
+    title: str
+    slug: str
+    description: str
+
+
+class FAQConfig(BaseModel):
+    enabled: bool
+    categories: list[FAQCategory] = []
+
+    def has_categories(self) -> bool:
+        return len(self.categories) > 0
+
+    def get_category_by_slug(self, slug: str) -> FAQCategory:
+        return next(c for c in self.categories if c.slug == slug)
+
+
 class Chat(BaseModel):
     title: str
     url: str
     slug: str
     description: str
-    faq: bool
-    cases: bool
+    faq: FAQConfig = Field(default_factory=lambda: FAQConfig(enabled=False))
+    cases: bool = False
 
     def _parse_url(self):
         match = re.match(r'https://t\.me/c/(\d+)/(\d+)', self.url)
@@ -129,22 +146,11 @@ class Chat(BaseModel):
         return self.title
 
 
-class FAQCategory(BaseModel):
-    title: str
-    slug: str
-    description: str
-
-
 class Config(BaseModel):
-    extra_prompt: str = ''
-    faq_categories: list[FAQCategory]
     chats: list[Chat]
     docs_dir: str = 'docs'
     openai_model: str = 'gpt-4.1-2025-04-14'
     anthropic_model: str
-
-    def get_faq_category_by_slug(self, slug: str) -> FAQCategory:
-        return next(c for c in self.faq_categories if c.slug == slug)
 
 
 
@@ -245,6 +251,6 @@ class FAQNormalizationResponse(BaseModel):
 
 
 class CategoryNormalizedQuestions(BaseModel):
-    category_slug: str
+    category_slug: str | None = None
     questions_text_md5: str
     questions: list[NormalizedFAQQuestion]

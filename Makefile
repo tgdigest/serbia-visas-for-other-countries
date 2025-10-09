@@ -19,17 +19,17 @@ extract-facts:
 extract-questions:
 	./venv/bin/python -m tgdigest extract-questions --max-months=3
 
-extract-cases:
-	./venv/bin/python -m tgdigest extract-cases --max-months=3
-
-yaml2md:
-	./venv/bin/python -m tgdigest yaml2md
-
 categorize-questions:
 	./venv/bin/python -m tgdigest categorize-questions --max-months=6
 
 normalize-faq:
 	./venv/bin/python -m tgdigest normalize-faq --max-categories=1
+
+extract-cases:
+	./venv/bin/python -m tgdigest extract-cases --max-months=3
+
+yaml2md:
+	./venv/bin/python -m tgdigest yaml2md
 
 serve: yaml2md
 	cd site && hugo server

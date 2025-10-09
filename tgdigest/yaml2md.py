@@ -24,7 +24,7 @@ class Yaml2Md:
         if chat.cases:
             self._build_cases(store, chat)
 
-        if chat.faq:
+        if chat.faq.enabled:
             self._build_faq(store, chat)
 
     def _get_available_years(self, store: ChatStore) -> list[int]:
@@ -86,6 +86,12 @@ class Yaml2Md:
         )
 
     def _build_faq(self, store: ChatStore, chat: Chat):
+        if chat.faq.has_categories():
+            self._build_faq_with_categories(store, chat)
+        else:
+            self._build_faq_without_categories(store, chat)
+
+    def _build_faq_with_categories(self, store: ChatStore, chat: Chat):
         all_categorized = store.categorized_questions.get_all_categorized()
 
         date_specific = {cat_q.question for cat_q in all_categorized if cat_q.is_date_specific}
@@ -99,12 +105,12 @@ class Yaml2Md:
 
         index_template = self.jinja_env.get_template('hugo/faq-index.md.j2')
         self._save(self.output_dir / chat.slug / 'faq' / '_index.md', index_template.render(
-            categories=self.config.faq_categories,
+            categories=chat.faq.categories,
         ))
 
         grouped_by_category = self._group_by_category(all_categorized, chat, store)
         category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
-        for weight, category in enumerate(self.config.faq_categories, start=1):
+        for weight, category in enumerate(chat.faq.categories, start=1):
             if category.slug in grouped_by_category:
                 by_letter = {}
                 for q in sorted(grouped_by_category[category.slug], key=lambda q: q['question']):
@@ -117,25 +123,35 @@ class Yaml2Md:
                     letter_groups=sorted(by_letter.items()),
                 ))
 
-    def _group_by_category(self, all_categorized: list[CategorizedQuestion], chat: Chat, store: ChatStore):
-        grouped_by_category = {}
+    def _build_faq_without_categories(self, store: ChatStore, chat: Chat):
+        all_questions = [q.question for q in store.questions.get_all_questions()]
+        questions_with_answers = self._collect_question_answers(all_questions, None, chat, store)
+
+        by_letter = {}
+        for data in questions_with_answers:
+            letter = data['question'][0].upper()
+            by_letter.setdefault(letter, []).append(data)
+
+        category_template = self.jinja_env.get_template('hugo/faq-category.md.j2')
+        self._save(self.output_dir / chat.slug / 'faq' / '_index.md', category_template.render(
+            category=None,
+            weight=1,
+            letter_groups=sorted(by_letter.items()),
+        ))
+
+    def _collect_question_answers(self, questions_iter, category_slug, chat, store):
+        """Collect and normalize question-answer pairs."""
         question_answers = {}
 
-        for q in all_categorized:
-            if q.is_date_specific:
-                self.logger.debug('Skipping date-specific question: `%s` in category `%s`', q.question, q.category_slug)
-                continue
-
-            answers_with_links = store.questions.get_all_answers_for_question(q.question, chat)
+        for question_text in questions_iter:
+            answers_with_links = store.questions.get_all_answers_for_question(question_text, chat)
             if not answers_with_links:
-                self.logger.warning('No answers for question: `%s` in category `%s`', q.question, q.category_slug)
                 continue
 
-            normalized_question = store.normalized_faq.normalize_question(q.category_slug, q.question)
+            normalized_question = store.normalized_faq.normalize_question(category_slug, question_text)
 
             question_answers.setdefault(normalized_question, {
                 'question': normalized_question,
-                'category_slug': q.category_slug,
                 'answers_with_links': [],
             })
             question_answers[normalized_question]['answers_with_links'].extend(answers_with_links)
@@ -144,8 +160,22 @@ class Yaml2Md:
                 key=lambda a: a.sort_key
             )
 
-        for data in question_answers.values():
-            grouped_by_category.setdefault(data.pop('category_slug'), []).append(data)
+        return list(question_answers.values())
+
+    def _group_by_category(self, all_categorized: list[CategorizedQuestion], chat: Chat, store: ChatStore):
+        by_category = {}
+
+        for q in all_categorized:
+            if q.is_date_specific:
+                self.logger.debug('Skipping date-specific question: `%s` in category `%s`', q.question, q.category_slug)
+                continue
+            by_category.setdefault(q.category_slug, []).append(q.question)
+
+        grouped_by_category = {}
+        for category_slug, questions in by_category.items():
+            grouped_by_category[category_slug] = self._collect_question_answers(
+                questions, category_slug, chat, store
+            )
 
         return grouped_by_category
 

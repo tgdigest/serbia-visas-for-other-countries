@@ -17,6 +17,10 @@ class QuestionsCategorizer:
     def process_chat(self, chat: Chat, limiter):
         self.logger.info('Categorizing questions for: %s', chat.title)
 
+        if not chat.faq.enabled or not chat.faq.has_categories():
+            self.logger.info('FAQ not enabled or no categories defined for chat')
+            return
+
         store = ChatStore(chat)
         unprocessed_months = store.categorized_questions.get_unprocessed_months()
 
@@ -24,7 +28,7 @@ class QuestionsCategorizer:
             self.logger.info('No new months to categorize')
             return
 
-        categories_with_id = [{'id': i + 1, **cat.model_dump()} for i, cat in enumerate(self.config.faq_categories)]
+        categories_with_id = [{'id': i + 1, **cat.model_dump()} for i, cat in enumerate(chat.faq.categories)]
 
         for month in unprocessed_months:
             if not limiter.can_process():

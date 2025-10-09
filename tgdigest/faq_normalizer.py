@@ -18,7 +18,7 @@ class FAQNormalizer:
         self.logger.info('Normalizing FAQ for: %s', chat.title)
 
         store = ChatStore(chat)
-        unprocessed = store.normalized_faq.get_unprocessed_categories(self.config.faq_categories)
+        unprocessed = store.normalized_faq.get_unprocessed_categories(chat.faq.categories or [None])
 
         if not unprocessed:
             self.logger.info('No categories need normalization')
