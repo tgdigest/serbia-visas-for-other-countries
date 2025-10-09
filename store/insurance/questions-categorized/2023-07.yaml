@@ -12,7 +12,7 @@ questions:
 - question: Как получить полис страховки Dunav после покупки онлайн?
   category_slug: purchase
 - question: Как работает покрытие страховки на 3 года с 90 днями в каждые 365 дней?
-  category_slug: purchase
+  category_slug: requirements
 - question: Какой адрес указывать при оформлении страховки в поле PERMANENT RESIDENCY
     - российский или сербский?
   category_slug: purchase

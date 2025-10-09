@@ -8,7 +8,7 @@ questions:
   category_slug: requirements
 - question: Какую туристическую страховку можно приобрести для поездки в США гражданам
     РФ с сербским ВНЖ? Можно ли покупать российские туристические страховки?
-  category_slug: purchase
+  category_slug: russian
 - question: Можно ли использовать российскую туристическую страховку для получения
     шенгенской визы?
   category_slug: russian

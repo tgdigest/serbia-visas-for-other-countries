@@ -7,7 +7,7 @@ questions:
 - question: Какие условия оплаты по страховке SafetyWing для стран кроме США?
   category_slug: actual-use
 - question: Какие условия оплаты по страховке Тинькофф в США?
-  category_slug: actual-use
+  category_slug: russian
 - question: Какую страховку для путешествий в США можно купить?
   category_slug: purchase
 - question: Можно ли использовать страховку от Райффайзен банка Сербии для получения

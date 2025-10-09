@@ -17,7 +17,7 @@ questions:
   category_slug: purchase
 - question: Как работает годовая страховка с покрытием 30 дней - это 30 дней суммарно
     за год или 30 дней на каждую поездку?
-  category_slug: purchase
+  category_slug: requirements
 - question: Какие страховые компании в Сербии оформляют туристическую страховку для
     Шенгена онлайн?
   category_slug: purchase

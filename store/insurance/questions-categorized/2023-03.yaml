@@ -20,7 +20,7 @@ questions:
   category_slug: purchase
 - question: Какие консульства в Белграде принимают российскую страховку (Тинькофф
     или Черехапа) для оформления шенгенской визы?
-  category_slug: requirements
+  category_slug: russian
 - question: Можно ли у какой-либо страховой компании купить страховку с возможностью
     затем ее расторгнуть и вернуть часть стоимости?
   category_slug: actual-use

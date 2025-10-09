@@ -2,7 +2,7 @@ month: 2024-02
 md5: d7fdafc59a8ec0f64fd9e4df37573968
 questions:
 - question: В каких странах действует сербская медицинская страховка?
-  category_slug: actual-use
+  category_slug: other
 - question: Где купить страховку для поездки в Азию?
   category_slug: purchase
 - question: Как работает опция GRAWE с покрытием 25 дней подряд?
@@ -29,4 +29,4 @@ questions:
   category_slug: purchase
 - question: Что такое 'путно осигуранье' для ребенка при выезде в Боснию и Хорватию,
     если есть сербская здравственна книжица?
-  category_slug: requirements
+  category_slug: other

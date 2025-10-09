@@ -10,13 +10,13 @@ questions:
 - question: Где купить страховку для Шенгена - онлайн или лично?
   category_slug: purchase
 - question: Какие условия семейной годовой страховки от Grawe?
-  category_slug: purchase
+  category_slug: family
 - question: Можно ли для мультивизы делать страховку только на первый въезд, а затем
     для фактических въездов?
   category_slug: requirements
 - question: Можно ли использовать семейную годовую страховку от Grawe для подачи на
     рабочую польскую визу (D)?
-  category_slug: requirements
+  category_slug: family
 - question: Можно ли получить годовую мультивизу, если страховка оформлена только
     на 90 дней?
   category_slug: requirements

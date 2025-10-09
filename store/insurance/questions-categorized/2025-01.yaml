@@ -26,7 +26,7 @@ questions:
 - question: Можно ли поменять даты или расширить уже купленную страховку в Grawe?
   category_slug: actual-use
 - question: Сколько стоит страховка на семью в Дунав осигуранье?
-  category_slug: purchase
+  category_slug: family
 - question: Что делать, если после покупки страховки Grawe на сайте ничего не пришло
     на почту?
   category_slug: actual-use
