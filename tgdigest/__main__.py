@@ -82,7 +82,7 @@ def categorize_questions(cfg: Config, *, max_months: int):
         categorizer.process_chat(chat, limiter)
 
 
-def normalize_faq(cfg: Config, *, max_categories: int):
+def normalize_questions(cfg: Config, *, max_categories: int):
     provider = AnthropicProvider(api_key=os.getenv('ANTHROPIC_API_KEY'), model=cfg.anthropic_model)
     normalizer = FAQNormalizer(config=cfg, provider=provider)
     limiter = WorkLimiter(max_categories)
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     categorize_parser = subparsers.add_parser('categorize-questions', help='Categorize FAQ questions')
     categorize_parser.add_argument('--max-months', type=int, default=1, help='Max months to process per run')
 
-    normalize_parser = subparsers.add_parser('normalize-faq', help='Normalize FAQ questions')
+    normalize_parser = subparsers.add_parser('normalize-questions', help='Normalize FAQ questions')
     normalize_parser.add_argument('--max-categories', type=int, default=1, help='Max categories to process per run')
 
     args = parser.parse_args()
@@ -156,5 +156,5 @@ if __name__ == '__main__':
         yaml_to_markdown(config)
     elif args.command == 'categorize-questions':
         categorize_questions(config, max_months=args.max_months)
-    elif args.command == 'normalize-faq':
-        normalize_faq(config, max_categories=args.max_categories)
+    elif args.command == 'normalize-questions':
+        normalize_questions(config, max_categories=args.max_categories)

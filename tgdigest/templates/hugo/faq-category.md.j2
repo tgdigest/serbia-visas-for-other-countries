@@ -1,5 +1,5 @@
 +++
-title = "{{ category.title }}"
+title = "{{ category.title if category else 'FAQ' }}"
 type = "docs"
 weight = {{ weight }}
 +++
