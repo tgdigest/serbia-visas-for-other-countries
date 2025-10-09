@@ -12,13 +12,13 @@ questions:
 - question: Какую страховку выбрать для туристической поездки в Азию?
   category_slug: purchase
 - question: Подходит ли российская страховка для визы?
-  category_slug: requirements
+  category_slug: russian
 - question: Проблемы с покупкой страховки на сайте Dunav - не работают кнопки покупки
     и логина
-  category_slug: other
+  category_slug: purchase
 - question: Работает ли российская страховка за границей, если уже находишься за пределами
     России?
-  category_slug: actual-use
+  category_slug: russian
 - question: Сколько стоит годовая страховка Dunav?
   category_slug: purchase
 - question: Сколько стоит годовая страховка с ограниченным количеством дней поездок?

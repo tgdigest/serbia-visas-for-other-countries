@@ -3,16 +3,16 @@ md5: 047f4abeed5331180eb11d980d94acfc
 questions:
 - question: Где обсуждают тему страховок для авто с российскими и белорусскими номерами
     в Сербии?
-  category_slug: other
+  category_slug: auto
 - question: Если при оформлении страховки Wiener Städtische нельзя выбрать Шенген,
     а только отдельные страны, будет ли она действовать во всем Шенгене?
-  category_slug: purchase
+  category_slug: requirements
 - question: Как быстро делается страховка после оплаты онлайн?
   category_slug: purchase
 - question: Как получить полис страховки Dunav после покупки онлайн?
   category_slug: purchase
 - question: Как работает покрытие страховки на 3 года с 90 днями в каждые 365 дней?
-  category_slug: requirements
+  category_slug: purchase
 - question: Какой адрес указывать при оформлении страховки в поле PERMANENT RESIDENCY
     - российский или сербский?
   category_slug: purchase
@@ -20,7 +20,7 @@ questions:
   category_slug: purchase
 - question: Нужна ли страховка на авто с сербскими номерами при поездке в шенгенскую
     зону?
-  category_slug: requirements
+  category_slug: auto
 - question: Подойдет ли карта страховой Uniqa на три года с 90 днями туристического
     покрытия для визы в Италию?
   category_slug: requirements

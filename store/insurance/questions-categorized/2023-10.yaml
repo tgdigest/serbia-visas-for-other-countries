@@ -3,7 +3,7 @@ md5: 20e17f4515a41c5371bf779327f9f841
 questions:
 - question: Действует ли сербская ОМС (медицинская страховка) в странах Европы, например
     в Венгрии? Нужно ли дополнительно оформлять туристическую страховку?
-  category_slug: requirements
+  category_slug: actual-use
 - question: Как на сайте Дунав оформить годовую страховку для путешествий на 30 или
     90 дней?
   category_slug: purchase
@@ -16,7 +16,7 @@ questions:
   category_slug: purchase
 - question: Нужно ли указывать в страховке для Шенгена цель поездки 'соревнования',
     если едешь на соревнования?
-  category_slug: purchase
+  category_slug: requirements
 - question: Обязательно ли включать ковид в страховку для получения визы?
   category_slug: requirements
 - question: Подойдет ли ДМС Generali в качестве страховки для получения шенгенских

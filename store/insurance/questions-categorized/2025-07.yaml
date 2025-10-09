@@ -21,7 +21,7 @@ questions:
     на 90 дней?
   category_slug: requirements
 - question: Можно ли скорректировать даты уже купленной страховки от Дунав?
-  category_slug: purchase
+  category_slug: actual-use
 - question: Можно ли указывать последний день поездки как последний день действия
     страховки?
   category_slug: requirements
@@ -48,7 +48,7 @@ questions:
   category_slug: purchase
 - question: Страховка от Поштански по бизнес счету - только на владельца или на всю
     семью?
-  category_slug: purchase
+  category_slug: family
 - question: Что означает разница между "at least 30.000 €" и "up to 30.000 €" в страховке?
   category_slug: requirements
 - question: Что такое JMBG и EBS, в чём разница?

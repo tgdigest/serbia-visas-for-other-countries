@@ -23,7 +23,7 @@ categorize-questions:
 	./venv/bin/python -m tgdigest categorize-questions --max-months=12
 
 normalize-questions:
-	./venv/bin/python -m tgdigest normalize-questions --max-categories=1
+	./venv/bin/python -m tgdigest normalize-questions --max-categories=2
 
 extract-cases:
 	./venv/bin/python -m tgdigest extract-cases --max-months=3

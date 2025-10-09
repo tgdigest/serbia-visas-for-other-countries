@@ -9,9 +9,9 @@ questions:
   category_slug: purchase
 - question: Как работает семейная страховка GRAWE - страховая сумма на каждого или
     на всех?
-  category_slug: purchase
+  category_slug: family
 - question: Какие есть альтернативы семейной страховке с нормальным покрытием на человека?
-  category_slug: purchase
+  category_slug: family
 - question: Какую страховку можно купить онлайн для Шенгена?
   category_slug: purchase
 - question: Можно ли исключать страховку от COVID-19 из полиса Dunav при подаче на
@@ -22,7 +22,7 @@ questions:
   category_slug: requirements
 - question: Подходит ли семейная страховка Porodicno от Dunav для подачи на Шенген
     семьей из 4 человек?
-  category_slug: requirements
+  category_slug: family
 - question: Подходит ли сербская страховка (типа ОМС) для получения визы Шенген?
   category_slug: requirements
 - question: Что отвечать на вопрос в Uniqa 'является ли подрядчик застрахованным лицом'?

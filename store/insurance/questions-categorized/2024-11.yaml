@@ -6,12 +6,12 @@ questions:
 - question: Как купить страховку в Uniqa, если поле JMBG обязательное и не дает продолжить?
   category_slug: purchase
 - question: Какая стандартная цена на зеленую карту (Green Card) для автомобиля?
-  category_slug: purchase
+  category_slug: auto
 - question: Какую страховку нужно делать для многократной шенгенской визы в Испанию
     и на какой срок?
   category_slug: requirements
 - question: Нужна ли зеленая карта для поездки в ЕС на автомобиле с сербской страховкой?
-  category_slug: requirements
+  category_slug: auto
 - question: Нужно ли делать несколько страховок, если планируется посетить больше
     одной страны на территории Евросоюза?
   category_slug: requirements

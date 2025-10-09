@@ -6,10 +6,10 @@ questions:
   category_slug: purchase
 - question: Есть ли между Россией и Сербией договор, дающий право на получение срочной
     медицинской помощи гражданам России на территории Сербии?
-  category_slug: actual-use
+  category_slug: other
 - question: Есть ли у страховых компаний возможность возврата или переноса страховки
     на другие даты?
-  category_slug: other
+  category_slug: actual-use
 - question: Какая сумма покрытия страховки должна быть для получения визы во Францию
     и другие страны Шенгена?
   category_slug: requirements
@@ -18,7 +18,7 @@ questions:
   category_slug: requirements
 - question: Можно ли заменить страховку с недостаточным покрытием (5 тыс. вместо 30
     тыс.) в компании Дунав?
-  category_slug: other
+  category_slug: actual-use
 - question: Подойдет ли страховка на 10 дней, если планируется поездка только на 3
     дня?
   category_slug: requirements

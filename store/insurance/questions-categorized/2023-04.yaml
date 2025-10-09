@@ -2,7 +2,7 @@ month: 2023-04
 md5: 3ff7c8c007d2e7dc067a9b4a16e2a048
 questions:
 - question: Как происходит возврат страховки в Dunav и безопасно ли это?
-  category_slug: purchase
+  category_slug: actual-use
 - question: Как работает годовая страховка с указанием количества дней - это суммарно
     в год или максимальная продолжительность одной поездки?
   category_slug: purchase
@@ -18,7 +18,7 @@ questions:
     (застрахованный) при покупке страховки онлайн?
   category_slug: purchase
 - question: Можно ли вернуть деньги за страховку, если не получилось оформить визу?
-  category_slug: purchase
+  category_slug: actual-use
 - question: Можно ли вместо сгенерированного JMBG написать номер ВНЖ из вклейки при
     подаче в Dunav?
   category_slug: purchase

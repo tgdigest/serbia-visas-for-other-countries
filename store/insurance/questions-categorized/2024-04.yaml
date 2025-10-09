@@ -13,15 +13,15 @@ questions:
 - question: Какую страховую компанию лучше выбрать для поездки в Европу?
   category_slug: purchase
 - question: Можно ли вернуть деньги за страховку при отказе в визе?
-  category_slug: other
+  category_slug: actual-use
 - question: Можно ли использовать сербскую здравствену картицу (медицинскую карту)
     вместо туристической страховки для поездки в Шенген?
   category_slug: requirements
 - question: Можно ли оформить туристическую страховку онлайн только на ребенка до
     18 лет без взрослых?
-  category_slug: purchase
+  category_slug: family
 - question: Нужна ли страховка на автомобиль для поездки в ЕС?
-  category_slug: requirements
+  category_slug: auto
 - question: Нужно ли распечатывать страховку для подачи на визу?
   category_slug: requirements
 - question: Подходит ли сербская или черногорская медицинская страховка (ОМС) для

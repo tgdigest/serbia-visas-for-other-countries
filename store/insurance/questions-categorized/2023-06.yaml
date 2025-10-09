@@ -11,13 +11,13 @@ questions:
 - question: Где оформить страховку Дунав для ВНЖ в Белграде?
   category_slug: purchase
 - question: Где оформить страховку для путешествий на ребенка (до 18 лет)?
-  category_slug: purchase
+  category_slug: family
 - question: Как оформить венгерскую медицинскую страховку для подачи на визу категории
     D, находясь в Грузии, если документы будут подавать в РФ?
   category_slug: purchase
 - question: Как работает годовая страховка с покрытием 30 дней - это 30 дней суммарно
     за год или 30 дней на каждую поездку?
-  category_slug: other
+  category_slug: purchase
 - question: Какие страховые компании в Сербии оформляют туристическую страховку для
     Шенгена онлайн?
   category_slug: purchase
@@ -36,7 +36,7 @@ questions:
     стран-членов?
   category_slug: requirements
 - question: Принимают ли российскую страховку Тинькофф при подаче на визу в Сербии?
-  category_slug: requirements
+  category_slug: russian
 - question: Работает ли страховка Тинькофф в Шенгене и Сербии для реального использования
     (не для подачи на визу)?
-  category_slug: actual-use
+  category_slug: russian

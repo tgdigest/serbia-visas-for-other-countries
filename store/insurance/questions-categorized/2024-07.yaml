@@ -5,7 +5,7 @@ questions:
     жилья?
   category_slug: purchase
 - question: Какая самая дешевая туристическая страховка на семью для Греции?
-  category_slug: purchase
+  category_slug: family
 - question: Какую страховку для ЕС можно оплатить онлайн без ошибок при покупке?
   category_slug: purchase
 - question: Какую страховую выбрать для косметической операции в Сербии?
@@ -14,10 +14,10 @@ questions:
     как решить?
   category_slug: purchase
 - question: Подойдет ли страховка Тинькофф для подачи на болгарскую визу?
-  category_slug: requirements
+  category_slug: russian
 - question: Страховка для Греции должна быть с покрытием 30000 евро на каждого или
     подойдет на семью?
-  category_slug: requirements
+  category_slug: family
 - question: Страховка от Дунава - если нужно пойти к врачу, обязательно ли звонить
     им, или можно оплатить на месте и потом вернуть деньги?
   category_slug: actual-use

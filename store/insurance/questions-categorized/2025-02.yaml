@@ -4,7 +4,7 @@ questions:
 - question: Где можно недорого застраховаться для поездки в Венгрию?
   category_slug: purchase
 - question: Есть ли случаи отказов в приеме документов или в визе из-за русской страховки?
-  category_slug: requirements
+  category_slug: russian
 - question: Как работает страховая компания SafetyWing на практике, возмещают ли расходы?
   category_slug: actual-use
 - question: Какую страховку лучше взять для разовой поездки в Испанию?
@@ -15,7 +15,7 @@ questions:
 - question: Примут ли медицинскую страховку из пакета Райффайзен, где указано только
     имя держателя карты, но написано что члены семьи тоже застрахованы (без указания
     их имен), для визы мужа и дочки?
-  category_slug: requirements
+  category_slug: family
 - question: Принимают ли американскую страховку SafetyWing для визы в Германию?
   category_slug: requirements
 - question: Принимают ли белорусские страховки в Румынском посольстве для Шенгенской

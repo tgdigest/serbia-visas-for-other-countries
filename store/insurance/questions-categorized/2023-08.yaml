@@ -2,18 +2,18 @@ month: 2023-08
 md5: 348b46aac1ba5c4d88b8a0fb99ec5e69
 questions:
 - question: Как установить и войти в мобильное приложение Wiener Städtische?
-  category_slug: other
+  category_slug: actual-use
 - question: Какие документы по страхованию автомобиля нужны для подачи на визу в посольство?
   category_slug: requirements
 - question: Можно ли заменить страховку после получения визы, если виза выдана на
     меньший срок, чем запрашивалось?
-  category_slug: requirements
+  category_slug: actual-use
 - question: Не совпадает JMBG в боравке с данными в документах от Wiener Städtische
     - что делать?
-  category_slug: other
+  category_slug: actual-use
 - question: Нужна ли зеленая карта (Green Card) для автомобиля на сербских номерах
     при поездке в страны ЕС?
-  category_slug: requirements
+  category_slug: auto
 - question: Нужно ли покупать страховку с коридором +15 дней к датам поездки или можно
     точно под даты?
   category_slug: purchase

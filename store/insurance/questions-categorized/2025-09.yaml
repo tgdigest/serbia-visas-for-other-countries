@@ -13,7 +13,7 @@ questions:
   category_slug: requirements
 - question: Принимают ли российские страховки (например, Т-Страхование) для въезда
     в страны ЕС?
-  category_slug: requirements
+  category_slug: russian
 - question: С какого дня начинает действовать страховой полис при онлайн-оформлении?
   category_slug: purchase
 - question: Что лучше и дешевле для визы в Венгрию - страховка Wiener или Grawe?

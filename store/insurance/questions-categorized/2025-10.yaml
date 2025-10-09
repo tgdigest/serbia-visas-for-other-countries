@@ -18,8 +18,8 @@ questions:
   category_slug: requirements
 - question: Почему российские страховые компании продолжают продавать страховки для
     Шенгена, если есть проблемы?
-  category_slug: other
+  category_slug: russian
 - question: Работают ли российские страховки (например, Тинькофф) для въезда в Шенген?
-  category_slug: requirements
+  category_slug: russian
 - question: Что делать, если при покупке страховки номер JMBG не проходит?
   category_slug: purchase

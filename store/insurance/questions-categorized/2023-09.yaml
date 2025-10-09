@@ -3,7 +3,7 @@ md5: b9bc0ff7798bcc5b45f5efe87464b1ab
 questions:
 - question: В какие страны из Сербии обязательно нужна зелёная карта (Green Card)
     для поездки на автомобиле?
-  category_slug: requirements
+  category_slug: auto
 - question: Где можно недорого оформить страховку для туристической краткосрочной
     шенгенской визы?
   category_slug: purchase
@@ -11,18 +11,18 @@ questions:
   category_slug: purchase
 - question: Могут ли в Италии требовать зелёную карту или международное водительское
     удостоверение при поездке на автомобиле с сербскими номерами?
-  category_slug: requirements
+  category_slug: auto
 - question: Можно ли купить автостраховку для Черногории на границе при въезде из
     Сербии на машине с российскими номерами?
-  category_slug: purchase
+  category_slug: auto
 - question: Можно ли купить короткую страховку на 8 дней для получения мультивизы
     в Италию или обязательно нужна длинная страховка?
   category_slug: requirements
 - question: Нужна ли зелёная карта (Green Card) для поездки в Румынию на автомобиле
     с сербскими номерами?
-  category_slug: requirements
+  category_slug: auto
 - question: Подходит ли обычное сербское здравственное страхование (zdravstveno osiguranje)
     в качестве туристической страховки для поездки в Хорватию?
   category_slug: requirements
 - question: Что такое JMBG, который требуется при покупке страховки для визы в Италию?
-  category_slug: other
+  category_slug: purchase

@@ -4,11 +4,11 @@ questions:
 - question: Где в Суботице сделать страховку для Венгрии и сколько это стоит?
   category_slug: purchase
 - question: Достаточно ли страховки Тинькофф при подаче на визу сейчас?
-  category_slug: requirements
+  category_slug: russian
   is_date_specific: true
 - question: Как работает годовая страховка с покрытием на месяц - если был в Европе
     неделю и не обращался к врачам, останется 30 дней или 23?
-  category_slug: purchase
+  category_slug: actual-use
 - question: Какая самая дешёвая страховка на Шенген?
   category_slug: purchase
 - question: Можно ли оформить годовую страховку в Дунав не гражданам Сербии? В графе
@@ -23,12 +23,12 @@ questions:
   category_slug: requirements
 - question: При заполнении страховки в Дунав на семью - если заполняю себя как ugovarač
     o osiguranja, буду ли я сам в страховке?
-  category_slug: purchase
+  category_slug: family
 - question: При оформлении страховки онлайн в Дунав на сербском языке - какой документ
     получу на выходе, будет ли английская версия? Фамилию писать латиницей?
   category_slug: purchase
 - question: Примут ли во французском посольстве страховку от Тинькофф на год?
-  category_slug: requirements
+  category_slug: russian
 - question: Что такое страховка от бизнес счета в Райффайзен - есть ли она автоматически
     у всех, кто открыл счет на предпринимателя?
   category_slug: purchase

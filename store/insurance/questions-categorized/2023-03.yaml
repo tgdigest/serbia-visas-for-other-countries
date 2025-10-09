@@ -23,7 +23,7 @@ questions:
   category_slug: requirements
 - question: Можно ли у какой-либо страховой компании купить страховку с возможностью
     затем ее расторгнуть и вернуть часть стоимости?
-  category_slug: purchase
+  category_slug: actual-use
 - question: Насколько выгоднее российская страховка по сравнению с сербской для поездок
     в Европу, ОАЭ и Турцию?
   category_slug: purchase

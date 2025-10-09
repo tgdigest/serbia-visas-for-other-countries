@@ -10,8 +10,8 @@ questions:
     одним днем, страховка нужна на 2 дня или на весь период?
   category_slug: purchase
 - question: Принимают ли семейную страховку или нужна отдельная на каждого человека?
-  category_slug: requirements
+  category_slug: family
 - question: Сколько дней ждать ответа от UNIQA на email?
-  category_slug: other
+  category_slug: actual-use
 - question: Сколько стоит годовая страховка?
   category_slug: purchase

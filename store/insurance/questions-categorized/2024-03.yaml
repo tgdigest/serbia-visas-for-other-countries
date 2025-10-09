@@ -5,7 +5,7 @@ questions:
     Штедионице?
   category_slug: purchase
 - question: Как оформить семейную страховку для визы с исключением ковида?
-  category_slug: purchase
+  category_slug: family
 - question: Как оформить страховку на сайте Dunav?
   category_slug: purchase
 - question: Как работают страховые компании Winer и Uniqa при обращении за медпомощью
@@ -20,10 +20,10 @@ questions:
   category_slug: purchase
 - question: Можно ли вернуть деньги за страховку Dunav, если страховые даты ещё не
     наступили?
-  category_slug: other
+  category_slug: actual-use
 - question: Нужна ли отдельная страховка на ребенка 6 лет или достаточно страховок
     родителей?
-  category_slug: requirements
+  category_slug: family
 - question: Нужна ли сербская страховка для подачи на визу в Сербии и нужно ли её
     переводить?
   category_slug: requirements

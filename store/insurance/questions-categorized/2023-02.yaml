@@ -20,14 +20,14 @@ questions:
   category_slug: requirements
 - question: Подходит ли для шенгена в Белграде международная страховка от Тинькофф
     банка?
-  category_slug: requirements
+  category_slug: russian
 - question: Покрывает ли страховка Дунав COVID?
   category_slug: purchase
 - question: Покрывает ли страховка Райф-Премиум риски COVID-19 для посольств?
   category_slug: requirements
 - question: Сколько стоит годовая страховка на семью из 5 человек для австрийской
     визы? Это нормальная цена - 40 000?
-  category_slug: purchase
+  category_slug: family
 - question: Сколько стоит страховка Wiener Stadtische и какие у них условия?
   category_slug: purchase
 - question: Сколько стоит страховка Дунав на короткий срок?

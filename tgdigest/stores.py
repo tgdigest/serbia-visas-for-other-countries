@@ -226,8 +226,8 @@ class NormalizedFAQStore:
 
     def get_category_file(self, category_slug: str | None) -> Path:
         if category_slug is None:
-            return self.chat_store.chat_dir / 'faq-normalized.yaml'
-        return self.chat_store.chat_dir / 'faq-normalized' / f'{category_slug}.yaml'
+            return self.chat_store.chat_dir / 'questions-normalized.yaml'
+        return self.chat_store.chat_dir / 'questions-normalized' / f'{category_slug}.yaml'
 
     def save_category(self, category_slug: str | None, data: CategoryNormalizedQuestions):
         self.chat_store.save_yaml(self.get_category_file(category_slug), data)

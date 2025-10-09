@@ -19,10 +19,10 @@ questions:
     бизнес-счета) для получения визы в Шенген?
   category_slug: requirements
 - question: Принимают ли в Греции российскую страховку или только местные?
-  category_slug: requirements
+  category_slug: actual-use
 - question: Что делать, если купил страховку в Grawe, но не получил полис до подачи
     документов на визу?
-  category_slug: purchase
+  category_slug: after-purchase
 - question: Что заполнять в поле JMBG на сайте Дунава при оформлении страховки - номер
     сербского ВНЖ или номер загранпаспорта?
   category_slug: purchase

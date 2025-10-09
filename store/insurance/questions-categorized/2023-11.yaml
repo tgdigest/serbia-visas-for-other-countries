@@ -11,9 +11,9 @@ questions:
     нескольких въездов?
   category_slug: purchase
 - question: Какую страховую компанию выбрать для получения визы Д Сербии?
-  category_slug: purchase
+  category_slug: requirements
 - question: Можно ли получить бумагу о страховании за границей в РФЗО при наличии
     здравствены картицы?
-  category_slug: other
+  category_slug: purchase
 - question: Сколько стоит 30-дневная страховка для Европы?
   category_slug: purchase
