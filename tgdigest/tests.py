@@ -1,10 +1,4 @@
-import tempfile
-from pathlib import Path
-
-from tgdigest.ai import OpenAIProvider
 from tgdigest.diff_parser import DiffParser
-from tgdigest.generator import Generator
-from tgdigest.models import Config
 
 
 def test_diff_parser_whitespace_handling():
@@ -333,17 +327,6 @@ def test_apply_real_diff():
 16. **Минимальный срок ВНЖ** — НЕТ требования по минимальному сроку владения ВНЖ. Можно подаваться даже с 1-2 месячным ВНЖ
 """
 
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.md', delete=False, encoding='utf-8') as f:
-        f.write(original)
-        temp_file = Path(f.name)
-
-    try:
-        config = Config(chats=[])
-        provider = OpenAIProvider(api_key='dummy', model='gpt-4')
-        gen = Generator(config=config, provider=provider)
-        gen._apply_diff(temp_file, diff)
-
-        result = temp_file.read_text(encoding='utf-8')
-        assert result == expected, f'Expected:\n{expected!r}\n\nGot:\n{result!r}'
-    finally:
-        temp_file.unlink()
+    parser = DiffParser()
+    result = parser.apply(original, diff)
+    assert result == expected, f'Expected:\n{expected!r}\n\nGot:\n{result!r}'
