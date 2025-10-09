@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from .models import Chat, Config, QuestionCategorizationResult, CategorizedQuestion
+from .models import CategorizedQuestion, Chat, Config
 from .stores import ChatStore
 from .templates import get_jinja_env
 
@@ -119,17 +119,15 @@ class Yaml2Md:
 
         for q in all_categorized:
             if q.is_date_specific:
-                self.logger.debug(f'Skipping date-specific question: `%s` in category `%s`', q.question, q.category_slug)
+                self.logger.debug('Skipping date-specific question: `%s` in category `%s`', q.question, q.category_slug)
                 continue
 
             answers_with_links = store.questions.get_all_answers_for_question(q.question, chat)
             if not answers_with_links:
-                self.logger.warning(f'No answers for question: `%s` in category `%s`', q.question, q.category_slug)
+                self.logger.warning('No answers for question: `%s` in category `%s`', q.question, q.category_slug)
                 continue
 
             normalized_question = store.normalized_faq.normalize_question(q.category_slug, q.question)
-            if normalized_question != q.question:
-                self.logger.info(f'Normalized question: `%s` -> `%s` in category `%s`', q.question, normalized_question, q.category_slug)
 
             question_answers.setdefault(normalized_question, {
                 'question': normalized_question,

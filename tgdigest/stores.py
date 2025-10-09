@@ -5,8 +5,18 @@ import yaml
 from pydantic import BaseModel
 
 from .helpers import compute_messages_hash, compute_text_hash
-from .models import CategoryNormalizedQuestions, Chat, Month, MonthCases, MonthCategorizedQuestions, MonthFacts, \
-    MonthMessages, MonthQuestions, ReferencedSummary, CategorizedQuestion
+from .models import (
+    CategorizedQuestion,
+    CategoryNormalizedQuestions,
+    Chat,
+    Month,
+    MonthCases,
+    MonthCategorizedQuestions,
+    MonthFacts,
+    MonthMessages,
+    MonthQuestions,
+    ReferencedSummary,
+)
 
 T: TypeVar = TypeVar('T', bound=BaseModel)
 
