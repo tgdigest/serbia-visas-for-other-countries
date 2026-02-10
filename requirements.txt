@@ -5,7 +5,7 @@ pyyaml==6.0.3
 pydantic==2.11.10
 ruff==0.14.11
 openai==2.1.0
-anthropic==0.69.0
+anthropic==0.79.0
 unidiff==0.7.5
 jinja2==3.1.6
 pytest==9.0.2
